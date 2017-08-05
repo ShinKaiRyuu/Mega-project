@@ -31,20 +31,27 @@
             this.projectTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.numbersSubprojectTabControl = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.findPiTabPage = new System.Windows.Forms.TabPage();
             this.findPiResultLabel = new System.Windows.Forms.Label();
             this.findPiAutogenerateCheckbox = new System.Windows.Forms.CheckBox();
             this.findPiGenerateButton = new System.Windows.Forms.Button();
             this.findPiValueLabel = new System.Windows.Forms.Label();
             this.findPiSubprojectDesriptionLabel = new System.Windows.Forms.Label();
             this.findPiTrackBar = new System.Windows.Forms.TrackBar();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.findETabPage = new System.Windows.Forms.TabPage();
             this.fineEResultLabel = new System.Windows.Forms.Label();
             this.findEAutoenerateCheckBox = new System.Windows.Forms.CheckBox();
             this.findEGenerateButton = new System.Windows.Forms.Button();
             this.findEValueLabel = new System.Windows.Forms.Label();
             this.findEDescriptionLabel = new System.Windows.Forms.Label();
             this.findETrackBar = new System.Windows.Forms.TrackBar();
+            this.fibonachiSequenceTabPage = new System.Windows.Forms.TabPage();
+            this.findFibonachiSequenceResultlabel = new System.Windows.Forms.Label();
+            this.findFibonachiSequenceAutogenerateCheckBox = new System.Windows.Forms.CheckBox();
+            this.findFibonachiSequenceGenerateButton = new System.Windows.Forms.Button();
+            this.findFibonachiSequenceValueLabel = new System.Windows.Forms.Label();
+            this.findFibonachiSequenceDescriptionLabel = new System.Windows.Forms.Label();
+            this.findFibonachiSequenceTrackBar = new System.Windows.Forms.TrackBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -54,10 +61,12 @@
             this.projectTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.findPiTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPiTrackBar)).BeginInit();
-            this.tabPage4.SuspendLayout();
+            this.findETabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findETrackBar)).BeginInit();
+            this.fibonachiSequenceTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.findFibonachiSequenceTrackBar)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -66,76 +75,84 @@
             // 
             this.projectTabControl.Controls.Add(this.tabPage1);
             this.projectTabControl.Controls.Add(this.tabPage2);
-            this.projectTabControl.Location = new System.Drawing.Point(12, 12);
+            this.projectTabControl.Location = new System.Drawing.Point(24, 22);
+            this.projectTabControl.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.projectTabControl.Name = "projectTabControl";
             this.projectTabControl.SelectedIndex = 0;
-            this.projectTabControl.Size = new System.Drawing.Size(709, 317);
+            this.projectTabControl.Size = new System.Drawing.Size(1419, 610);
             this.projectTabControl.TabIndex = 0;
             this.projectTabControl.SelectedIndexChanged += new System.EventHandler(this.projectTabControl_SelectedIndexChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.numbersSubprojectTabControl);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(8, 39);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(701, 291);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.tabPage1.Size = new System.Drawing.Size(1403, 563);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Numbers";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // numbersSubprojectTabControl
             // 
-            this.numbersSubprojectTabControl.Controls.Add(this.tabPage3);
-            this.numbersSubprojectTabControl.Controls.Add(this.tabPage4);
-            this.numbersSubprojectTabControl.Location = new System.Drawing.Point(6, 6);
+            this.numbersSubprojectTabControl.Controls.Add(this.findPiTabPage);
+            this.numbersSubprojectTabControl.Controls.Add(this.findETabPage);
+            this.numbersSubprojectTabControl.Controls.Add(this.fibonachiSequenceTabPage);
+            this.numbersSubprojectTabControl.Location = new System.Drawing.Point(12, 11);
+            this.numbersSubprojectTabControl.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.numbersSubprojectTabControl.Name = "numbersSubprojectTabControl";
             this.numbersSubprojectTabControl.SelectedIndex = 0;
-            this.numbersSubprojectTabControl.Size = new System.Drawing.Size(689, 279);
+            this.numbersSubprojectTabControl.Size = new System.Drawing.Size(1379, 536);
             this.numbersSubprojectTabControl.TabIndex = 0;
             this.numbersSubprojectTabControl.SelectedIndexChanged += new System.EventHandler(this.numbersSubprojectTabControl_SelectedIndexChanged);
             // 
-            // tabPage3
+            // findPiTabPage
             // 
-            this.tabPage3.Controls.Add(this.findPiResultLabel);
-            this.tabPage3.Controls.Add(this.findPiAutogenerateCheckbox);
-            this.tabPage3.Controls.Add(this.findPiGenerateButton);
-            this.tabPage3.Controls.Add(this.findPiValueLabel);
-            this.tabPage3.Controls.Add(this.findPiSubprojectDesriptionLabel);
-            this.tabPage3.Controls.Add(this.findPiTrackBar);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(681, 253);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "Find PI to the Nth Digit";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.findPiTabPage.Controls.Add(this.findPiResultLabel);
+            this.findPiTabPage.Controls.Add(this.findPiAutogenerateCheckbox);
+            this.findPiTabPage.Controls.Add(this.findPiGenerateButton);
+            this.findPiTabPage.Controls.Add(this.findPiValueLabel);
+            this.findPiTabPage.Controls.Add(this.findPiSubprojectDesriptionLabel);
+            this.findPiTabPage.Controls.Add(this.findPiTrackBar);
+            this.findPiTabPage.Location = new System.Drawing.Point(8, 39);
+            this.findPiTabPage.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findPiTabPage.Name = "findPiTabPage";
+            this.findPiTabPage.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findPiTabPage.Size = new System.Drawing.Size(1363, 489);
+            this.findPiTabPage.TabIndex = 0;
+            this.findPiTabPage.Text = "Find PI to the Nth Digit";
+            this.findPiTabPage.UseVisualStyleBackColor = true;
             // 
             // findPiResultLabel
             // 
             this.findPiResultLabel.AutoSize = true;
             this.findPiResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.findPiResultLabel.Location = new System.Drawing.Point(6, 187);
+            this.findPiResultLabel.Location = new System.Drawing.Point(10, 376);
+            this.findPiResultLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.findPiResultLabel.Name = "findPiResultLabel";
-            this.findPiResultLabel.Size = new System.Drawing.Size(249, 54);
+            this.findPiResultLabel.Size = new System.Drawing.Size(501, 107);
             this.findPiResultLabel.TabIndex = 5;
             this.findPiResultLabel.Text = "Result: Pi=";
             // 
             // findPiAutogenerateCheckbox
             // 
             this.findPiAutogenerateCheckbox.AutoSize = true;
-            this.findPiAutogenerateCheckbox.Location = new System.Drawing.Point(472, 123);
+            this.findPiAutogenerateCheckbox.Location = new System.Drawing.Point(935, 287);
+            this.findPiAutogenerateCheckbox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.findPiAutogenerateCheckbox.Name = "findPiAutogenerateCheckbox";
-            this.findPiAutogenerateCheckbox.Size = new System.Drawing.Size(175, 17);
+            this.findPiAutogenerateCheckbox.Size = new System.Drawing.Size(343, 29);
             this.findPiAutogenerateCheckbox.TabIndex = 4;
             this.findPiAutogenerateCheckbox.Text = "auto-generate on value change";
             this.findPiAutogenerateCheckbox.UseVisualStyleBackColor = true;
             // 
             // findPiGenerateButton
             // 
-            this.findPiGenerateButton.Location = new System.Drawing.Point(9, 94);
+            this.findPiGenerateButton.Location = new System.Drawing.Point(10, 231);
+            this.findPiGenerateButton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.findPiGenerateButton.Name = "findPiGenerateButton";
-            this.findPiGenerateButton.Size = new System.Drawing.Size(457, 72);
+            this.findPiGenerateButton.Size = new System.Drawing.Size(915, 139);
             this.findPiGenerateButton.TabIndex = 3;
             this.findPiGenerateButton.Text = "Generate";
             this.findPiGenerateButton.UseVisualStyleBackColor = true;
@@ -144,18 +161,20 @@
             // findPiValueLabel
             // 
             this.findPiValueLabel.AutoSize = true;
-            this.findPiValueLabel.Location = new System.Drawing.Point(6, 27);
+            this.findPiValueLabel.Location = new System.Drawing.Point(10, 98);
+            this.findPiValueLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.findPiValueLabel.Name = "findPiValueLabel";
-            this.findPiValueLabel.Size = new System.Drawing.Size(49, 13);
+            this.findPiValueLabel.Size = new System.Drawing.Size(97, 25);
             this.findPiValueLabel.TabIndex = 2;
             this.findPiValueLabel.Text = "Value : 0";
             // 
             // findPiSubprojectDesriptionLabel
             // 
             this.findPiSubprojectDesriptionLabel.AutoSize = true;
-            this.findPiSubprojectDesriptionLabel.Location = new System.Drawing.Point(6, 3);
+            this.findPiSubprojectDesriptionLabel.Location = new System.Drawing.Point(10, 6);
+            this.findPiSubprojectDesriptionLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.findPiSubprojectDesriptionLabel.Name = "findPiSubprojectDesriptionLabel";
-            this.findPiSubprojectDesriptionLabel.Size = new System.Drawing.Size(593, 13);
+            this.findPiSubprojectDesriptionLabel.Size = new System.Drawing.Size(1200, 25);
             this.findPiSubprojectDesriptionLabel.TabIndex = 1;
             this.findPiSubprojectDesriptionLabel.Text = "Select a value and have the program generate PI up to that many decimal places. K" +
     "eep a limit to how far the program will go.";
@@ -163,54 +182,59 @@
             // findPiTrackBar
             // 
             this.findPiTrackBar.BackColor = System.Drawing.SystemColors.Window;
-            this.findPiTrackBar.Location = new System.Drawing.Point(6, 43);
-            this.findPiTrackBar.Maximum = 15;
+            this.findPiTrackBar.Location = new System.Drawing.Point(10, 129);
+            this.findPiTrackBar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findPiTrackBar.Maximum = 14;
             this.findPiTrackBar.Name = "findPiTrackBar";
-            this.findPiTrackBar.Size = new System.Drawing.Size(669, 45);
+            this.findPiTrackBar.Size = new System.Drawing.Size(1339, 90);
             this.findPiTrackBar.TabIndex = 0;
             this.findPiTrackBar.Scroll += new System.EventHandler(this.findPiTrackBar_Scroll);
             // 
-            // tabPage4
+            // findETabPage
             // 
-            this.tabPage4.Controls.Add(this.fineEResultLabel);
-            this.tabPage4.Controls.Add(this.findEAutoenerateCheckBox);
-            this.tabPage4.Controls.Add(this.findEGenerateButton);
-            this.tabPage4.Controls.Add(this.findEValueLabel);
-            this.tabPage4.Controls.Add(this.findEDescriptionLabel);
-            this.tabPage4.Controls.Add(this.findETrackBar);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(681, 253);
-            this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "Find e to the Nth Digit";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.findETabPage.Controls.Add(this.fineEResultLabel);
+            this.findETabPage.Controls.Add(this.findEAutoenerateCheckBox);
+            this.findETabPage.Controls.Add(this.findEGenerateButton);
+            this.findETabPage.Controls.Add(this.findEValueLabel);
+            this.findETabPage.Controls.Add(this.findEDescriptionLabel);
+            this.findETabPage.Controls.Add(this.findETrackBar);
+            this.findETabPage.Location = new System.Drawing.Point(8, 39);
+            this.findETabPage.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findETabPage.Name = "findETabPage";
+            this.findETabPage.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findETabPage.Size = new System.Drawing.Size(1363, 489);
+            this.findETabPage.TabIndex = 1;
+            this.findETabPage.Text = "Find e to the Nth Digit";
+            this.findETabPage.UseVisualStyleBackColor = true;
             // 
             // fineEResultLabel
             // 
             this.fineEResultLabel.AutoSize = true;
             this.fineEResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fineEResultLabel.Location = new System.Drawing.Point(6, 187);
+            this.fineEResultLabel.Location = new System.Drawing.Point(10, 376);
+            this.fineEResultLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.fineEResultLabel.Name = "fineEResultLabel";
-            this.fineEResultLabel.Size = new System.Drawing.Size(234, 54);
+            this.fineEResultLabel.Size = new System.Drawing.Size(469, 107);
             this.fineEResultLabel.TabIndex = 11;
             this.fineEResultLabel.Text = "Result: e=";
             // 
             // findEAutoenerateCheckBox
             // 
             this.findEAutoenerateCheckBox.AutoSize = true;
-            this.findEAutoenerateCheckBox.Location = new System.Drawing.Point(472, 123);
+            this.findEAutoenerateCheckBox.Location = new System.Drawing.Point(935, 287);
+            this.findEAutoenerateCheckBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.findEAutoenerateCheckBox.Name = "findEAutoenerateCheckBox";
-            this.findEAutoenerateCheckBox.Size = new System.Drawing.Size(175, 17);
+            this.findEAutoenerateCheckBox.Size = new System.Drawing.Size(343, 29);
             this.findEAutoenerateCheckBox.TabIndex = 10;
             this.findEAutoenerateCheckBox.Text = "auto-generate on value change";
             this.findEAutoenerateCheckBox.UseVisualStyleBackColor = true;
             // 
             // findEGenerateButton
             // 
-            this.findEGenerateButton.Location = new System.Drawing.Point(9, 94);
+            this.findEGenerateButton.Location = new System.Drawing.Point(10, 231);
+            this.findEGenerateButton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.findEGenerateButton.Name = "findEGenerateButton";
-            this.findEGenerateButton.Size = new System.Drawing.Size(457, 72);
+            this.findEGenerateButton.Size = new System.Drawing.Size(915, 139);
             this.findEGenerateButton.TabIndex = 9;
             this.findEGenerateButton.Text = "Generate";
             this.findEGenerateButton.UseVisualStyleBackColor = true;
@@ -219,39 +243,125 @@
             // findEValueLabel
             // 
             this.findEValueLabel.AutoSize = true;
-            this.findEValueLabel.Location = new System.Drawing.Point(6, 27);
+            this.findEValueLabel.Location = new System.Drawing.Point(10, 98);
+            this.findEValueLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.findEValueLabel.Name = "findEValueLabel";
-            this.findEValueLabel.Size = new System.Drawing.Size(49, 13);
+            this.findEValueLabel.Size = new System.Drawing.Size(97, 25);
             this.findEValueLabel.TabIndex = 8;
             this.findEValueLabel.Text = "Value : 0";
             // 
             // findEDescriptionLabel
             // 
             this.findEDescriptionLabel.AutoSize = true;
-            this.findEDescriptionLabel.Location = new System.Drawing.Point(6, 3);
+            this.findEDescriptionLabel.Location = new System.Drawing.Point(10, 6);
+            this.findEDescriptionLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.findEDescriptionLabel.Name = "findEDescriptionLabel";
-            this.findEDescriptionLabel.Size = new System.Drawing.Size(589, 13);
+            this.findEDescriptionLabel.Size = new System.Drawing.Size(1199, 25);
             this.findEDescriptionLabel.TabIndex = 7;
-            this.findEDescriptionLabel.Text = "Select a value and have the program generate e up to that many decimal places. Ke" +
-    "ep a limit to how far the program will go.";
+            this.findEDescriptionLabel.Text = "Select a value and have the program generate e  up to that many decimal places. K" +
+    "eep a limit to how far the program will go.";
             // 
             // findETrackBar
             // 
             this.findETrackBar.BackColor = System.Drawing.SystemColors.Window;
-            this.findETrackBar.Location = new System.Drawing.Point(6, 43);
-            this.findETrackBar.Maximum = 15;
+            this.findETrackBar.Location = new System.Drawing.Point(10, 129);
+            this.findETrackBar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findETrackBar.Maximum = 14;
             this.findETrackBar.Name = "findETrackBar";
-            this.findETrackBar.Size = new System.Drawing.Size(669, 45);
+            this.findETrackBar.Size = new System.Drawing.Size(1339, 90);
             this.findETrackBar.TabIndex = 6;
             this.findETrackBar.Scroll += new System.EventHandler(this.findETrackBar_Scroll);
+            // 
+            // fibonachiSequenceTabPage
+            // 
+            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceResultlabel);
+            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceAutogenerateCheckBox);
+            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceGenerateButton);
+            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceValueLabel);
+            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceDescriptionLabel);
+            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceTrackBar);
+            this.fibonachiSequenceTabPage.Location = new System.Drawing.Point(8, 39);
+            this.fibonachiSequenceTabPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fibonachiSequenceTabPage.Name = "fibonachiSequenceTabPage";
+            this.fibonachiSequenceTabPage.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fibonachiSequenceTabPage.Size = new System.Drawing.Size(1363, 489);
+            this.fibonachiSequenceTabPage.TabIndex = 2;
+            this.fibonachiSequenceTabPage.Text = "Find Fibonachi sequence";
+            this.fibonachiSequenceTabPage.UseVisualStyleBackColor = true;
+            // 
+            // findFibonachiSequenceResultlabel
+            // 
+            this.findFibonachiSequenceResultlabel.AutoSize = true;
+            this.findFibonachiSequenceResultlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.findFibonachiSequenceResultlabel.Location = new System.Drawing.Point(9, 418);
+            this.findFibonachiSequenceResultlabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.findFibonachiSequenceResultlabel.Name = "findFibonachiSequenceResultlabel";
+            this.findFibonachiSequenceResultlabel.Size = new System.Drawing.Size(124, 37);
+            this.findFibonachiSequenceResultlabel.TabIndex = 17;
+            this.findFibonachiSequenceResultlabel.Text = "Result: ";
+            // 
+            // findFibonachiSequenceAutogenerateCheckBox
+            // 
+            this.findFibonachiSequenceAutogenerateCheckBox.AutoSize = true;
+            this.findFibonachiSequenceAutogenerateCheckBox.Location = new System.Drawing.Point(935, 287);
+            this.findFibonachiSequenceAutogenerateCheckBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findFibonachiSequenceAutogenerateCheckBox.Name = "findFibonachiSequenceAutogenerateCheckBox";
+            this.findFibonachiSequenceAutogenerateCheckBox.Size = new System.Drawing.Size(343, 29);
+            this.findFibonachiSequenceAutogenerateCheckBox.TabIndex = 16;
+            this.findFibonachiSequenceAutogenerateCheckBox.Text = "auto-generate on value change";
+            this.findFibonachiSequenceAutogenerateCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // findFibonachiSequenceGenerateButton
+            // 
+            this.findFibonachiSequenceGenerateButton.Location = new System.Drawing.Point(10, 231);
+            this.findFibonachiSequenceGenerateButton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findFibonachiSequenceGenerateButton.Name = "findFibonachiSequenceGenerateButton";
+            this.findFibonachiSequenceGenerateButton.Size = new System.Drawing.Size(915, 139);
+            this.findFibonachiSequenceGenerateButton.TabIndex = 15;
+            this.findFibonachiSequenceGenerateButton.Text = "Generate";
+            this.findFibonachiSequenceGenerateButton.UseVisualStyleBackColor = true;
+            this.findFibonachiSequenceGenerateButton.Click += new System.EventHandler(this.findFibonachiSequenceGenerateButton_Click);
+            // 
+            // findFibonachiSequenceValueLabel
+            // 
+            this.findFibonachiSequenceValueLabel.AutoSize = true;
+            this.findFibonachiSequenceValueLabel.Location = new System.Drawing.Point(10, 98);
+            this.findFibonachiSequenceValueLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.findFibonachiSequenceValueLabel.Name = "findFibonachiSequenceValueLabel";
+            this.findFibonachiSequenceValueLabel.Size = new System.Drawing.Size(97, 25);
+            this.findFibonachiSequenceValueLabel.TabIndex = 14;
+            this.findFibonachiSequenceValueLabel.Text = "Value : 0";
+            // 
+            // findFibonachiSequenceDescriptionLabel
+            // 
+            this.findFibonachiSequenceDescriptionLabel.AutoSize = true;
+            this.findFibonachiSequenceDescriptionLabel.Location = new System.Drawing.Point(10, 6);
+            this.findFibonachiSequenceDescriptionLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.findFibonachiSequenceDescriptionLabel.Name = "findFibonachiSequenceDescriptionLabel";
+            this.findFibonachiSequenceDescriptionLabel.Size = new System.Drawing.Size(1193, 25);
+            this.findFibonachiSequenceDescriptionLabel.TabIndex = 13;
+            this.findFibonachiSequenceDescriptionLabel.Text = "Select a value and have the program generate e up to that many decimal places. Ke" +
+    "ep a limit to how far the program will go.";
+            // 
+            // findFibonachiSequenceTrackBar
+            // 
+            this.findFibonachiSequenceTrackBar.BackColor = System.Drawing.SystemColors.Window;
+            this.findFibonachiSequenceTrackBar.Location = new System.Drawing.Point(10, 129);
+            this.findFibonachiSequenceTrackBar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findFibonachiSequenceTrackBar.Maximum = 100;
+            this.findFibonachiSequenceTrackBar.Name = "findFibonachiSequenceTrackBar";
+            this.findFibonachiSequenceTrackBar.Size = new System.Drawing.Size(1339, 90);
+            this.findFibonachiSequenceTrackBar.TabIndex = 12;
+            this.findFibonachiSequenceTrackBar.Scroll += new System.EventHandler(this.findFibonachiSequenceTrackBar_Scroll);
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tabControl1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(8, 39);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(701, 291);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.tabPage2.Size = new System.Drawing.Size(1403, 563);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "TBD";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -260,68 +370,77 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Location = new System.Drawing.Point(7, 7);
+            this.tabControl1.Location = new System.Drawing.Point(13, 14);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(688, 278);
+            this.tabControl1.Size = new System.Drawing.Size(1376, 535);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage5
             // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(8, 39);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(680, 252);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.tabPage5.Size = new System.Drawing.Size(1360, 488);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // tabPage6
             // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Location = new System.Drawing.Point(8, 39);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(192, 74);
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.tabPage6.Size = new System.Drawing.Size(1360, 488);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // debugRichTextBox
             // 
-            this.debugRichTextBox.Location = new System.Drawing.Point(16, 353);
+            this.debugRichTextBox.Location = new System.Drawing.Point(32, 679);
+            this.debugRichTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.debugRichTextBox.Name = "debugRichTextBox";
-            this.debugRichTextBox.Size = new System.Drawing.Size(701, 110);
+            this.debugRichTextBox.Size = new System.Drawing.Size(1399, 208);
             this.debugRichTextBox.TabIndex = 1;
             this.debugRichTextBox.Text = "";
             // 
             // debugLabel
             // 
             this.debugLabel.AutoSize = true;
-            this.debugLabel.Location = new System.Drawing.Point(16, 336);
+            this.debugLabel.Location = new System.Drawing.Point(32, 646);
+            this.debugLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.debugLabel.Name = "debugLabel";
-            this.debugLabel.Size = new System.Drawing.Size(39, 13);
+            this.debugLabel.Size = new System.Drawing.Size(75, 25);
             this.debugLabel.TabIndex = 2;
             this.debugLabel.Text = "Debug";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(733, 475);
+            this.ClientSize = new System.Drawing.Size(1467, 919);
             this.Controls.Add(this.debugLabel);
             this.Controls.Add(this.debugRichTextBox);
             this.Controls.Add(this.projectTabControl);
+            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "MainForm";
             this.Text = "Mega Project";
             this.projectTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.numbersSubprojectTabControl.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.findPiTabPage.ResumeLayout(false);
+            this.findPiTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPiTrackBar)).EndInit();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.findETabPage.ResumeLayout(false);
+            this.findETabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findETrackBar)).EndInit();
+            this.fibonachiSequenceTabPage.ResumeLayout(false);
+            this.fibonachiSequenceTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.findFibonachiSequenceTrackBar)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -335,11 +454,11 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabControl numbersSubprojectTabControl;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage findPiTabPage;
         private System.Windows.Forms.Label findPiValueLabel;
         private System.Windows.Forms.Label findPiSubprojectDesriptionLabel;
         private System.Windows.Forms.TrackBar findPiTrackBar;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage findETabPage;
         private System.Windows.Forms.Label findPiResultLabel;
         private System.Windows.Forms.CheckBox findPiAutogenerateCheckbox;
         private System.Windows.Forms.Button findPiGenerateButton;
@@ -354,6 +473,13 @@
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.RichTextBox debugRichTextBox;
         private System.Windows.Forms.Label debugLabel;
+        private System.Windows.Forms.TabPage fibonachiSequenceTabPage;
+        private System.Windows.Forms.Label findFibonachiSequenceResultlabel;
+        private System.Windows.Forms.CheckBox findFibonachiSequenceAutogenerateCheckBox;
+        private System.Windows.Forms.Button findFibonachiSequenceGenerateButton;
+        private System.Windows.Forms.Label findFibonachiSequenceValueLabel;
+        private System.Windows.Forms.Label findFibonachiSequenceDescriptionLabel;
+        private System.Windows.Forms.TrackBar findFibonachiSequenceTrackBar;
     }
 }
 

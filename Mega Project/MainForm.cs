@@ -61,5 +61,19 @@ namespace Mega_Project
             TabPage currentSubprojectTabPage = currentSubprojectTabControl.SelectedTab;
             this.Text = String.Format("\n Project: {0} Subroject: {1}", currentProjectTabPage.Text, currentSubprojectTabPage.Text);
         }
+
+        private void findFibonachiSequenceGenerateButton_Click(object sender, EventArgs e)
+        {
+            findFibonachiSequenceResultlabel.Text = String.Format("Result : Fibonachi sequence({0})",findFibonachiSequenceTrackBar.Value) + string.Join(";",Numbers.Fibonachi(findFibonachiSequenceTrackBar.Value));
+        }
+
+        private void findFibonachiSequenceTrackBar_Scroll(object sender, EventArgs e)
+        {
+            findFibonachiSequenceValueLabel.Text = "Value : " + findFibonachiSequenceTrackBar.Value.ToString();
+            if (findFibonachiSequenceAutogenerateCheckBox.Checked)
+            {
+                findFibonachiSequenceGenerateButton_Click(sender, e);
+            }
+        }
     }
 }
