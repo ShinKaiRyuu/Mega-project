@@ -75,5 +75,19 @@ namespace Mega_Project
                 findFibonachiSequenceGenerateButton_Click(sender, e);
             }
         }
+
+        private void findPrimeFactorGenerateButton_Click(object sender, EventArgs e)
+        {
+            findPrimeFactorResultLabel.Text = String.Format("Result : Prime factors for ({0})", findPrimeFactorTrackBar.Value) + string.Join(";", Numbers.PrimeFactor(findPrimeFactorTrackBar.Value));
+        }
+
+        private void findPrimeFactorTrackBar_Scroll(object sender, EventArgs e)
+        {
+            findPrimeFactorValueLabel.Text = "Value : " + findPrimeFactorTrackBar.Value.ToString();
+            if (findPrimeFactorAutogenerateCheckBox.Checked)
+            {
+                findPrimeFactorGenerateButton_Click(sender, e);
+            }
+        }
     }
 }

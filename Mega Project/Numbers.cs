@@ -27,6 +27,20 @@ namespace Mega_Project
             }
             return fibonachi_sequence;
         }
+
+        public static List<int> PrimeFactor(int n)
+        {
+            List<int> dividers = new List<int>();
+            for (int a = 2; n > 1; a++)
+            {
+                while (n % a == 0)
+                {
+                    dividers.Add(a);
+                    n= n / a;
+                }
+            }
+            return dividers;
+        }
     }
 
 }

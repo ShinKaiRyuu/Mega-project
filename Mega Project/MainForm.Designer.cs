@@ -45,7 +45,7 @@
             this.findEValueLabel = new System.Windows.Forms.Label();
             this.findEDescriptionLabel = new System.Windows.Forms.Label();
             this.findETrackBar = new System.Windows.Forms.TrackBar();
-            this.fibonachiSequenceTabPage = new System.Windows.Forms.TabPage();
+            this.findFibonachiSequenceTabPage = new System.Windows.Forms.TabPage();
             this.findFibonachiSequenceResultlabel = new System.Windows.Forms.Label();
             this.findFibonachiSequenceAutogenerateCheckBox = new System.Windows.Forms.CheckBox();
             this.findFibonachiSequenceGenerateButton = new System.Windows.Forms.Button();
@@ -58,6 +58,13 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
             this.debugLabel = new System.Windows.Forms.Label();
+            this.findPrimeFactorTabPage = new System.Windows.Forms.TabPage();
+            this.findPrimeFactorResultLabel = new System.Windows.Forms.Label();
+            this.findPrimeFactorAutogenerateCheckBox = new System.Windows.Forms.CheckBox();
+            this.findPrimeFactorGenerateButton = new System.Windows.Forms.Button();
+            this.findPrimeFactorValueLabel = new System.Windows.Forms.Label();
+            this.findPrimeFactorDescriptionLabel = new System.Windows.Forms.Label();
+            this.findPrimeFactorTrackBar = new System.Windows.Forms.TrackBar();
             this.projectTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
@@ -65,10 +72,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.findPiTrackBar)).BeginInit();
             this.findETabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findETrackBar)).BeginInit();
-            this.fibonachiSequenceTabPage.SuspendLayout();
+            this.findFibonachiSequenceTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findFibonachiSequenceTrackBar)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.findPrimeFactorTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.findPrimeFactorTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // projectTabControl
@@ -99,7 +108,8 @@
             // 
             this.numbersSubprojectTabControl.Controls.Add(this.findPiTabPage);
             this.numbersSubprojectTabControl.Controls.Add(this.findETabPage);
-            this.numbersSubprojectTabControl.Controls.Add(this.fibonachiSequenceTabPage);
+            this.numbersSubprojectTabControl.Controls.Add(this.findFibonachiSequenceTabPage);
+            this.numbersSubprojectTabControl.Controls.Add(this.findPrimeFactorTabPage);
             this.numbersSubprojectTabControl.Location = new System.Drawing.Point(12, 11);
             this.numbersSubprojectTabControl.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.numbersSubprojectTabControl.Name = "numbersSubprojectTabControl";
@@ -272,22 +282,22 @@
             this.findETrackBar.TabIndex = 6;
             this.findETrackBar.Scroll += new System.EventHandler(this.findETrackBar_Scroll);
             // 
-            // fibonachiSequenceTabPage
+            // findFibonachiSequenceTabPage
             // 
-            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceResultlabel);
-            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceAutogenerateCheckBox);
-            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceGenerateButton);
-            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceValueLabel);
-            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceDescriptionLabel);
-            this.fibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceTrackBar);
-            this.fibonachiSequenceTabPage.Location = new System.Drawing.Point(8, 39);
-            this.fibonachiSequenceTabPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.fibonachiSequenceTabPage.Name = "fibonachiSequenceTabPage";
-            this.fibonachiSequenceTabPage.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.fibonachiSequenceTabPage.Size = new System.Drawing.Size(1363, 489);
-            this.fibonachiSequenceTabPage.TabIndex = 2;
-            this.fibonachiSequenceTabPage.Text = "Find Fibonachi sequence";
-            this.fibonachiSequenceTabPage.UseVisualStyleBackColor = true;
+            this.findFibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceResultlabel);
+            this.findFibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceAutogenerateCheckBox);
+            this.findFibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceGenerateButton);
+            this.findFibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceValueLabel);
+            this.findFibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceDescriptionLabel);
+            this.findFibonachiSequenceTabPage.Controls.Add(this.findFibonachiSequenceTrackBar);
+            this.findFibonachiSequenceTabPage.Location = new System.Drawing.Point(8, 39);
+            this.findFibonachiSequenceTabPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.findFibonachiSequenceTabPage.Name = "findFibonachiSequenceTabPage";
+            this.findFibonachiSequenceTabPage.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.findFibonachiSequenceTabPage.Size = new System.Drawing.Size(1363, 489);
+            this.findFibonachiSequenceTabPage.TabIndex = 2;
+            this.findFibonachiSequenceTabPage.Text = "Find Fibonachi sequence";
+            this.findFibonachiSequenceTabPage.UseVisualStyleBackColor = true;
             // 
             // findFibonachiSequenceResultlabel
             // 
@@ -418,6 +428,87 @@
             this.debugLabel.TabIndex = 2;
             this.debugLabel.Text = "Debug";
             // 
+            // findPrimeFactorTabPage
+            // 
+            this.findPrimeFactorTabPage.Controls.Add(this.findPrimeFactorResultLabel);
+            this.findPrimeFactorTabPage.Controls.Add(this.findPrimeFactorAutogenerateCheckBox);
+            this.findPrimeFactorTabPage.Controls.Add(this.findPrimeFactorGenerateButton);
+            this.findPrimeFactorTabPage.Controls.Add(this.findPrimeFactorValueLabel);
+            this.findPrimeFactorTabPage.Controls.Add(this.findPrimeFactorDescriptionLabel);
+            this.findPrimeFactorTabPage.Controls.Add(this.findPrimeFactorTrackBar);
+            this.findPrimeFactorTabPage.Location = new System.Drawing.Point(8, 39);
+            this.findPrimeFactorTabPage.Name = "findPrimeFactorTabPage";
+            this.findPrimeFactorTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.findPrimeFactorTabPage.Size = new System.Drawing.Size(1363, 489);
+            this.findPrimeFactorTabPage.TabIndex = 3;
+            this.findPrimeFactorTabPage.Text = "Find Prime Factor";
+            this.findPrimeFactorTabPage.UseVisualStyleBackColor = true;
+            // 
+            // findPrimeFactorResultLabel
+            // 
+            this.findPrimeFactorResultLabel.AutoSize = true;
+            this.findPrimeFactorResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.findPrimeFactorResultLabel.Location = new System.Drawing.Point(11, 432);
+            this.findPrimeFactorResultLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.findPrimeFactorResultLabel.Name = "findPrimeFactorResultLabel";
+            this.findPrimeFactorResultLabel.Size = new System.Drawing.Size(124, 37);
+            this.findPrimeFactorResultLabel.TabIndex = 23;
+            this.findPrimeFactorResultLabel.Text = "Result: ";
+            // 
+            // findPrimeFactorAutogenerateCheckBox
+            // 
+            this.findPrimeFactorAutogenerateCheckBox.AutoSize = true;
+            this.findPrimeFactorAutogenerateCheckBox.Location = new System.Drawing.Point(937, 301);
+            this.findPrimeFactorAutogenerateCheckBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findPrimeFactorAutogenerateCheckBox.Name = "findPrimeFactorAutogenerateCheckBox";
+            this.findPrimeFactorAutogenerateCheckBox.Size = new System.Drawing.Size(343, 29);
+            this.findPrimeFactorAutogenerateCheckBox.TabIndex = 22;
+            this.findPrimeFactorAutogenerateCheckBox.Text = "auto-generate on value change";
+            this.findPrimeFactorAutogenerateCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // findPrimeFactorGenerateButton
+            // 
+            this.findPrimeFactorGenerateButton.Location = new System.Drawing.Point(12, 245);
+            this.findPrimeFactorGenerateButton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findPrimeFactorGenerateButton.Name = "findPrimeFactorGenerateButton";
+            this.findPrimeFactorGenerateButton.Size = new System.Drawing.Size(915, 139);
+            this.findPrimeFactorGenerateButton.TabIndex = 21;
+            this.findPrimeFactorGenerateButton.Text = "Generate";
+            this.findPrimeFactorGenerateButton.UseVisualStyleBackColor = true;
+            this.findPrimeFactorGenerateButton.Click += new System.EventHandler(this.findPrimeFactorGenerateButton_Click);
+            // 
+            // findPrimeFactorValueLabel
+            // 
+            this.findPrimeFactorValueLabel.AutoSize = true;
+            this.findPrimeFactorValueLabel.Location = new System.Drawing.Point(12, 112);
+            this.findPrimeFactorValueLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.findPrimeFactorValueLabel.Name = "findPrimeFactorValueLabel";
+            this.findPrimeFactorValueLabel.Size = new System.Drawing.Size(97, 25);
+            this.findPrimeFactorValueLabel.TabIndex = 20;
+            this.findPrimeFactorValueLabel.Text = "Value : 0";
+            // 
+            // findPrimeFactorDescriptionLabel
+            // 
+            this.findPrimeFactorDescriptionLabel.AutoSize = true;
+            this.findPrimeFactorDescriptionLabel.Location = new System.Drawing.Point(12, 20);
+            this.findPrimeFactorDescriptionLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.findPrimeFactorDescriptionLabel.Name = "findPrimeFactorDescriptionLabel";
+            this.findPrimeFactorDescriptionLabel.Size = new System.Drawing.Size(1193, 25);
+            this.findPrimeFactorDescriptionLabel.TabIndex = 19;
+            this.findPrimeFactorDescriptionLabel.Text = "Select a value and have the program generate e up to that many decimal places. Ke" +
+    "ep a limit to how far the program will go.";
+            // 
+            // findPrimeFactorTrackBar
+            // 
+            this.findPrimeFactorTrackBar.BackColor = System.Drawing.SystemColors.Window;
+            this.findPrimeFactorTrackBar.Location = new System.Drawing.Point(12, 143);
+            this.findPrimeFactorTrackBar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.findPrimeFactorTrackBar.Maximum = 100;
+            this.findPrimeFactorTrackBar.Name = "findPrimeFactorTrackBar";
+            this.findPrimeFactorTrackBar.Size = new System.Drawing.Size(1339, 90);
+            this.findPrimeFactorTrackBar.TabIndex = 18;
+            this.findPrimeFactorTrackBar.Scroll += new System.EventHandler(this.findPrimeFactorTrackBar_Scroll);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -438,11 +529,14 @@
             this.findETabPage.ResumeLayout(false);
             this.findETabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findETrackBar)).EndInit();
-            this.fibonachiSequenceTabPage.ResumeLayout(false);
-            this.fibonachiSequenceTabPage.PerformLayout();
+            this.findFibonachiSequenceTabPage.ResumeLayout(false);
+            this.findFibonachiSequenceTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findFibonachiSequenceTrackBar)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.findPrimeFactorTabPage.ResumeLayout(false);
+            this.findPrimeFactorTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.findPrimeFactorTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,13 +567,20 @@
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.RichTextBox debugRichTextBox;
         private System.Windows.Forms.Label debugLabel;
-        private System.Windows.Forms.TabPage fibonachiSequenceTabPage;
+        private System.Windows.Forms.TabPage findFibonachiSequenceTabPage;
         private System.Windows.Forms.Label findFibonachiSequenceResultlabel;
         private System.Windows.Forms.CheckBox findFibonachiSequenceAutogenerateCheckBox;
         private System.Windows.Forms.Button findFibonachiSequenceGenerateButton;
         private System.Windows.Forms.Label findFibonachiSequenceValueLabel;
         private System.Windows.Forms.Label findFibonachiSequenceDescriptionLabel;
         private System.Windows.Forms.TrackBar findFibonachiSequenceTrackBar;
+        private System.Windows.Forms.TabPage findPrimeFactorTabPage;
+        private System.Windows.Forms.Label findPrimeFactorResultLabel;
+        private System.Windows.Forms.CheckBox findPrimeFactorAutogenerateCheckBox;
+        private System.Windows.Forms.Button findPrimeFactorGenerateButton;
+        private System.Windows.Forms.Label findPrimeFactorValueLabel;
+        private System.Windows.Forms.Label findPrimeFactorDescriptionLabel;
+        private System.Windows.Forms.TrackBar findPrimeFactorTrackBar;
     }
 }
 
