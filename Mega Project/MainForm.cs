@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Mega_Project
@@ -9,6 +10,9 @@ namespace Mega_Project
         {
             InitializeComponent();
         }
+
+        public Dictionary<string, double> dictionary_Pi_e = new Dictionary<string, double>();
+        public Dictionary<string, List<int>> dictionary_Fibonachi_PrimeFactor = new Dictionary<string, List<int>>();
 
 
         private void findPiTrackBar_Scroll(object sender, EventArgs e)
@@ -22,13 +26,45 @@ namespace Mega_Project
 
         private void findPiGenerateButton_Click(object sender, EventArgs e)
         {
-            findPiResultLabel.Text ="Result: Pi=" + Math.Round(Numbers.Pi, findPiTrackBar.Value).ToString();
+            double result=0;
+            int value = findPiTrackBar.Value;
+            string key = "Pi" + value.ToString();
+            try
+                {
+                    dictionary_Pi_e.TryGetValue(key, out result);
+                }
+            catch(Exception ex)
+                {
+                   
+                }
+            if (result == 0)
+            {
+                dictionary_Pi_e.Add(key, Math.Round(Numbers.Pi, value));
+                dictionary_Pi_e.TryGetValue(key, out result);
+            }
+            findPiResultLabel.Text ="Result: Pi=" + result.ToString();
         }
 
 
         private void fineEGenerateButton_Click(object sender, EventArgs e)
         {
-            fineEResultLabel.Text = "Result: e=" + Math.Round(Numbers.e, findETrackBar.Value).ToString();
+            double result = 0;
+            int value = findETrackBar.Value;
+            string key = "E" + value.ToString();
+            try
+            {
+                dictionary_Pi_e.TryGetValue(key, out result);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            if (result == 0)
+            {
+                dictionary_Pi_e.Add(key, Math.Round(Numbers.e, value));
+                dictionary_Pi_e.TryGetValue(key, out result);
+            }
+            fineEResultLabel.Text = "Result: e=" + result.ToString();
         }
 
 
@@ -64,7 +100,23 @@ namespace Mega_Project
 
         private void findFibonachiSequenceGenerateButton_Click(object sender, EventArgs e)
         {
-            findFibonachiSequenceResultlabel.Text = String.Format("Result : Fibonachi sequence({0})",findFibonachiSequenceTrackBar.Value) + string.Join(";",Numbers.Fibonachi(findFibonachiSequenceTrackBar.Value));
+            List<int> result = new List<int>();
+            int value = findFibonachiSequenceTrackBar.Value;
+            string key = "Fibonachi" + value.ToString();
+            try
+            {
+                dictionary_Fibonachi_PrimeFactor.TryGetValue(key, out result);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            if (result == null)
+            {
+                dictionary_Fibonachi_PrimeFactor.Add(key, Numbers.Fibonachi(value));
+                dictionary_Fibonachi_PrimeFactor.TryGetValue(key, out result);
+            }
+            findFibonachiSequenceResultlabel.Text = String.Format("Result : Fibonachi sequence({0})", value) + string.Join(";", result);
         }
 
         private void findFibonachiSequenceTrackBar_Scroll(object sender, EventArgs e)
@@ -78,7 +130,23 @@ namespace Mega_Project
 
         private void findPrimeFactorGenerateButton_Click(object sender, EventArgs e)
         {
-            findPrimeFactorResultLabel.Text = String.Format("Result : Prime factors for ({0})", findPrimeFactorTrackBar.Value) + string.Join(";", Numbers.PrimeFactor(findPrimeFactorTrackBar.Value));
+            List<int> result = new List<int>();
+            int value = findPrimeFactorTrackBar.Value;
+            string key = "PrimeFactor" + value.ToString();
+            try
+            {
+                dictionary_Fibonachi_PrimeFactor.TryGetValue(key, out result);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            if (result == null)
+            {
+                dictionary_Fibonachi_PrimeFactor.Add(key, Numbers.PrimeFactor(value));
+                dictionary_Fibonachi_PrimeFactor.TryGetValue(key, out result);
+            }
+            findPrimeFactorResultLabel.Text = String.Format("Result : Prime factors for ({0})", value) + string.Join(";", result);
         }
 
         private void findPrimeFactorTrackBar_Scroll(object sender, EventArgs e)
