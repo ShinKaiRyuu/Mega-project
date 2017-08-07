@@ -41,6 +41,53 @@ namespace Mega_Project
             }
             return dividers;
         }
+
+        public static double CountingPi(int n)
+        {
+            double x = 1;
+            for (double i=1; i < n; i++)
+            {
+               x += ((Math.Pow(- 1, i))/(2+(i*2-1)));
+            }
+            double Pi = x * 4;
+            return Pi;
+        }
+
+        public static double CountingE(double n)
+        {
+            double ee ;
+            ee = Math.Pow((1 + 1 / n), n);
+            return ee;
+        }
+
+        public static string CommonPrefix(string[] ss)
+        {
+            if (ss.Length == 0)
+            {
+                return "";
+            }
+
+            if (ss.Length == 1)
+            {
+                return ss[0];
+            }
+
+            int prefixLength = 0;
+
+            foreach (char c in ss[0])
+            {
+                foreach (string s in ss)
+                {
+                    if (s.Length <= prefixLength || s[prefixLength] != c)
+                    {
+                        return ss[0].Substring(0, prefixLength);
+                    }
+                }
+                prefixLength++;
+            }
+
+            return ss[0]; // all strings identical up to length of ss[0]
+        }
     }
 
 }
