@@ -53,6 +53,13 @@ namespace Mega_Project
             return Pi;
         }
 
+        public static double CountingE(double n)
+        {
+            double ee ;
+            ee = Math.Pow((1 + 1 / n), n);
+            return ee;
+        }
+
         public static string CommonPrefix(string[] ss)
         {
             if (ss.Length == 0)

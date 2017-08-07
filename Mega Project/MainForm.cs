@@ -13,7 +13,7 @@ namespace Mega_Project
         }
 
         public Dictionary<string, Tuple<double,string>> dictionary_Pi = new Dictionary<string, Tuple<double, string>>();
-        public Dictionary<string, double> dictionary_e = new Dictionary<string, double>();
+        public Dictionary<string, Tuple<double, string>> dictionary_e = new Dictionary<string, Tuple<double, string>>();
         public Dictionary<string, List<int>> dictionary_Fibonachi = new Dictionary<string, List<int>>();
         public Dictionary<string, List<int>> dictionary_PrimeFactor = new Dictionary<string, List<int>>();
 
@@ -64,9 +64,13 @@ namespace Mega_Project
 
         private void fineEGenerateButton_Click(object sender, EventArgs e)
         {
-            double result = 0;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             int value = findETrackBar.Value;
+            Tuple<double, string> result = null;
             string key = "E" + value.ToString();
+            string common = "";
+            double countedE;
             try
             {
                 dictionary_e.TryGetValue(key, out result);
@@ -75,13 +79,21 @@ namespace Mega_Project
             {
 
             }
-            if (result == 0)
+            if (result == null)
             {
-                dictionary_e.Add(key, Math.Round(Numbers.e, value));
+                countedE = Numbers.CountingE(value);
+                common = Numbers.CommonPrefix(new[] { countedE.ToString(), Numbers.e.ToString() });
+                dictionary_e.Add(key, new Tuple<double, string>(countedE, common));
                 dictionary_e.TryGetValue(key, out result);
             }
-            fineEResultLabel.Text = "Result: e=" + result.ToString();
-        }
+            countedE = result.Item1;
+            common = result.Item2;
+            findEEtalonELabel.Text = "Etalon : E =" + Numbers.e.ToString();
+            findEResultLabel.Text = "Result : E =" + countedE.ToString();
+            findECommonPartWithEtalonLabel.Text = "Common :   " + common;
+            sw.Stop();
+            debugRichTextBox.Text = sw.Elapsed.ToString();
+    }
 
 
         private void findETrackBar_Scroll(object sender, EventArgs e)
