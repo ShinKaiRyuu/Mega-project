@@ -7,6 +7,7 @@ namespace Mega_Project
     {
         public MainForm()
         {
+            Application.EnableVisualStyles();
             InitializeComponent();
         }
 
