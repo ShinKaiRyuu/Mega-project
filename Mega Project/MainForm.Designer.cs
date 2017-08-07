@@ -65,6 +65,8 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
             this.debugLabel = new System.Windows.Forms.Label();
+            this.findPiEtalonPiLabel = new System.Windows.Forms.Label();
+            this.findPiCommonPartWithEtalonLabel = new System.Windows.Forms.Label();
             this.projectTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
@@ -120,6 +122,8 @@
             // 
             // findPiTabPage
             // 
+            this.findPiTabPage.Controls.Add(this.findPiCommonPartWithEtalonLabel);
+            this.findPiTabPage.Controls.Add(this.findPiEtalonPiLabel);
             this.findPiTabPage.Controls.Add(this.findPiResultLabel);
             this.findPiTabPage.Controls.Add(this.findPiAutogenerateCheckbox);
             this.findPiTabPage.Controls.Add(this.findPiGenerateButton);
@@ -138,13 +142,13 @@
             // findPiResultLabel
             // 
             this.findPiResultLabel.AutoSize = true;
-            this.findPiResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.findPiResultLabel.Location = new System.Drawing.Point(5, 196);
+            this.findPiResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.findPiResultLabel.Location = new System.Drawing.Point(4, 215);
             this.findPiResultLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.findPiResultLabel.Name = "findPiResultLabel";
-            this.findPiResultLabel.Size = new System.Drawing.Size(249, 54);
+            this.findPiResultLabel.Size = new System.Drawing.Size(93, 20);
             this.findPiResultLabel.TabIndex = 5;
-            this.findPiResultLabel.Text = "Result: Pi=";
+            this.findPiResultLabel.Text = "Result : Pi =";
             // 
             // findPiAutogenerateCheckbox
             // 
@@ -192,12 +196,15 @@
             // findPiTrackBar
             // 
             this.findPiTrackBar.BackColor = System.Drawing.SystemColors.Window;
+            this.findPiTrackBar.LargeChange = 25000;
             this.findPiTrackBar.Location = new System.Drawing.Point(5, 67);
             this.findPiTrackBar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.findPiTrackBar.Maximum = 14;
+            this.findPiTrackBar.Maximum = 10000000;
             this.findPiTrackBar.Name = "findPiTrackBar";
             this.findPiTrackBar.Size = new System.Drawing.Size(670, 45);
+            this.findPiTrackBar.SmallChange = 10000;
             this.findPiTrackBar.TabIndex = 0;
+            this.findPiTrackBar.TickFrequency = 1000000;
             this.findPiTrackBar.Scroll += new System.EventHandler(this.findPiTrackBar_Scroll);
             // 
             // findETabPage
@@ -510,6 +517,26 @@
             this.debugLabel.TabIndex = 2;
             this.debugLabel.Text = "Debug";
             // 
+            // findPiEtalonPiLabel
+            // 
+            this.findPiEtalonPiLabel.AutoSize = true;
+            this.findPiEtalonPiLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.findPiEtalonPiLabel.Location = new System.Drawing.Point(5, 195);
+            this.findPiEtalonPiLabel.Name = "findPiEtalonPiLabel";
+            this.findPiEtalonPiLabel.Size = new System.Drawing.Size(93, 20);
+            this.findPiEtalonPiLabel.TabIndex = 6;
+            this.findPiEtalonPiLabel.Text = "Etalon : Pi =";
+            // 
+            // findPiCommonPartWithEtalonLabel
+            // 
+            this.findPiCommonPartWithEtalonLabel.AutoSize = true;
+            this.findPiCommonPartWithEtalonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.findPiCommonPartWithEtalonLabel.Location = new System.Drawing.Point(5, 233);
+            this.findPiCommonPartWithEtalonLabel.Name = "findPiCommonPartWithEtalonLabel";
+            this.findPiCommonPartWithEtalonLabel.Size = new System.Drawing.Size(85, 20);
+            this.findPiCommonPartWithEtalonLabel.TabIndex = 7;
+            this.findPiCommonPartWithEtalonLabel.Text = "Common : ";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -582,6 +609,8 @@
         private System.Windows.Forms.Label findPrimeFactorValueLabel;
         private System.Windows.Forms.Label findPrimeFactorDescriptionLabel;
         private System.Windows.Forms.TrackBar findPrimeFactorTrackBar;
+        private System.Windows.Forms.Label findPiEtalonPiLabel;
+        private System.Windows.Forms.Label findPiCommonPartWithEtalonLabel;
     }
 }
 

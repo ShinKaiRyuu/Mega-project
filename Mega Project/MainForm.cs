@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Mega_Project
@@ -11,8 +12,10 @@ namespace Mega_Project
             InitializeComponent();
         }
 
-        public Dictionary<string, double> dictionary_Pi_e = new Dictionary<string, double>();
-        public Dictionary<string, List<int>> dictionary_Fibonachi_PrimeFactor = new Dictionary<string, List<int>>();
+        public Dictionary<string, Tuple<double,string>> dictionary_Pi = new Dictionary<string, Tuple<double, string>>();
+        public Dictionary<string, double> dictionary_e = new Dictionary<string, double>();
+        public Dictionary<string, List<int>> dictionary_Fibonachi = new Dictionary<string, List<int>>();
+        public Dictionary<string, List<int>> dictionary_PrimeFactor = new Dictionary<string, List<int>>();
 
 
         private void findPiTrackBar_Scroll(object sender, EventArgs e)
@@ -26,23 +29,36 @@ namespace Mega_Project
 
         private void findPiGenerateButton_Click(object sender, EventArgs e)
         {
-            double result=0;
+            Stopwatch sw = new Stopwatch();
+            sw.Start(); 
             int value = findPiTrackBar.Value;
+            Tuple<double,string> result =null;
             string key = "Pi" + value.ToString();
+            string common = "";
+            double countedPi;
             try
-                {
-                    dictionary_Pi_e.TryGetValue(key, out result);
-                }
-            catch(Exception ex)
-                {
-                   
-                }
-            if (result == 0)
             {
-                dictionary_Pi_e.Add(key, Math.Round(Numbers.Pi, value));
-                dictionary_Pi_e.TryGetValue(key, out result);
+                dictionary_Pi.TryGetValue(key, out result);
             }
-            findPiResultLabel.Text ="Result: Pi=" + result.ToString();
+            catch (Exception ex)
+            {
+
+            }
+            if (result == null)
+            {
+                countedPi = Numbers.CountingPi(value);
+                common = Numbers.CommonPrefix(new[] { countedPi.ToString(), Numbers.Pi.ToString() });
+                dictionary_Pi.Add(key,new Tuple<double, string>(countedPi,common));
+                dictionary_Pi.TryGetValue(key, out result);
+               
+            }
+            countedPi = result.Item1;
+            common = result.Item2;
+            findPiEtalonPiLabel.Text = "Etalon : Pi =" + Numbers.Pi.ToString();
+            findPiResultLabel.Text = "Result : Pi =" + countedPi.ToString();
+            findPiCommonPartWithEtalonLabel.Text = "Common :   "+ common;
+            sw.Stop();
+            debugRichTextBox.Text = sw.Elapsed.ToString();
         }
 
 
@@ -53,7 +69,7 @@ namespace Mega_Project
             string key = "E" + value.ToString();
             try
             {
-                dictionary_Pi_e.TryGetValue(key, out result);
+                dictionary_e.TryGetValue(key, out result);
             }
             catch (Exception ex)
             {
@@ -61,8 +77,8 @@ namespace Mega_Project
             }
             if (result == 0)
             {
-                dictionary_Pi_e.Add(key, Math.Round(Numbers.e, value));
-                dictionary_Pi_e.TryGetValue(key, out result);
+                dictionary_e.Add(key, Math.Round(Numbers.e, value));
+                dictionary_e.TryGetValue(key, out result);
             }
             fineEResultLabel.Text = "Result: e=" + result.ToString();
         }
@@ -105,7 +121,7 @@ namespace Mega_Project
             string key = "Fibonachi" + value.ToString();
             try
             {
-                dictionary_Fibonachi_PrimeFactor.TryGetValue(key, out result);
+                dictionary_Fibonachi.TryGetValue(key, out result);
             }
             catch (Exception ex)
             {
@@ -113,8 +129,8 @@ namespace Mega_Project
             }
             if (result == null)
             {
-                dictionary_Fibonachi_PrimeFactor.Add(key, Numbers.Fibonachi(value));
-                dictionary_Fibonachi_PrimeFactor.TryGetValue(key, out result);
+                dictionary_Fibonachi.Add(key, Numbers.Fibonachi(value));
+                dictionary_Fibonachi.TryGetValue(key, out result);
             }
             findFibonachiSequenceResultlabel.Text = String.Format("Result : Fibonachi sequence({0})", value) + string.Join(";", result);
         }
@@ -135,7 +151,7 @@ namespace Mega_Project
             string key = "PrimeFactor" + value.ToString();
             try
             {
-                dictionary_Fibonachi_PrimeFactor.TryGetValue(key, out result);
+                dictionary_PrimeFactor.TryGetValue(key, out result);
             }
             catch (Exception ex)
             {
@@ -143,8 +159,8 @@ namespace Mega_Project
             }
             if (result == null)
             {
-                dictionary_Fibonachi_PrimeFactor.Add(key, Numbers.PrimeFactor(value));
-                dictionary_Fibonachi_PrimeFactor.TryGetValue(key, out result);
+                dictionary_PrimeFactor.Add(key, Numbers.PrimeFactor(value));
+                dictionary_PrimeFactor.TryGetValue(key, out result);
             }
             findPrimeFactorResultLabel.Text = String.Format("Result : Prime factors for ({0})", value) + string.Join(";", result);
         }
