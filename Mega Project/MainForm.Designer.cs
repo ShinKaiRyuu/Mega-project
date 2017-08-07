@@ -41,6 +41,8 @@
             this.findPiSubprojectDesriptionLabel = new System.Windows.Forms.Label();
             this.findPiTrackBar = new System.Windows.Forms.TrackBar();
             this.findETabPage = new System.Windows.Forms.TabPage();
+            this.findECommonPartWithEtalonLabel = new System.Windows.Forms.Label();
+            this.findEEtalonELabel = new System.Windows.Forms.Label();
             this.findEResultLabel = new System.Windows.Forms.Label();
             this.findEAutoenerateCheckBox = new System.Windows.Forms.CheckBox();
             this.findEGenerateButton = new System.Windows.Forms.Button();
@@ -67,8 +69,6 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
             this.debugLabel = new System.Windows.Forms.Label();
-            this.findEEtalonELabel = new System.Windows.Forms.Label();
-            this.findECommonPartWithEtalonLabel = new System.Windows.Forms.Label();
             this.projectTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
@@ -247,6 +247,26 @@
             this.findETabPage.TabIndex = 1;
             this.findETabPage.Text = "Find e to the Nth Digit";
             this.findETabPage.UseVisualStyleBackColor = true;
+            // 
+            // findECommonPartWithEtalonLabel
+            // 
+            this.findECommonPartWithEtalonLabel.AutoSize = true;
+            this.findECommonPartWithEtalonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.findECommonPartWithEtalonLabel.Location = new System.Drawing.Point(5, 231);
+            this.findECommonPartWithEtalonLabel.Name = "findECommonPartWithEtalonLabel";
+            this.findECommonPartWithEtalonLabel.Size = new System.Drawing.Size(93, 20);
+            this.findECommonPartWithEtalonLabel.TabIndex = 13;
+            this.findECommonPartWithEtalonLabel.Text = "Common :   ";
+            // 
+            // findEEtalonELabel
+            // 
+            this.findEEtalonELabel.AutoSize = true;
+            this.findEEtalonELabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.findEEtalonELabel.Location = new System.Drawing.Point(5, 193);
+            this.findEEtalonELabel.Name = "findEEtalonELabel";
+            this.findEEtalonELabel.Size = new System.Drawing.Size(67, 20);
+            this.findEEtalonELabel.TabIndex = 12;
+            this.findEEtalonELabel.Text = "Etalon : ";
             // 
             // findEResultLabel
             // 
@@ -542,26 +562,6 @@
             this.debugLabel.Size = new System.Drawing.Size(39, 13);
             this.debugLabel.TabIndex = 2;
             this.debugLabel.Text = "Debug";
-            // 
-            // findEEtalonELabel
-            // 
-            this.findEEtalonELabel.AutoSize = true;
-            this.findEEtalonELabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.findEEtalonELabel.Location = new System.Drawing.Point(5, 193);
-            this.findEEtalonELabel.Name = "findEEtalonELabel";
-            this.findEEtalonELabel.Size = new System.Drawing.Size(67, 20);
-            this.findEEtalonELabel.TabIndex = 12;
-            this.findEEtalonELabel.Text = "Etalon : ";
-            // 
-            // findECommonPartWithEtalonLabel
-            // 
-            this.findECommonPartWithEtalonLabel.AutoSize = true;
-            this.findECommonPartWithEtalonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.findECommonPartWithEtalonLabel.Location = new System.Drawing.Point(5, 231);
-            this.findECommonPartWithEtalonLabel.Name = "findECommonPartWithEtalonLabel";
-            this.findECommonPartWithEtalonLabel.Size = new System.Drawing.Size(93, 20);
-            this.findECommonPartWithEtalonLabel.TabIndex = 13;
-            this.findECommonPartWithEtalonLabel.Text = "Common :   ";
             // 
             // MainForm
             // 

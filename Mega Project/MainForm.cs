@@ -9,7 +9,6 @@ namespace Mega_Project
     {
         public MainForm()
         {
-            Application.EnableVisualStyles();
             InitializeComponent();
         }
 
@@ -43,7 +42,7 @@ namespace Mega_Project
             }
             catch (Exception ex)
             {
-
+                debugRichTextBox.Text = ex.Message;
             }
             if (result == null)
             {
@@ -78,7 +77,7 @@ namespace Mega_Project
             }
             catch (Exception ex)
             {
-
+                debugRichTextBox.Text = ex.Message;
             }
             if (result == null)
             {
@@ -138,7 +137,7 @@ namespace Mega_Project
             }
             catch (Exception ex)
             {
-
+                debugRichTextBox.Text = ex.Message;
             }
             if (result == null)
             {
@@ -168,7 +167,7 @@ namespace Mega_Project
             }
             catch (Exception ex)
             {
-
+                debugRichTextBox.Text = ex.Message;
             }
             if (result == null)
             {
