@@ -69,6 +69,13 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
             this.debugLabel = new System.Windows.Forms.Label();
+            this.findPrimeNumberTabPage = new System.Windows.Forms.TabPage();
+            this.findPrimeNumberResultLabel = new System.Windows.Forms.Label();
+            this.findPrimeNumberAutogenerateCheckBox = new System.Windows.Forms.CheckBox();
+            this.findPrimeNumberGenerateButton = new System.Windows.Forms.Button();
+            this.findPrimeNumberValueLabel = new System.Windows.Forms.Label();
+            this.findPrimeNumberDescriptionLabel = new System.Windows.Forms.Label();
+            this.findPrimeNumberTrackBar = new System.Windows.Forms.TrackBar();
             this.projectTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
@@ -82,6 +89,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeFactorTrackBar)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.findPrimeNumberTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // projectTabControl
@@ -114,6 +123,7 @@
             this.numbersSubprojectTabControl.Controls.Add(this.findETabPage);
             this.numbersSubprojectTabControl.Controls.Add(this.findFibonachiSequenceTabPage);
             this.numbersSubprojectTabControl.Controls.Add(this.findPrimeFactorTabPage);
+            this.numbersSubprojectTabControl.Controls.Add(this.findPrimeNumberTabPage);
             this.numbersSubprojectTabControl.Location = new System.Drawing.Point(6, 6);
             this.numbersSubprojectTabControl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.numbersSubprojectTabControl.Name = "numbersSubprojectTabControl";
@@ -563,6 +573,89 @@
             this.debugLabel.TabIndex = 2;
             this.debugLabel.Text = "Debug";
             // 
+            // findPrimeNumberTabPage
+            // 
+            this.findPrimeNumberTabPage.Controls.Add(this.findPrimeNumberResultLabel);
+            this.findPrimeNumberTabPage.Controls.Add(this.findPrimeNumberAutogenerateCheckBox);
+            this.findPrimeNumberTabPage.Controls.Add(this.findPrimeNumberGenerateButton);
+            this.findPrimeNumberTabPage.Controls.Add(this.findPrimeNumberValueLabel);
+            this.findPrimeNumberTabPage.Controls.Add(this.findPrimeNumberDescriptionLabel);
+            this.findPrimeNumberTabPage.Controls.Add(this.findPrimeNumberTrackBar);
+            this.findPrimeNumberTabPage.Location = new System.Drawing.Point(4, 22);
+            this.findPrimeNumberTabPage.Name = "findPrimeNumberTabPage";
+            this.findPrimeNumberTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.findPrimeNumberTabPage.Size = new System.Drawing.Size(682, 253);
+            this.findPrimeNumberTabPage.TabIndex = 4;
+            this.findPrimeNumberTabPage.Text = "Find Prime Number";
+            this.findPrimeNumberTabPage.UseVisualStyleBackColor = true;
+            // 
+            // findPrimeNumberResultLabel
+            // 
+            this.findPrimeNumberResultLabel.AutoSize = true;
+            this.findPrimeNumberResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.findPrimeNumberResultLabel.Location = new System.Drawing.Point(6, 222);
+            this.findPrimeNumberResultLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.findPrimeNumberResultLabel.Name = "findPrimeNumberResultLabel";
+            this.findPrimeNumberResultLabel.Size = new System.Drawing.Size(93, 20);
+            this.findPrimeNumberResultLabel.TabIndex = 11;
+            this.findPrimeNumberResultLabel.Text = "Result : Pi =";
+            // 
+            // findPrimeNumberAutogenerateCheckBox
+            // 
+            this.findPrimeNumberAutogenerateCheckBox.AutoSize = true;
+            this.findPrimeNumberAutogenerateCheckBox.Location = new System.Drawing.Point(470, 156);
+            this.findPrimeNumberAutogenerateCheckBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.findPrimeNumberAutogenerateCheckBox.Name = "findPrimeNumberAutogenerateCheckBox";
+            this.findPrimeNumberAutogenerateCheckBox.Size = new System.Drawing.Size(175, 17);
+            this.findPrimeNumberAutogenerateCheckBox.TabIndex = 10;
+            this.findPrimeNumberAutogenerateCheckBox.Text = "auto-generate on value change";
+            this.findPrimeNumberAutogenerateCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // findPrimeNumberGenerateButton
+            // 
+            this.findPrimeNumberGenerateButton.Location = new System.Drawing.Point(7, 127);
+            this.findPrimeNumberGenerateButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.findPrimeNumberGenerateButton.Name = "findPrimeNumberGenerateButton";
+            this.findPrimeNumberGenerateButton.Size = new System.Drawing.Size(458, 72);
+            this.findPrimeNumberGenerateButton.TabIndex = 9;
+            this.findPrimeNumberGenerateButton.Text = "Generate";
+            this.findPrimeNumberGenerateButton.UseVisualStyleBackColor = true;
+            this.findPrimeNumberGenerateButton.Click += new System.EventHandler(this.findPrimeNumberGenerateButton_Click);
+            // 
+            // findPrimeNumberValueLabel
+            // 
+            this.findPrimeNumberValueLabel.AutoSize = true;
+            this.findPrimeNumberValueLabel.Location = new System.Drawing.Point(7, 58);
+            this.findPrimeNumberValueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.findPrimeNumberValueLabel.Name = "findPrimeNumberValueLabel";
+            this.findPrimeNumberValueLabel.Size = new System.Drawing.Size(49, 13);
+            this.findPrimeNumberValueLabel.TabIndex = 8;
+            this.findPrimeNumberValueLabel.Text = "Value : 0";
+            // 
+            // findPrimeNumberDescriptionLabel
+            // 
+            this.findPrimeNumberDescriptionLabel.AutoSize = true;
+            this.findPrimeNumberDescriptionLabel.Location = new System.Drawing.Point(7, 10);
+            this.findPrimeNumberDescriptionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.findPrimeNumberDescriptionLabel.Name = "findPrimeNumberDescriptionLabel";
+            this.findPrimeNumberDescriptionLabel.Size = new System.Drawing.Size(593, 13);
+            this.findPrimeNumberDescriptionLabel.TabIndex = 7;
+            this.findPrimeNumberDescriptionLabel.Text = "Select a value and have the program generate PI up to that many decimal places. K" +
+    "eep a limit to how far the program will go.";
+            // 
+            // findPrimeNumberTrackBar
+            // 
+            this.findPrimeNumberTrackBar.BackColor = System.Drawing.SystemColors.Window;
+            this.findPrimeNumberTrackBar.LargeChange = 250;
+            this.findPrimeNumberTrackBar.Location = new System.Drawing.Point(7, 74);
+            this.findPrimeNumberTrackBar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.findPrimeNumberTrackBar.Maximum = 10000;
+            this.findPrimeNumberTrackBar.Name = "findPrimeNumberTrackBar";
+            this.findPrimeNumberTrackBar.Size = new System.Drawing.Size(670, 45);
+            this.findPrimeNumberTrackBar.SmallChange = 100;
+            this.findPrimeNumberTrackBar.TabIndex = 6;
+            this.findPrimeNumberTrackBar.TickFrequency = 1000000;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -591,6 +684,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeFactorTrackBar)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.findPrimeNumberTabPage.ResumeLayout(false);
+            this.findPrimeNumberTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -639,6 +735,13 @@
         private System.Windows.Forms.Label findPiCommonPartWithEtalonLabel;
         private System.Windows.Forms.Label findECommonPartWithEtalonLabel;
         private System.Windows.Forms.Label findEEtalonELabel;
+        private System.Windows.Forms.TabPage findPrimeNumberTabPage;
+        private System.Windows.Forms.Label findPrimeNumberResultLabel;
+        private System.Windows.Forms.CheckBox findPrimeNumberAutogenerateCheckBox;
+        private System.Windows.Forms.Button findPrimeNumberGenerateButton;
+        private System.Windows.Forms.Label findPrimeNumberValueLabel;
+        private System.Windows.Forms.Label findPrimeNumberDescriptionLabel;
+        private System.Windows.Forms.TrackBar findPrimeNumberTrackBar;
     }
 }
 

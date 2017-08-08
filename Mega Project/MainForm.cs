@@ -185,5 +185,10 @@ namespace Mega_Project
                 findPrimeFactorGenerateButton_Click(sender, e);
             }
         }
+
+        private void findPrimeNumberGenerateButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
