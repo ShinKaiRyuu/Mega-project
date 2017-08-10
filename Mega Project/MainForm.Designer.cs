@@ -71,9 +71,21 @@
             this.findPrimeNumberDescriptionLabel = new System.Windows.Forms.Label();
             this.findPrimeNumberTrackBar = new System.Windows.Forms.TrackBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.visualisingSubProjectTabControl = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.chkAnimation = new System.Windows.Forms.CheckBox();
+            this.ddTypeOfData = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbSpeed = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSamples = new System.Windows.Forms.Label();
+            this.tbSamples = new System.Windows.Forms.TrackBar();
+            this.cmdSort = new System.Windows.Forms.Button();
+            this.cboAlg1 = new System.Windows.Forms.ComboBox();
+            this.pnlSort1 = new System.Windows.Forms.PictureBox();
             this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
             this.debugLabel = new System.Windows.Forms.Label();
             this.projectTabControl.SuspendLayout();
@@ -90,7 +102,11 @@
             this.findPrimeNumberTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.visualisingSubProjectTabControl.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSamples)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlSort1)).BeginInit();
             this.SuspendLayout();
             // 
             // projectTabControl
@@ -591,48 +607,213 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.tabControl1);
+            this.tabPage2.Controls.Add(this.visualisingSubProjectTabControl);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabPage2.Size = new System.Drawing.Size(702, 291);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "TBD";
+            this.tabPage2.Text = "Visualising";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
+            // visualisingSubProjectTabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Location = new System.Drawing.Point(6, 7);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(688, 278);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage5.Size = new System.Drawing.Size(680, 252);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.visualisingSubProjectTabControl.Controls.Add(this.tabPage6);
+            this.visualisingSubProjectTabControl.Location = new System.Drawing.Point(6, 7);
+            this.visualisingSubProjectTabControl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.visualisingSubProjectTabControl.Name = "visualisingSubProjectTabControl";
+            this.visualisingSubProjectTabControl.SelectedIndex = 0;
+            this.visualisingSubProjectTabControl.Size = new System.Drawing.Size(688, 278);
+            this.visualisingSubProjectTabControl.TabIndex = 0;
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.button3);
+            this.tabPage6.Controls.Add(this.button2);
+            this.tabPage6.Controls.Add(this.chkAnimation);
+            this.tabPage6.Controls.Add(this.ddTypeOfData);
+            this.tabPage6.Controls.Add(this.label3);
+            this.tabPage6.Controls.Add(this.label2);
+            this.tabPage6.Controls.Add(this.tbSpeed);
+            this.tabPage6.Controls.Add(this.label1);
+            this.tabPage6.Controls.Add(this.lblSamples);
+            this.tabPage6.Controls.Add(this.tbSamples);
+            this.tabPage6.Controls.Add(this.cmdSort);
+            this.tabPage6.Controls.Add(this.cboAlg1);
+            this.tabPage6.Controls.Add(this.pnlSort1);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabPage6.Size = new System.Drawing.Size(680, 252);
             this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "tabPage6";
+            this.tabPage6.Text = "Sorting";
             this.tabPage6.UseVisualStyleBackColor = true;
+            this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(479, 197);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 63;
+            this.button3.Text = "Resume";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(398, 197);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 62;
+            this.button2.Text = "Suspend";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // chkAnimation
+            // 
+            this.chkAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkAnimation.AutoSize = true;
+            this.chkAnimation.Location = new System.Drawing.Point(554, 152);
+            this.chkAnimation.Name = "chkAnimation";
+            this.chkAnimation.Size = new System.Drawing.Size(106, 17);
+            this.chkAnimation.TabIndex = 61;
+            this.chkAnimation.Text = "Create Animation";
+            this.chkAnimation.UseVisualStyleBackColor = true;
+            // 
+            // ddTypeOfData
+            // 
+            this.ddTypeOfData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddTypeOfData.FormattingEnabled = true;
+            this.ddTypeOfData.Items.AddRange(new object[] {
+            "Random",
+            "Reversed",
+            "Sorted",
+            "Nearly Sorted",
+            "Few Unique"});
+            this.ddTypeOfData.Location = new System.Drawing.Point(551, 49);
+            this.ddTypeOfData.Name = "ddTypeOfData";
+            this.ddTypeOfData.Size = new System.Drawing.Size(83, 21);
+            this.ddTypeOfData.TabIndex = 60;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(551, 112);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 13);
+            this.label3.TabIndex = 59;
+            this.label3.Text = "Max";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(395, 112);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 13);
+            this.label2.TabIndex = 58;
+            this.label2.Text = "Min";
+            // 
+            // tbSpeed
+            // 
+            this.tbSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSpeed.Location = new System.Drawing.Point(425, 112);
+            this.tbSpeed.Maximum = 20;
+            this.tbSpeed.Minimum = 1;
+            this.tbSpeed.Name = "tbSpeed";
+            this.tbSpeed.Size = new System.Drawing.Size(120, 45);
+            this.tbSpeed.TabIndex = 57;
+            this.tbSpeed.Value = 7;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(298, 112);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "Sorting speed:";
+            // 
+            // lblSamples
+            // 
+            this.lblSamples.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSamples.AutoSize = true;
+            this.lblSamples.Location = new System.Drawing.Point(298, 47);
+            this.lblSamples.Name = "lblSamples";
+            this.lblSamples.Size = new System.Drawing.Size(121, 13);
+            this.lblSamples.TabIndex = 55;
+            this.lblSamples.Text = "Number of samples: 100";
+            // 
+            // tbSamples
+            // 
+            this.tbSamples.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSamples.LargeChange = 10;
+            this.tbSamples.Location = new System.Drawing.Point(425, 47);
+            this.tbSamples.Maximum = 1000;
+            this.tbSamples.Minimum = 10;
+            this.tbSamples.Name = "tbSamples";
+            this.tbSamples.Size = new System.Drawing.Size(120, 45);
+            this.tbSamples.TabIndex = 54;
+            this.tbSamples.TickFrequency = 100;
+            this.tbSamples.Value = 100;
+            // 
+            // cmdSort
+            // 
+            this.cmdSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdSort.Location = new System.Drawing.Point(311, 197);
+            this.cmdSort.Name = "cmdSort";
+            this.cmdSort.Size = new System.Drawing.Size(75, 23);
+            this.cmdSort.TabIndex = 52;
+            this.cmdSort.Text = "Sort";
+            this.cmdSort.UseVisualStyleBackColor = true;
+            this.cmdSort.Click += new System.EventHandler(this.cmdSort_Click);
+            // 
+            // cboAlg1
+            // 
+            this.cboAlg1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboAlg1.FormattingEnabled = true;
+            this.cboAlg1.Items.AddRange(new object[] {
+            "",
+            "BiDirectional Bubble Sort",
+            "Bubble Sort",
+            "Comb Sort",
+            "Counting Sort",
+            "Cycle Sort",
+            "Gnome Sort",
+            "Heap Sort",
+            "Insertion Sort",
+            "Merge Sort (In Place)",
+            "Merge Sort (Double Storage)",
+            "Odd-Even Sort",
+            "Pigeonhole Sort",
+            "Quicksort",
+            "Quicksort with Insertion Sort",
+            "Radix Sort",
+            "Selection Sort",
+            "Shell Sort",
+            "Smoothsort",
+            "Timsort"});
+            this.cboAlg1.Location = new System.Drawing.Point(291, 20);
+            this.cboAlg1.Name = "cboAlg1";
+            this.cboAlg1.Size = new System.Drawing.Size(204, 21);
+            this.cboAlg1.TabIndex = 51;
+            // 
+            // pnlSort1
+            // 
+            this.pnlSort1.BackColor = System.Drawing.Color.White;
+            this.pnlSort1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSort1.Location = new System.Drawing.Point(5, 6);
+            this.pnlSort1.Name = "pnlSort1";
+            this.pnlSort1.Size = new System.Drawing.Size(280, 240);
+            this.pnlSort1.TabIndex = 53;
+            this.pnlSort1.TabStop = false;
             // 
             // debugRichTextBox
             // 
@@ -661,9 +842,13 @@
             this.Controls.Add(this.debugLabel);
             this.Controls.Add(this.debugRichTextBox);
             this.Controls.Add(this.projectTabControl);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "MainForm";
             this.Text = "Mega Project";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.projectTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.numbersSubprojectTabControl.ResumeLayout(false);
@@ -683,7 +868,12 @@
             this.findPrimeNumberTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.visualisingSubProjectTabControl.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSamples)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlSort1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -709,9 +899,6 @@
         private System.Windows.Forms.Label findEValueLabel;
         private System.Windows.Forms.Label findEDescriptionLabel;
         private System.Windows.Forms.TrackBar findETrackBar;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.RichTextBox debugRichTextBox;
         private System.Windows.Forms.Label debugLabel;
         private System.Windows.Forms.TabPage findFibonachiSequenceTabPage;
@@ -739,6 +926,21 @@
         private System.Windows.Forms.Label findPrimeNumberValueLabel;
         private System.Windows.Forms.Label findPrimeNumberDescriptionLabel;
         private System.Windows.Forms.TrackBar findPrimeNumberTrackBar;
+        private System.Windows.Forms.TabControl visualisingSubProjectTabControl;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox chkAnimation;
+        private System.Windows.Forms.ComboBox ddTypeOfData;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TrackBar tbSpeed;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSamples;
+        private System.Windows.Forms.TrackBar tbSamples;
+        private System.Windows.Forms.Button cmdSort;
+        private System.Windows.Forms.ComboBox cboAlg1;
+        private System.Windows.Forms.PictureBox pnlSort1;
     }
 }
 
