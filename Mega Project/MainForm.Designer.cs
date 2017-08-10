@@ -63,12 +63,6 @@
             this.findPrimeFactorValueLabel = new System.Windows.Forms.Label();
             this.findPrimeFactorDescriptionLabel = new System.Windows.Forms.Label();
             this.findPrimeFactorTrackBar = new System.Windows.Forms.TrackBar();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.debugLabel = new System.Windows.Forms.Label();
             this.findPrimeNumberTabPage = new System.Windows.Forms.TabPage();
             this.findPrimeNumberResultLabel = new System.Windows.Forms.Label();
             this.findPrimeNumberAutogenerateCheckBox = new System.Windows.Forms.CheckBox();
@@ -76,6 +70,12 @@
             this.findPrimeNumberValueLabel = new System.Windows.Forms.Label();
             this.findPrimeNumberDescriptionLabel = new System.Windows.Forms.Label();
             this.findPrimeNumberTrackBar = new System.Windows.Forms.TrackBar();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.debugLabel = new System.Windows.Forms.Label();
             this.projectTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
@@ -87,10 +87,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.findFibonachiSequenceTrackBar)).BeginInit();
             this.findPrimeFactorTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeFactorTrackBar)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            this.tabControl1.SuspendLayout();
             this.findPrimeNumberTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // projectTabControl
@@ -509,70 +509,6 @@
             this.findPrimeFactorTrackBar.TickFrequency = 100;
             this.findPrimeFactorTrackBar.Scroll += new System.EventHandler(this.findPrimeFactorTrackBar_Scroll);
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.tabControl1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage2.Size = new System.Drawing.Size(702, 291);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "TBD";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Location = new System.Drawing.Point(6, 7);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(688, 278);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage5.Size = new System.Drawing.Size(680, 252);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage6.Size = new System.Drawing.Size(680, 252);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "tabPage6";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // debugRichTextBox
-            // 
-            this.debugRichTextBox.Location = new System.Drawing.Point(16, 353);
-            this.debugRichTextBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.debugRichTextBox.Name = "debugRichTextBox";
-            this.debugRichTextBox.Size = new System.Drawing.Size(702, 110);
-            this.debugRichTextBox.TabIndex = 1;
-            this.debugRichTextBox.Text = "";
-            // 
-            // debugLabel
-            // 
-            this.debugLabel.AutoSize = true;
-            this.debugLabel.Location = new System.Drawing.Point(16, 336);
-            this.debugLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.debugLabel.Name = "debugLabel";
-            this.debugLabel.Size = new System.Drawing.Size(39, 13);
-            this.debugLabel.TabIndex = 2;
-            this.debugLabel.Text = "Debug";
-            // 
             // findPrimeNumberTabPage
             // 
             this.findPrimeNumberTabPage.Controls.Add(this.findPrimeNumberResultLabel);
@@ -646,15 +582,76 @@
             // findPrimeNumberTrackBar
             // 
             this.findPrimeNumberTrackBar.BackColor = System.Drawing.SystemColors.Window;
-            this.findPrimeNumberTrackBar.LargeChange = 250;
             this.findPrimeNumberTrackBar.Location = new System.Drawing.Point(7, 74);
             this.findPrimeNumberTrackBar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.findPrimeNumberTrackBar.Maximum = 10000;
             this.findPrimeNumberTrackBar.Name = "findPrimeNumberTrackBar";
             this.findPrimeNumberTrackBar.Size = new System.Drawing.Size(670, 45);
-            this.findPrimeNumberTrackBar.SmallChange = 100;
             this.findPrimeNumberTrackBar.TabIndex = 6;
-            this.findPrimeNumberTrackBar.TickFrequency = 1000000;
+            this.findPrimeNumberTrackBar.Scroll += new System.EventHandler(this.findPrimeNumberTrackBar_Scroll);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.tabControl1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tabPage2.Size = new System.Drawing.Size(702, 291);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "TBD";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Location = new System.Drawing.Point(6, 7);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(688, 278);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tabPage5.Size = new System.Drawing.Size(680, 252);
+            this.tabPage5.TabIndex = 0;
+            this.tabPage5.Text = "tabPage5";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tabPage6.Size = new System.Drawing.Size(680, 252);
+            this.tabPage6.TabIndex = 1;
+            this.tabPage6.Text = "tabPage6";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // debugRichTextBox
+            // 
+            this.debugRichTextBox.Location = new System.Drawing.Point(16, 353);
+            this.debugRichTextBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.debugRichTextBox.Name = "debugRichTextBox";
+            this.debugRichTextBox.Size = new System.Drawing.Size(702, 110);
+            this.debugRichTextBox.TabIndex = 1;
+            this.debugRichTextBox.Text = "";
+            // 
+            // debugLabel
+            // 
+            this.debugLabel.AutoSize = true;
+            this.debugLabel.Location = new System.Drawing.Point(16, 336);
+            this.debugLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.debugLabel.Name = "debugLabel";
+            this.debugLabel.Size = new System.Drawing.Size(39, 13);
+            this.debugLabel.TabIndex = 2;
+            this.debugLabel.Text = "Debug";
             // 
             // MainForm
             // 
@@ -682,11 +679,11 @@
             this.findPrimeFactorTabPage.ResumeLayout(false);
             this.findPrimeFactorTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeFactorTrackBar)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
             this.findPrimeNumberTabPage.ResumeLayout(false);
             this.findPrimeNumberTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

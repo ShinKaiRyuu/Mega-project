@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mega_Project
 {
@@ -36,7 +33,7 @@ namespace Mega_Project
                 while (n % a == 0)
                 {
                     dividers.Add(a);
-                    n= n / a;
+                    n = n / a;
                 }
             }
             return dividers;
@@ -45,9 +42,9 @@ namespace Mega_Project
         public static double CountingPi(int n)
         {
             double x = 1;
-            for (double i=1; i < n; i++)
+            for (double i = 1; i < n; i++)
             {
-               x += ((Math.Pow(- 1, i))/(2+(i*2-1)));
+                x += ((Math.Pow(-1, i)) / (2 + (i * 2 - 1)));
             }
             double Pi = x * 4;
             return Pi;
@@ -55,7 +52,7 @@ namespace Mega_Project
 
         public static double CountingE(double n)
         {
-            double ee ;
+            double ee;
             ee = Math.Pow((1 + 1 / n), n);
             return ee;
         }
@@ -91,7 +88,6 @@ namespace Mega_Project
 
         public static bool IsPrime(int candidate)
         {
-            // Test whether the parameter is a prime number.
             if ((candidate & 1) == 0)
             {
                 if (candidate == 2)
@@ -103,10 +99,6 @@ namespace Mega_Project
                     return false;
                 }
             }
-            // Note:
-            // ... This version was changed to test the square.
-            // ... Original version tested against the square root.
-            // ... Also we exclude 1 at the end.
             for (int i = 3; (i * i) <= candidate; i += 2)
             {
                 if ((candidate % i) == 0)
@@ -117,7 +109,21 @@ namespace Mega_Project
             return candidate != 1;
         }
 
-        public static List<int> 
-    }
+        public static List<int> PrimeNumbers(int start, int count)
+        {
+            List<int> PrimeNumbers = new List<int>();
+            int number = start;
+            while (PrimeNumbers.Count < count)
+            {
+                if (Numbers.IsPrime(number))
+                {
+                    PrimeNumbers.Add(number);
+                }
+                number++;
+            }
+            return PrimeNumbers;
+        }
 
+    }
 }
+

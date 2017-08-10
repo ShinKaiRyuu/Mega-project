@@ -12,10 +12,11 @@ namespace Mega_Project
             InitializeComponent();
         }
 
-        public Dictionary<string, Tuple<double,string>> dictionary_Pi = new Dictionary<string, Tuple<double, string>>();
+        public Dictionary<string, Tuple<double, string>> dictionary_Pi = new Dictionary<string, Tuple<double, string>>();
         public Dictionary<string, Tuple<double, string>> dictionary_e = new Dictionary<string, Tuple<double, string>>();
         public Dictionary<string, List<int>> dictionary_Fibonachi = new Dictionary<string, List<int>>();
         public Dictionary<string, List<int>> dictionary_PrimeFactor = new Dictionary<string, List<int>>();
+        public Dictionary<string, List<int>> dictionary_PrimeNumber = new Dictionary<string, List<int>>();
 
 
         private void findPiTrackBar_Scroll(object sender, EventArgs e)
@@ -30,9 +31,9 @@ namespace Mega_Project
         private void findPiGenerateButton_Click(object sender, EventArgs e)
         {
             Stopwatch sw = new Stopwatch();
-            sw.Start(); 
+            sw.Start();
             int value = findPiTrackBar.Value;
-            Tuple<double,string> result =null;
+            Tuple<double, string> result = null;
             string key = "Pi" + value.ToString();
             string common = "";
             double countedPi;
@@ -48,15 +49,15 @@ namespace Mega_Project
             {
                 countedPi = Numbers.CountingPi(value);
                 common = Numbers.CommonPrefix(new[] { countedPi.ToString(), Numbers.Pi.ToString() });
-                dictionary_Pi.Add(key,new Tuple<double, string>(countedPi,common));
+                dictionary_Pi.Add(key, new Tuple<double, string>(countedPi, common));
                 dictionary_Pi.TryGetValue(key, out result);
-               
+
             }
             countedPi = result.Item1;
             common = result.Item2;
             findPiEtalonPiLabel.Text = "Etalon : Pi =" + Numbers.Pi.ToString();
             findPiResultLabel.Text = "Result : Pi =" + countedPi.ToString();
-            findPiCommonPartWithEtalonLabel.Text = "Common :   "+ common;
+            findPiCommonPartWithEtalonLabel.Text = "Common :   " + common;
             sw.Stop();
             debugRichTextBox.Text = sw.Elapsed.ToString();
         }
@@ -93,7 +94,7 @@ namespace Mega_Project
             findECommonPartWithEtalonLabel.Text = "Common :   " + common;
             sw.Stop();
             debugRichTextBox.Text = sw.Elapsed.ToString();
-    }
+        }
 
 
         private void findETrackBar_Scroll(object sender, EventArgs e)
@@ -107,7 +108,7 @@ namespace Mega_Project
 
         private void projectTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             TabControl currentProjectTabControl = projectTabControl;
             TabPage currentProjectTabPage = currentProjectTabControl.SelectedTab;
             TabControl currentSubprojectTabControl = (TabControl)currentProjectTabPage.Controls[0];
@@ -188,7 +189,32 @@ namespace Mega_Project
 
         private void findPrimeNumberGenerateButton_Click(object sender, EventArgs e)
         {
+            List<int> result = new List<int>();
+            int value = findPrimeNumberTrackBar.Value;
+            string key = "PrimeNumber" + value.ToString();
+            try
+            {
+                dictionary_PrimeNumber.TryGetValue(key, out result);
+            }
+            catch (Exception ex)
+            {
+                debugRichTextBox.Text = ex.Message;
+            }
+            if (result == null)
+            {
+                dictionary_PrimeNumber.Add(key, Numbers.PrimeNumbers(start: 0, count: value));
+                dictionary_PrimeNumber.TryGetValue(key, out result);
+            }
+            findPrimeNumberResultLabel.Text = String.Format("Result : Prime numbers ({0})", value) + string.Join(";", result);
+        }
 
+        private void findPrimeNumberTrackBar_Scroll(object sender, EventArgs e)
+        {
+            findPrimeNumberValueLabel.Text = "Value : " + findPrimeNumberTrackBar.Value.ToString();
+            if (findPrimeNumberAutogenerateCheckBox.Checked)
+            {
+                findPrimeNumberGenerateButton_Click(sender, e);
+            }
         }
     }
 }
