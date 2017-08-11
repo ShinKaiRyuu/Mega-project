@@ -216,5 +216,32 @@ namespace Mega_Project
                 findPrimeNumberGenerateButton_Click(sender, e);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int cost = findCostOfTileToCoverWxHFloorCostTrackBar.Value;
+            int width = findCostOfTileToCoverWxHFloorWidthTrackBar.Value;
+            int height = findCostOfTileToCoverWxHFloorHeightTrackBar.Value;
+            findCostOfTileToCoverWxHFloorResultLabel.Text = (cost * width * height).ToString();
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            findCostOfTileToCoverWxHFloorCostValueLabel.Text = findCostOfTileToCoverWxHFloorCostTrackBar.Value.ToString();
+            if (findPrimeNumberAutogenerateCheckBox.Checked)
+            {
+                findPrimeNumberGenerateButton_Click(sender, e);
+            }
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            findCostOfTileToCoverWxHFloorWidthValueLabel.Text = findCostOfTileToCoverWxHFloorWidthTrackBar.Value.ToString();
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+            findCostOfTileToCoverWxHFloorHeightValueLabel.Text = findCostOfTileToCoverWxHFloorHeightTrackBar.Value.ToString();
+        }
     }
 }
