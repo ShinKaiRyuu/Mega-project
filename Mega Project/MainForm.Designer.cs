@@ -72,10 +72,9 @@
             this.findPrimeNumberTrackBar = new System.Windows.Forms.TrackBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.visualisingSubProjectTabControl = new System.Windows.Forms.TabControl();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.chkAnimation = new System.Windows.Forms.CheckBox();
+            this.visualiseSortingTabPage = new System.Windows.Forms.TabPage();
+            this.cmdResume = new System.Windows.Forms.Button();
+            this.cmdSuspend = new System.Windows.Forms.Button();
             this.ddTypeOfData = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -88,6 +87,7 @@
             this.pnlSort1 = new System.Windows.Forms.PictureBox();
             this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
             this.debugLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.projectTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
@@ -103,7 +103,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.visualisingSubProjectTabControl.SuspendLayout();
-            this.tabPage6.SuspendLayout();
+            this.visualiseSortingTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSamples)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlSort1)).BeginInit();
@@ -619,7 +619,7 @@
             // 
             // visualisingSubProjectTabControl
             // 
-            this.visualisingSubProjectTabControl.Controls.Add(this.tabPage6);
+            this.visualisingSubProjectTabControl.Controls.Add(this.visualiseSortingTabPage);
             this.visualisingSubProjectTabControl.Location = new System.Drawing.Point(6, 7);
             this.visualisingSubProjectTabControl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.visualisingSubProjectTabControl.Name = "visualisingSubProjectTabControl";
@@ -627,63 +627,52 @@
             this.visualisingSubProjectTabControl.Size = new System.Drawing.Size(688, 278);
             this.visualisingSubProjectTabControl.TabIndex = 0;
             // 
-            // tabPage6
+            // visualiseSortingTabPage
             // 
-            this.tabPage6.Controls.Add(this.button3);
-            this.tabPage6.Controls.Add(this.button2);
-            this.tabPage6.Controls.Add(this.chkAnimation);
-            this.tabPage6.Controls.Add(this.ddTypeOfData);
-            this.tabPage6.Controls.Add(this.label3);
-            this.tabPage6.Controls.Add(this.label2);
-            this.tabPage6.Controls.Add(this.tbSpeed);
-            this.tabPage6.Controls.Add(this.label1);
-            this.tabPage6.Controls.Add(this.lblSamples);
-            this.tabPage6.Controls.Add(this.tbSamples);
-            this.tabPage6.Controls.Add(this.cmdSort);
-            this.tabPage6.Controls.Add(this.cboAlg1);
-            this.tabPage6.Controls.Add(this.pnlSort1);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage6.Size = new System.Drawing.Size(680, 252);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "Sorting";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
+            this.visualiseSortingTabPage.Controls.Add(this.label4);
+            this.visualiseSortingTabPage.Controls.Add(this.cmdResume);
+            this.visualiseSortingTabPage.Controls.Add(this.cmdSuspend);
+            this.visualiseSortingTabPage.Controls.Add(this.ddTypeOfData);
+            this.visualiseSortingTabPage.Controls.Add(this.label3);
+            this.visualiseSortingTabPage.Controls.Add(this.label2);
+            this.visualiseSortingTabPage.Controls.Add(this.tbSpeed);
+            this.visualiseSortingTabPage.Controls.Add(this.label1);
+            this.visualiseSortingTabPage.Controls.Add(this.lblSamples);
+            this.visualiseSortingTabPage.Controls.Add(this.tbSamples);
+            this.visualiseSortingTabPage.Controls.Add(this.cmdSort);
+            this.visualiseSortingTabPage.Controls.Add(this.cboAlg1);
+            this.visualiseSortingTabPage.Controls.Add(this.pnlSort1);
+            this.visualiseSortingTabPage.Location = new System.Drawing.Point(4, 22);
+            this.visualiseSortingTabPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.visualiseSortingTabPage.Name = "visualiseSortingTabPage";
+            this.visualiseSortingTabPage.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.visualiseSortingTabPage.Size = new System.Drawing.Size(680, 252);
+            this.visualiseSortingTabPage.TabIndex = 1;
+            this.visualiseSortingTabPage.Text = "Sorting";
+            this.visualiseSortingTabPage.UseVisualStyleBackColor = true;
+            this.visualiseSortingTabPage.Enter += new System.EventHandler(this.tabPage6_Enter);
             // 
-            // button3
+            // cmdResume
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(479, 197);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 63;
-            this.button3.Text = "Resume";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.cmdResume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdResume.Location = new System.Drawing.Point(584, 223);
+            this.cmdResume.Name = "cmdResume";
+            this.cmdResume.Size = new System.Drawing.Size(75, 23);
+            this.cmdResume.TabIndex = 63;
+            this.cmdResume.Text = "Resume";
+            this.cmdResume.UseVisualStyleBackColor = true;
+            this.cmdResume.Click += new System.EventHandler(this.cmdResume_Click);
             // 
-            // button2
+            // cmdSuspend
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(398, 197);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 62;
-            this.button2.Text = "Suspend";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // chkAnimation
-            // 
-            this.chkAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkAnimation.AutoSize = true;
-            this.chkAnimation.Location = new System.Drawing.Point(554, 152);
-            this.chkAnimation.Name = "chkAnimation";
-            this.chkAnimation.Size = new System.Drawing.Size(106, 17);
-            this.chkAnimation.TabIndex = 61;
-            this.chkAnimation.Text = "Create Animation";
-            this.chkAnimation.UseVisualStyleBackColor = true;
+            this.cmdSuspend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdSuspend.Location = new System.Drawing.Point(443, 223);
+            this.cmdSuspend.Name = "cmdSuspend";
+            this.cmdSuspend.Size = new System.Drawing.Size(75, 23);
+            this.cmdSuspend.TabIndex = 62;
+            this.cmdSuspend.Text = "Suspend";
+            this.cmdSuspend.UseVisualStyleBackColor = true;
+            this.cmdSuspend.Click += new System.EventHandler(this.cmdSuspend_Click);
             // 
             // ddTypeOfData
             // 
@@ -767,7 +756,7 @@
             // cmdSort
             // 
             this.cmdSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdSort.Location = new System.Drawing.Point(311, 197);
+            this.cmdSort.Location = new System.Drawing.Point(301, 223);
             this.cmdSort.Name = "cmdSort";
             this.cmdSort.Size = new System.Drawing.Size(75, 23);
             this.cmdSort.TabIndex = 52;
@@ -778,6 +767,7 @@
             // cboAlg1
             // 
             this.cboAlg1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboAlg1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cboAlg1.FormattingEnabled = true;
             this.cboAlg1.Items.AddRange(new object[] {
             "",
@@ -800,7 +790,7 @@
             "Shell Sort",
             "Smoothsort",
             "Timsort"});
-            this.cboAlg1.Location = new System.Drawing.Point(291, 20);
+            this.cboAlg1.Location = new System.Drawing.Point(425, 20);
             this.cboAlg1.Name = "cboAlg1";
             this.cboAlg1.Size = new System.Drawing.Size(204, 21);
             this.cboAlg1.TabIndex = 51;
@@ -833,6 +823,16 @@
             this.debugLabel.Size = new System.Drawing.Size(39, 13);
             this.debugLabel.TabIndex = 2;
             this.debugLabel.Text = "Debug";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(298, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(122, 13);
+            this.label4.TabIndex = 64;
+            this.label4.Text = "Select sorting alghorithm";
             // 
             // MainForm
             // 
@@ -869,8 +869,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.visualisingSubProjectTabControl.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
+            this.visualiseSortingTabPage.ResumeLayout(false);
+            this.visualiseSortingTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSamples)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlSort1)).EndInit();
@@ -927,10 +927,9 @@
         private System.Windows.Forms.Label findPrimeNumberDescriptionLabel;
         private System.Windows.Forms.TrackBar findPrimeNumberTrackBar;
         private System.Windows.Forms.TabControl visualisingSubProjectTabControl;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox chkAnimation;
+        private System.Windows.Forms.TabPage visualiseSortingTabPage;
+        private System.Windows.Forms.Button cmdResume;
+        private System.Windows.Forms.Button cmdSuspend;
         private System.Windows.Forms.ComboBox ddTypeOfData;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -941,6 +940,7 @@
         private System.Windows.Forms.Button cmdSort;
         private System.Windows.Forms.ComboBox cboAlg1;
         private System.Windows.Forms.PictureBox pnlSort1;
+        private System.Windows.Forms.Label label4;
     }
 }
 

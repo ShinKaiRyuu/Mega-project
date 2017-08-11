@@ -116,7 +116,9 @@ namespace Mega_Project
 
             // draw a nice width based on number of elements
             int w = (pnlSamples.Width / arrayToSort.Count) - 1;
-
+            string text = "";
+            List<int> a = new List<int>();
+            
             for (int i = 0; i < this.arrayToSort.Count; i++)
             {
                 int x = (int)(((double)pnlSamples.Width / arrayToSort.Count) * i);
@@ -129,12 +131,16 @@ namespace Mega_Project
                     if (w <= 1)
                     {
                         g.DrawLine(redPen, new Point(x, pnlSamples.Height), new Point(x, (int)(pnlSamples.Height - itemHeight)));
+                        a.Add((int)arrayToSort[i]);
                     }
+
                     else
                     {
                         g.FillRectangle(redBrush, x, pnlSamples.Height - itemHeight, w, pnlSamples.Height);
+                        a.Add((int)arrayToSort[i]);
                     }
                 }
+                
                 else // draw normal versions
                 {
                     if (w <= 1)
@@ -146,7 +152,22 @@ namespace Mega_Project
                         g.FillRectangle(b, x, pnlSamples.Height - itemHeight, w, pnlSamples.Height);
                     }
                 }
+                
             }
+            if (a.Count>1)
+            { if (a[0] > a[1])
+                {
+                    text = "SWAPING "+a[0]+" / "+a[1];
+                    g.DrawString(text, new Font("Arial", 10), redBrush, new Point(0, 5));
+                }
+                else
+                {
+                    text = "NO SWAPING";
+                    g.DrawString(text, new Font("Arial", 10), redBrush, new Point(0, 5));
+                }
+            }
+           
+            
         }
         public void finishDrawing()
         {
