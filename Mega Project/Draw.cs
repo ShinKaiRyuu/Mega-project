@@ -12,20 +12,96 @@ namespace Mega_Project
 {
     public class Draw
     {
-        public int operationsPerFrame; // operations per frame
-        public int frameMS; // time between frames (aim for 40 ms = 25 fps)
-        public int operationCount;
-        DateTime nextFrameTime;
+        ArrayList arrayToSort;
         Graphics g;
+        public int operationCount;
+        public int operationsPerFrame;
+        DateTime nextFrameTime;
+        public Dictionary<int, bool> highlightedIndexes = new Dictionary<int, bool>();
         Bitmap bmpsave;
+        PictureBox pnlSamples;
+        int originalPanelHeight;
+        int imgCount;
+        int frameMS;
 
-
-        public void DrawSamples(PictureBox pnlSamples, ArrayList arrayToSort, Dictionary<int, bool> highlightedIndexes, Bitmap bitmap)
+        public Draw(ArrayList list, PictureBox pic,  int s)
         {
-            bmpsave = bitmap;
+            imgCount = 0;
+            arrayToSort = list;
+            pnlSamples = pic;
+
+            operationCount = 0;
+            operationsPerFrame = s;
+            frameMS = 1000; // so now operationsPerFrame is operations per second
+
+            // reduce the frame wait for better visuals (increased frame rate)
+            while (frameMS >= 40 && operationsPerFrame > 1)
+            {
+                operationsPerFrame = operationsPerFrame / 2;
+                frameMS = frameMS / 2;
+            }
+
+            bmpsave = new Bitmap(pnlSamples.Width, pnlSamples.Height);
             g = Graphics.FromImage(bmpsave);
+            originalPanelHeight = pnlSamples.Height;
+            pnlSamples.Image = bmpsave;
+            nextFrameTime = DateTime.UtcNow;
+
+            checkForFrame();
+        }
+        public void checkForFrame()
+        {
+            if (operationCount >= operationsPerFrame || nextFrameTime <= DateTime.UtcNow)
+            {
+                // time to draw a new frame and wait
+                DrawSamples();
+                RefreshPanel(pnlSamples);
+                
+                // prepare for next frame
+                highlightedIndexes.Clear();
+                operationCount -= operationsPerFrame; // if there were more operations than needed, don't just forget those
+
+                if (DateTime.UtcNow < nextFrameTime)
+                {
+                    Thread.Sleep((int)((nextFrameTime - DateTime.UtcNow).TotalMilliseconds));
+                }
+                nextFrameTime = nextFrameTime.AddMilliseconds(frameMS);
+            }
+        }
+
+        delegate void SetControlValueCallback(Control pnlSort);
+
+        private void RefreshPanel(Control pnlSort)
+        {
+            if (pnlSort.InvokeRequired)
+            {
+                SetControlValueCallback d = new SetControlValueCallback(RefreshPanel);
+                pnlSort.Invoke(d, new object[] { pnlSort });
+            }
+            else
+            {
+                pnlSort.Refresh();
+            }
+        }
+
+        public void DrawSamples()
+        {
             // might need to grow or shrink if size is different from original (can't change array!)
             double multiplyHeight = 1;
+
+            // check if need to change size
+
+            if (bmpsave.Width != pnlSamples.Width || bmpsave.Height != pnlSamples.Height)
+            {
+                bmpsave = new Bitmap(pnlSamples.Width, pnlSamples.Height);
+                g = Graphics.FromImage(bmpsave);
+                pnlSamples.Image = bmpsave;
+            }
+
+            if (pnlSamples.Height != originalPanelHeight)
+            {
+                multiplyHeight = (double)(pnlSamples.Height) / (double)(originalPanelHeight);
+            }
 
             // start with white background
             g.Clear(Color.White);
@@ -40,8 +116,8 @@ namespace Mega_Project
 
             // draw a nice width based on number of elements
             int w = (pnlSamples.Width / arrayToSort.Count) - 1;
-            
-            for (int i = 0; i < arrayToSort.Count; i++)
+
+            for (int i = 0; i < this.arrayToSort.Count; i++)
             {
                 int x = (int)(((double)pnlSamples.Width / arrayToSort.Count) * i);
 
@@ -71,85 +147,19 @@ namespace Mega_Project
                     }
                 }
             }
-            pnlSamples.Image = bmpsave;
-            
         }
-
-        public void checkForFrame(PictureBox pnlSamples, ArrayList arrayToSort, Dictionary<int, bool> highlightedIndexes, Bitmap bitmap)
-        {
-            if (operationCount >= operationsPerFrame || nextFrameTime <= DateTime.UtcNow)
-            {
-                // time to draw a new frame and wait
-                DrawSamples(pnlSamples,arrayToSort,highlightedIndexes,bitmap);
-                RefreshPanel(pnlSamples);
-
-                // prepare for next frame
-                highlightedIndexes.Clear();
-                operationCount -= operationsPerFrame; // if there were more operations than needed, don't just forget those
-
-                if (DateTime.UtcNow < nextFrameTime)
-                {
-                    Thread.Sleep((int)((nextFrameTime - DateTime.UtcNow).TotalMilliseconds));
-                }
-                nextFrameTime = nextFrameTime.AddMilliseconds(frameMS);
-            }
-        }
-
-        delegate void SetControlValueCallback(Control pnlSort);
-
-        public void RefreshPanel(Control pnlSort)
-        {
-            if (pnlSort.InvokeRequired)
-            {
-                SetControlValueCallback d = new SetControlValueCallback(RefreshPanel);
-                pnlSort.Invoke(d, new object[] { pnlSort });
-            }
-            else
-            {
-                pnlSort.Refresh();
-            }
-        }
-
-        public void SwapItems(ArrayList arrayToSort, int index1, int index2, Dictionary<int, bool> highlightedIndexes,PictureBox pnl, Bitmap bitmap)
-        {
-            object temp = arrayToSort[index1];
-            arrayToSort[index1] = arrayToSort[index2];
-            arrayToSort[index2] = temp;
-
-            if (!highlightedIndexes.ContainsKey(index1))
-                highlightedIndexes.Add(index1, false);
-            if (!highlightedIndexes.ContainsKey(index2))
-                highlightedIndexes.Add(index2, false);
-
-            operationCount += 2;
-            checkForFrame(pnl,arrayToSort,highlightedIndexes,bitmap);
-        }
-
-        public int CompareItems(ArrayList arrayToSort, int index1, int index2, Dictionary<int, bool> highlightedIndexes, PictureBox pnl, Bitmap bitmap)
-        {
-            if (!highlightedIndexes.ContainsKey(index1))
-                highlightedIndexes.Add(index1, false);
-            if (!highlightedIndexes.ContainsKey(index2))
-                highlightedIndexes.Add(index2, false);
-
-            operationCount++;
-            checkForFrame(pnl, arrayToSort, highlightedIndexes, bitmap);
-
-            return ((IComparable)arrayToSort[index1]).CompareTo(arrayToSort[index2]);
-        }
-
-        public void finishDrawing(PictureBox pnlSamples, ArrayList arrayToSort, Dictionary<int, bool> highlightedIndexes,Bitmap bitmap)
+        public void finishDrawing()
         {
             if (highlightedIndexes.Count > 0)
             {
                 // put one last frame in before the end
                 nextFrameTime = DateTime.UtcNow;
-                checkForFrame(pnlSamples, arrayToSort, highlightedIndexes, bitmap);
+                checkForFrame();
             }
 
             // draw the last frame
             nextFrameTime = DateTime.UtcNow;
-            checkForFrame( pnlSamples,  arrayToSort, highlightedIndexes, bitmap);
+            checkForFrame();
         }
     }
 }
