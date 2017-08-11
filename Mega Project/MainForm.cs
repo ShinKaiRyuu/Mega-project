@@ -217,7 +217,7 @@ namespace Mega_Project
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void findCostOfTileToCoverWxHFloorCalculateButton_Click(object sender, EventArgs e)
         {
             int cost = findCostOfTileToCoverWxHFloorCostTrackBar.Value;
             int width = findCostOfTileToCoverWxHFloorWidthTrackBar.Value;
@@ -225,23 +225,31 @@ namespace Mega_Project
             findCostOfTileToCoverWxHFloorResultLabel.Text = (cost * width * height).ToString();
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void findCostOfTileToCoverWxHFloorCostTrackBar_Scroll(object sender, EventArgs e)
         {
             findCostOfTileToCoverWxHFloorCostValueLabel.Text = findCostOfTileToCoverWxHFloorCostTrackBar.Value.ToString();
-            if (findPrimeNumberAutogenerateCheckBox.Checked)
+            if (findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Checked)
             {
-                findPrimeNumberGenerateButton_Click(sender, e);
+                findCostOfTileToCoverWxHFloorCalculateButton_Click(sender, e);
             }
         }
 
-        private void trackBar2_Scroll(object sender, EventArgs e)
+        private void findCostOfTileToCoverWxHFloorWidthTrackBar_Scroll(object sender, EventArgs e)
         {
             findCostOfTileToCoverWxHFloorWidthValueLabel.Text = findCostOfTileToCoverWxHFloorWidthTrackBar.Value.ToString();
+            if (findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Checked)
+            {
+                findCostOfTileToCoverWxHFloorCalculateButton_Click(sender, e);
+            }
         }
 
-        private void trackBar3_Scroll(object sender, EventArgs e)
+        private void findCostOfTileToCoverWxHFloorHeightTrackBar_Scroll(object sender, EventArgs e)
         {
             findCostOfTileToCoverWxHFloorHeightValueLabel.Text = findCostOfTileToCoverWxHFloorHeightTrackBar.Value.ToString();
+            if (findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Checked)
+            {
+                findCostOfTileToCoverWxHFloorCalculateButton_Click(sender, e);
+            }
         }
     }
 }
