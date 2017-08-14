@@ -354,7 +354,7 @@ namespace Mega_Project
             while (startFirst < firstList.Count && startSecond < secondList.Count && i <= h)
             {
                 // penalty for comparing two objects
-                draw.operationCount++;
+                draw.OperationCount++;
 
                 if (((IComparable)firstList[startFirst]).CompareTo(secondList[startSecond]) < 0)
                 {
@@ -2190,11 +2190,11 @@ namespace Mega_Project
 
         private object GetItem(IList arrayToSort, int index)
         {
-            if (!draw.highlightedIndexes.ContainsKey(index))
-                draw.highlightedIndexes.Add(index, false);
+            if (!draw.HighlightedIndexes.ContainsKey(index))
+                draw.HighlightedIndexes.Add(index, false);
             operations_swap++;
-            draw.operationCount++;
-            draw.checkForFrame();
+            draw.OperationCount++;
+            draw.CheckForFrame();
 
             return arrayToSort[index];
         }
@@ -2202,31 +2202,31 @@ namespace Mega_Project
         {
             arrayToSort[toIndex] = arrayToSort[fromIndex];
 
-            if (!draw.highlightedIndexes.ContainsKey(toIndex))
-                draw.highlightedIndexes.Add(toIndex, false);
+            if (!draw.HighlightedIndexes.ContainsKey(toIndex))
+                draw.HighlightedIndexes.Add(toIndex, false);
             operations_swap++;
-            draw.operationCount++;
-            draw.checkForFrame();
+            draw.OperationCount++;
+            draw.CheckForFrame();
         }
         private void SetItem(IList arrayToSort, int toIndex, object fromObject)
         {
             arrayToSort[toIndex] = fromObject;
 
-            if (!draw.highlightedIndexes.ContainsKey(toIndex))
-                draw.highlightedIndexes.Add(toIndex, false);
+            if (!draw.HighlightedIndexes.ContainsKey(toIndex))
+                draw.HighlightedIndexes.Add(toIndex, false);
             operations_swap++;
-            draw.operationCount++;
-            draw.checkForFrame();
+            draw.OperationCount++;
+            draw.CheckForFrame();
         }
         private void SetItem(IList arrayToSort, ref object toObject, int fromIndex)
         {
             toObject = arrayToSort[fromIndex];
 
-            if (!draw.highlightedIndexes.ContainsKey(fromIndex))
-                draw.highlightedIndexes.Add(fromIndex, false);
+            if (!draw.HighlightedIndexes.ContainsKey(fromIndex))
+                draw.HighlightedIndexes.Add(fromIndex, false);
 
-            draw.operationCount++;
-            draw.checkForFrame();
+            draw.OperationCount++;
+            draw.CheckForFrame();
         }
         private void SwapItems(IList arrayToSort, int index1, int index2)
         {
@@ -2234,44 +2234,44 @@ namespace Mega_Project
             arrayToSort[index1] = arrayToSort[index2];
             arrayToSort[index2] = temp;
 
-            if (!draw.highlightedIndexes.ContainsKey(index1))
-                draw.highlightedIndexes.Add(index1, false);
-            if (!draw.highlightedIndexes.ContainsKey(index2))
-                draw.highlightedIndexes.Add(index2, false);
+            if (!draw.HighlightedIndexes.ContainsKey(index1))
+                draw.HighlightedIndexes.Add(index1, false);
+            if (!draw.HighlightedIndexes.ContainsKey(index2))
+                draw.HighlightedIndexes.Add(index2, false);
 
             operations_swap++;
-            draw.operationCount += 2;
-            draw.checkForFrame();
+            draw.OperationCount += 2;
+            draw.CheckForFrame();
         }
         private int CompareItems(IList arrayToSort, int index1, int index2)
         {
-            if (!draw.highlightedIndexes.ContainsKey(index1))
-                draw.highlightedIndexes.Add(index1, false);
-            if (!draw.highlightedIndexes.ContainsKey(index2))
-                draw.highlightedIndexes.Add(index2, false);
+            if (!draw.HighlightedIndexes.ContainsKey(index1))
+                draw.HighlightedIndexes.Add(index1, false);
+            if (!draw.HighlightedIndexes.ContainsKey(index2))
+                draw.HighlightedIndexes.Add(index2, false);
             operations_compare++;
-            draw.operationCount++;
-            draw.checkForFrame();
+            draw.OperationCount++;
+            draw.CheckForFrame();
 
             return ((IComparable)arrayToSort[index1]).CompareTo(arrayToSort[index2]);
         }
         private int CompareItems(IList arrayToSort, int index1, object o)
         {
-            if (!draw.highlightedIndexes.ContainsKey(index1))
-                draw.highlightedIndexes.Add(index1, false);
+            if (!draw.HighlightedIndexes.ContainsKey(index1))
+                draw.HighlightedIndexes.Add(index1, false);
             operations_compare++;
-            draw.operationCount++;
-            draw.checkForFrame();
+            draw.OperationCount++;
+            draw.CheckForFrame();
 
             return ((IComparable)arrayToSort[index1]).CompareTo(o);
         }
         private int CompareItems(IList arrayToSort, object o, int index1)
         {
-            if (!draw.highlightedIndexes.ContainsKey(index1))
-                draw.highlightedIndexes.Add(index1, false);
+            if (!draw.HighlightedIndexes.ContainsKey(index1))
+                draw.HighlightedIndexes.Add(index1, false);
             operations_compare++;
-            draw.operationCount++;
-            draw.checkForFrame();
+            draw.OperationCount++;
+            draw.CheckForFrame();
 
             return ((IComparable)o).CompareTo(arrayToSort[index1]);
         }

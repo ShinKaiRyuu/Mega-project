@@ -373,7 +373,7 @@ namespace Mega_Project
                         break;
                 }
 
-                srt.draw.finishDrawing();
+                srt.draw.FinishDrawing();
 
                 SetText("compare:" + srt.operations_compare.ToString() + " swap:" + srt.operations_swap.ToString());
                 
