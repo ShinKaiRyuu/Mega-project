@@ -1,6 +1,8 @@
-﻿using System;
+﻿using BenchmarkDotNet.Running;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
@@ -529,5 +531,185 @@ namespace Mega_Project
                 findCostOfTileToCoverWxHFloorCalculateButton_Click(sender, e);
             }
         }
+
+        private void benchmarkMD5_Click(object sender, EventArgs e)
+        {
+            ThreadStart ts = delegate ()
+            {
+                SetProgressbarStyle(ProgressBarStyle.Marquee);
+                var summ = BenchmarkRunner.Run<BenchmarkMD5>();
+                string columns = "";
+                string[] selectedColumns = { "Method", "Mean", "StdDev", "Allocated" };
+                List<string> report = new List<string>();
+                List<int> indexes = new List<int>();
+                foreach (BenchmarkDotNet.Reports.SummaryTable.SummaryTableColumn str in summ.Table.Columns)
+                {
+                    foreach (string str2 in selectedColumns)
+                    {
+                        if (str.Header == str2)
+                        {
+                            indexes.Add(str.Index);
+                            columns += str.Header + " ";
+                            SetDataGridColumns(str.Header, str.Header);
+                        }
+                    }
+                }
+                foreach (int index in indexes)
+                {
+                    report.Add(summ.Table.FullContent[0][index]);
+                }
+                AddDataGridRow(report.ToArray());
+                SetProgressbarStyle(ProgressBarStyle.Continuous);
+                SetProgressbarValue(100);
+            };
+            Thread thread1 = new Thread(ts);
+            thread1.Start();
+        }
+
+
+        delegate void SetProgCallback(int newVal);
+        private void SetProgressbarValue(int newVal)
+        {
+            if (benchmarkMD5ProgressBar.InvokeRequired)
+            {
+                SetProgCallback d = SetProgressbarValue;
+                Invoke(d, new object[] { newVal });
+            }
+            else
+            {
+                benchmarkMD5ProgressBar.Value = newVal;
+            }
+        }
+
+        delegate void SetProgStyleCallback(ProgressBarStyle newVal);
+        private void SetProgressbarStyle(ProgressBarStyle newVal)
+        {
+            if (benchmarkMD5ProgressBar.InvokeRequired)
+            {
+                SetProgStyleCallback d = SetProgressbarStyle;
+                Invoke(d, new object[] { newVal });
+            }
+            else
+            {
+                benchmarkMD5ProgressBar.Style = newVal;
+            }
+        }
+
+        private void SetProgressbar2Value(int newVal)
+        {
+            if (benchmarkSha256ProgressBar.InvokeRequired)
+            {
+                SetProgCallback d = SetProgressbar2Value;
+                Invoke(d, new object[] { newVal });
+            }
+            else
+            {
+                benchmarkSha256ProgressBar.Value = newVal;
+            }
+        }
+
+        private void SetProgressbar2Style(ProgressBarStyle newVal)
+        {
+            if (benchmarkSha256ProgressBar.InvokeRequired)
+            {
+                SetProgStyleCallback d = SetProgressbar2Style;
+                Invoke(d, new object[] { newVal });
+            }
+            else
+            {
+                benchmarkSha256ProgressBar.Style = newVal;
+            }
+        }
+
+        delegate void SetDGCCallback(string columnName, string headerText);
+        private void SetDataGridColumns(string columnName, string headerText)
+        {
+            if (benchmarkMD5DataGridView.InvokeRequired)
+            {
+                SetDGCCallback d = SetDataGridColumns;
+                Invoke(d, new object[] { columnName, headerText });
+            }
+            else
+            {
+                benchmarkMD5DataGridView.Columns.Add(columnName, headerText);
+            }
+        }
+
+        delegate void AddDGRCallback(string[] Row);
+        private void AddDataGridRow(string[] Row)
+        {
+            if (benchmarkMD5DataGridView.InvokeRequired)
+            {
+                AddDGRCallback d = AddDataGridRow;
+                Invoke(d, new object[] { Row });
+            }
+            else
+            {
+                benchmarkMD5DataGridView.Rows.Add(Row);
+            }
+        }
+
+        private void SetDataGrid2Columns(string columnName, string headerText)
+        {
+            if (benchmarkMD5DataGridView.InvokeRequired)
+            {
+                SetDGCCallback d = SetDataGrid2Columns;
+                Invoke(d, new object[] { columnName, headerText });
+            }
+            else
+            {
+                benchmarkSha256DataGridView.Columns.Add(columnName, headerText);
+            }
+        }
+
+        private void AddDataGrid2Row(string[] Row)
+        {
+            if (benchmarkSha256DataGridView.InvokeRequired)
+            {
+                AddDGRCallback d = AddDataGrid2Row;
+                Invoke(d, new object[] { Row });
+            }
+            else
+            {
+                benchmarkSha256DataGridView.Rows.Add(Row);
+            }
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ThreadStart ts = delegate ()
+            {
+                SetProgressbar2Style(ProgressBarStyle.Marquee);
+                var summ = BenchmarkRunner.Run<BenchmarkSha256>();
+                string columns = "";
+                string[] selectedColumns = { "Method", "Mean", "StdDev", "Allocated" };
+                List<string> report = new List<string>();
+                List<int> indexes = new List<int>();
+                foreach (BenchmarkDotNet.Reports.SummaryTable.SummaryTableColumn str in summ.Table.Columns)
+                {
+                    foreach (string str2 in selectedColumns)
+                    {
+                        if (str.Header == str2)
+                        {
+                            indexes.Add(str.Index);
+                            columns += str.Header + " ";
+                            SetDataGrid2Columns(str.Header, str.Header);
+                        }
+                    }
+                }
+                foreach (int index in indexes)
+                {
+                    report.Add(summ.Table.FullContent[0][index]);
+                }
+                AddDataGrid2Row(report.ToArray());
+                SetProgressbar2Style(ProgressBarStyle.Continuous);
+                SetProgressbar2Value(100);
+            };
+            Thread thread1 = new Thread(ts);
+            thread1.Start();
+        }
+
+
     }
 }

@@ -86,6 +86,16 @@
             this.cmdSort = new System.Windows.Forms.Button();
             this.cboAlg1 = new System.Windows.Forms.ComboBox();
             this.pnlSort1 = new System.Windows.Forms.PictureBox();
+            this.benchmarkTabPage = new System.Windows.Forms.TabPage();
+            this.benchmarkSubprojectTabControl = new System.Windows.Forms.TabControl();
+            this.MD5TabPage = new System.Windows.Forms.TabPage();
+            this.benchmarkMD5DataGridView = new System.Windows.Forms.DataGridView();
+            this.benchmarkMD5ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.benchmarkMD5RunBenchmarkButton = new System.Windows.Forms.Button();
+            this.Sha256TabPage = new System.Windows.Forms.TabPage();
+            this.benchmarkSha256DataGridView = new System.Windows.Forms.DataGridView();
+            this.benchmarkSha256ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.benchmarkSha256RunBenchmarkButton = new System.Windows.Forms.Button();
             this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
             this.debugLabel = new System.Windows.Forms.Label();
             this.findCostOfTileToCoverWxHFloorTabPage = new System.Windows.Forms.TabPage();
@@ -125,12 +135,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorCostTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorWidthTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorHeightTrackBar)).BeginInit();
+            this.benchmarkTabPage.SuspendLayout();
+            this.benchmarkSubprojectTabControl.SuspendLayout();
+            this.MD5TabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.benchmarkMD5DataGridView)).BeginInit();
+            this.Sha256TabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.benchmarkSha256DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // projectTabControl
             // 
             this.projectTabControl.Controls.Add(this.tabPage1);
             this.projectTabControl.Controls.Add(this.tabPage2);
+            this.projectTabControl.Controls.Add(this.benchmarkTabPage);
             this.projectTabControl.Location = new System.Drawing.Point(12, 11);
             this.projectTabControl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.projectTabControl.Name = "projectTabControl";
@@ -624,8 +641,77 @@
             this.findPrimeNumberTrackBar.TabIndex = 6;
             this.findPrimeNumberTrackBar.Scroll += new System.EventHandler(this.findPrimeNumberTrackBar_Scroll);
             // 
-            // tabPage2
+            // benchmarkTabPage
             // 
+            this.benchmarkTabPage.Controls.Add(this.benchmarkSubprojectTabControl);
+            this.benchmarkTabPage.Location = new System.Drawing.Point(4, 22);
+            this.benchmarkTabPage.Name = "benchmarkTabPage";
+            this.benchmarkTabPage.Size = new System.Drawing.Size(702, 291);
+            this.benchmarkTabPage.TabIndex = 2;
+            this.benchmarkTabPage.Text = "Benchmark";
+            this.benchmarkTabPage.UseVisualStyleBackColor = true;
+            // 
+            // benchmarkSubprojectTabControl
+            // 
+            this.benchmarkSubprojectTabControl.Controls.Add(this.MD5TabPage);
+            this.benchmarkSubprojectTabControl.Controls.Add(this.Sha256TabPage);
+            this.benchmarkSubprojectTabControl.Location = new System.Drawing.Point(3, 6);
+            this.benchmarkSubprojectTabControl.Name = "benchmarkSubprojectTabControl";
+            this.benchmarkSubprojectTabControl.SelectedIndex = 0;
+            this.benchmarkSubprojectTabControl.Size = new System.Drawing.Size(696, 282);
+            this.benchmarkSubprojectTabControl.TabIndex = 2;
+            // 
+            // MD5TabPage
+            // 
+            this.MD5TabPage.Controls.Add(this.benchmarkMD5DataGridView);
+            this.MD5TabPage.Controls.Add(this.benchmarkMD5ProgressBar);
+            this.MD5TabPage.Controls.Add(this.benchmarkMD5RunBenchmarkButton);
+            this.MD5TabPage.Location = new System.Drawing.Point(4, 22);
+            this.MD5TabPage.Name = "MD5TabPage";
+            this.MD5TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.MD5TabPage.Size = new System.Drawing.Size(688, 256);
+            this.MD5TabPage.TabIndex = 0;
+            this.MD5TabPage.Text = "MD5";
+            this.MD5TabPage.UseVisualStyleBackColor = true;
+            // 
+            // benchmarkMD5DataGridView
+            // 
+            this.benchmarkMD5DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.benchmarkMD5DataGridView.Location = new System.Drawing.Point(211, 29);
+            this.benchmarkMD5DataGridView.Name = "benchmarkMD5DataGridView";
+            this.benchmarkMD5DataGridView.ShowCellToolTips = false;
+            this.benchmarkMD5DataGridView.Size = new System.Drawing.Size(471, 221);
+            this.benchmarkMD5DataGridView.TabIndex = 3;
+            // 
+            // benchmarkMD5ProgressBar
+            // 
+            this.benchmarkMD5ProgressBar.Location = new System.Drawing.Point(45, 85);
+            this.benchmarkMD5ProgressBar.Name = "benchmarkMD5ProgressBar";
+            this.benchmarkMD5ProgressBar.Size = new System.Drawing.Size(100, 23);
+            this.benchmarkMD5ProgressBar.TabIndex = 2;
+            // 
+            // benchmarkMD5RunBenchmarkButton
+            // 
+            this.benchmarkMD5RunBenchmarkButton.Location = new System.Drawing.Point(6, 29);
+            this.benchmarkMD5RunBenchmarkButton.Name = "benchmarkMD5RunBenchmarkButton";
+            this.benchmarkMD5RunBenchmarkButton.Size = new System.Drawing.Size(199, 23);
+            this.benchmarkMD5RunBenchmarkButton.TabIndex = 1;
+            this.benchmarkMD5RunBenchmarkButton.Text = "Benchmark";
+            this.benchmarkMD5RunBenchmarkButton.UseVisualStyleBackColor = true;
+            this.benchmarkMD5RunBenchmarkButton.Click += new System.EventHandler(this.benchmarkMD5_Click);
+            // 
+            // Sha256TabPage
+            // 
+            this.Sha256TabPage.Controls.Add(this.benchmarkSha256DataGridView);
+            this.Sha256TabPage.Controls.Add(this.benchmarkSha256ProgressBar);
+            this.Sha256TabPage.Controls.Add(this.benchmarkSha256RunBenchmarkButton);
+            this.Sha256TabPage.Location = new System.Drawing.Point(4, 22);
+            this.Sha256TabPage.Name = "Sha256TabPage";
+            this.Sha256TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.Sha256TabPage.Size = new System.Drawing.Size(688, 256);
+            this.Sha256TabPage.TabIndex = 1;
+            this.Sha256TabPage.Text = "sha256";
+            this.Sha256TabPage.UseVisualStyleBackColor = true;
             this.tabPage2.Controls.Add(this.visualisingSubProjectTabControl);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -637,6 +723,7 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // visualisingSubProjectTabControl
+            // benchmarkSha256DataGridView
             // 
             this.visualisingSubProjectTabControl.Controls.Add(this.visualiseSortingTabPage);
             this.visualisingSubProjectTabControl.Location = new System.Drawing.Point(6, 7);
@@ -645,8 +732,15 @@
             this.visualisingSubProjectTabControl.SelectedIndex = 0;
             this.visualisingSubProjectTabControl.Size = new System.Drawing.Size(688, 278);
             this.visualisingSubProjectTabControl.TabIndex = 0;
+            this.benchmarkSha256DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.benchmarkSha256DataGridView.Location = new System.Drawing.Point(211, 18);
+            this.benchmarkSha256DataGridView.Name = "benchmarkSha256DataGridView";
+            this.benchmarkSha256DataGridView.ShowCellToolTips = false;
+            this.benchmarkSha256DataGridView.Size = new System.Drawing.Size(471, 221);
+            this.benchmarkSha256DataGridView.TabIndex = 6;
             // 
             // visualiseSortingTabPage
+            // benchmarkSha256ProgressBar
             // 
             this.visualiseSortingTabPage.Controls.Add(this.selectSortingAlghorithmLabel);
             this.visualiseSortingTabPage.Controls.Add(this.cmdResume);
@@ -823,8 +917,13 @@
             this.cboAlg1.Name = "cboAlg1";
             this.cboAlg1.Size = new System.Drawing.Size(204, 21);
             this.cboAlg1.TabIndex = 51;
+            this.benchmarkSha256ProgressBar.Location = new System.Drawing.Point(45, 74);
+            this.benchmarkSha256ProgressBar.Name = "benchmarkSha256ProgressBar";
+            this.benchmarkSha256ProgressBar.Size = new System.Drawing.Size(100, 23);
+            this.benchmarkSha256ProgressBar.TabIndex = 5;
             // 
             // pnlSort1
+            // benchmarkSha256RunBenchmarkButton
             // 
             this.pnlSort1.BackColor = System.Drawing.Color.White;
             this.pnlSort1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -833,6 +932,13 @@
             this.pnlSort1.Size = new System.Drawing.Size(280, 240);
             this.pnlSort1.TabIndex = 53;
             this.pnlSort1.TabStop = false;
+            this.benchmarkSha256RunBenchmarkButton.Location = new System.Drawing.Point(6, 18);
+            this.benchmarkSha256RunBenchmarkButton.Name = "benchmarkSha256RunBenchmarkButton";
+            this.benchmarkSha256RunBenchmarkButton.Size = new System.Drawing.Size(199, 23);
+            this.benchmarkSha256RunBenchmarkButton.TabIndex = 4;
+            this.benchmarkSha256RunBenchmarkButton.Text = "Benchmark";
+            this.benchmarkSha256RunBenchmarkButton.UseVisualStyleBackColor = true;
+            this.benchmarkSha256RunBenchmarkButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // debugRichTextBox
             // 
@@ -1033,6 +1139,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSamples)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlSort1)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.benchmarkTabPage.ResumeLayout(false);
+            this.benchmarkSubprojectTabControl.ResumeLayout(false);
+            this.MD5TabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.benchmarkMD5DataGridView)).EndInit();
+            this.Sha256TabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.benchmarkSha256DataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1041,8 +1154,8 @@
         #endregion
 
         private System.Windows.Forms.TabControl projectTabControl;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabControl numbersSubprojectTabControl;
         private System.Windows.Forms.TabPage findPiTabPage;
         private System.Windows.Forms.Label findPiValueLabel;
@@ -1113,6 +1226,16 @@
         private System.Windows.Forms.ComboBox cboAlg1;
         private System.Windows.Forms.PictureBox pnlSort1;
         private System.Windows.Forms.Label selectSortingAlghorithmLabel;
+        private System.Windows.Forms.TabPage benchmarkTabPage;
+        private System.Windows.Forms.Button benchmarkMD5RunBenchmarkButton;
+        private System.Windows.Forms.TabControl benchmarkSubprojectTabControl;
+        private System.Windows.Forms.TabPage MD5TabPage;
+        private System.Windows.Forms.TabPage Sha256TabPage;
+        private System.Windows.Forms.ProgressBar benchmarkMD5ProgressBar;
+        private System.Windows.Forms.DataGridView benchmarkMD5DataGridView;
+        private System.Windows.Forms.DataGridView benchmarkSha256DataGridView;
+        private System.Windows.Forms.ProgressBar benchmarkSha256ProgressBar;
+        private System.Windows.Forms.Button benchmarkSha256RunBenchmarkButton;
     }
 }
 
