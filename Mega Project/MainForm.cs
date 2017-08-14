@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BenchmarkDotNet.Running;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -215,6 +216,12 @@ namespace Mega_Project
             {
                 findPrimeNumberGenerateButton_Click(sender, e);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var summary = BenchmarkRunner.Run<Benchmark>();
+            richTextBox1.Text = summary.ToString();
         }
     }
 }
