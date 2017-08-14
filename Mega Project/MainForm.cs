@@ -2,9 +2,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -16,23 +17,23 @@ namespace Mega_Project
         {
             InitializeComponent();
             Resize += Form1_Resize;
-            this.SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.SupportsTransparentBackColor, true);
+            SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.SupportsTransparentBackColor, true);
         }
 
-        private void Form1_Resize(object sender, System.EventArgs e)
+        private void Form1_Resize(object sender, EventArgs e)
         {
-            this.Update();
+            Update();
         }
 
-        public Dictionary<string, Tuple<double, string>> dictionary_Pi = new Dictionary<string, Tuple<double, string>>();
-        public Dictionary<string, Tuple<double, string>> dictionary_e = new Dictionary<string, Tuple<double, string>>();
-        public Dictionary<string, List<int>> dictionary_Fibonachi = new Dictionary<string, List<int>>();
-        public Dictionary<string, List<int>> dictionary_PrimeFactor = new Dictionary<string, List<int>>();
-        public Dictionary<string, List<int>> dictionary_PrimeNumber = new Dictionary<string, List<int>>();
+        private readonly Dictionary<string, Tuple<double, string>> _dictionaryPi = new Dictionary<string, Tuple<double, string>>();
+        private readonly Dictionary<string, Tuple<double, string>> _dictionaryE = new Dictionary<string, Tuple<double, string>>();
+        private readonly Dictionary<string, List<int>> _dictionaryFibonachi = new Dictionary<string, List<int>>();
+        private readonly Dictionary<string, List<int>> _dictionaryPrimeFactor = new Dictionary<string, List<int>>();
+        private readonly Dictionary<string, List<int>> _dictionaryPrimeNumber = new Dictionary<string, List<int>>();
 
         private void findPiTrackBar_Scroll(object sender, EventArgs e)
         {
-            findPiValueLabel.Text = "Value : " + findPiTrackBar.Value.ToString();
+            findPiValueLabel.Text = @"Value : " + findPiTrackBar.Value;
             if (findPiAutogenerateCheckbox.Checked)
             {
                 findPiGenerateButton_Click(sender, e);
@@ -40,16 +41,16 @@ namespace Mega_Project
         }
         private void findPiGenerateButton_Click(object sender, EventArgs e)
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
             sw.Start();
-            int value = findPiTrackBar.Value;
+            var value = findPiTrackBar.Value;
             Tuple<double, string> result = null;
-            string key = "Pi" + value.ToString();
-            string common = "";
+            var key = "Pi" + value;
+            string common;
             double countedPi;
             try
             {
-                dictionary_Pi.TryGetValue(key, out result);
+                _dictionaryPi.TryGetValue(key, out result);
             }
             catch (Exception ex)
             {
@@ -58,31 +59,32 @@ namespace Mega_Project
             if (result == null)
             {
                 countedPi = Numbers.CountingPi(value);
-                common = Numbers.CommonPrefix(new[] { countedPi.ToString(), Numbers.Pi.ToString() });
-                dictionary_Pi.Add(key, new Tuple<double, string>(countedPi, common));
-                dictionary_Pi.TryGetValue(key, out result);
+                common = Numbers.CommonPrefix(new[] { countedPi.ToString(CultureInfo.InvariantCulture), Numbers.Pi.ToString(CultureInfo.InvariantCulture) });
+                _dictionaryPi.Add(key, new Tuple<double, string>(countedPi, common));
+                _dictionaryPi.TryGetValue(key, out result);
 
             }
+            if (result == null) return;
             countedPi = result.Item1;
             common = result.Item2;
-            findPiEtalonPiLabel.Text = "Etalon : Pi =" + Numbers.Pi.ToString();
-            findPiResultLabel.Text = "Result : Pi =" + countedPi.ToString();
-            findPiCommonPartWithEtalonLabel.Text = "Common :   " + common;
+            findPiEtalonPiLabel.Text = @"Etalon : Pi =" + Numbers.Pi;
+            findPiResultLabel.Text = @"Result : Pi =" + countedPi;
+            findPiCommonPartWithEtalonLabel.Text = @"Common :   " + common;
             sw.Stop();
             debugRichTextBox.Text = sw.Elapsed.ToString();
         }
         private void fineEGenerateButton_Click(object sender, EventArgs e)
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
             sw.Start();
-            int value = findETrackBar.Value;
+            var value = findETrackBar.Value;
             Tuple<double, string> result = null;
-            string key = "E" + value.ToString();
-            string common = "";
+            var key = "E" + value;
+            string common;
             double countedE;
             try
             {
-                dictionary_e.TryGetValue(key, out result);
+                _dictionaryE.TryGetValue(key, out result);
             }
             catch (Exception ex)
             {
@@ -91,21 +93,22 @@ namespace Mega_Project
             if (result == null)
             {
                 countedE = Numbers.CountingE(value);
-                common = Numbers.CommonPrefix(new[] { countedE.ToString(), Numbers.E.ToString() });
-                dictionary_e.Add(key, new Tuple<double, string>(countedE, common));
-                dictionary_e.TryGetValue(key, out result);
+                common = Numbers.CommonPrefix(new[] { countedE.ToString(CultureInfo.InvariantCulture), Numbers.E.ToString(CultureInfo.InvariantCulture) });
+                _dictionaryE.Add(key, new Tuple<double, string>(countedE, common));
+                _dictionaryE.TryGetValue(key, out result);
             }
+            if (result == null) return;
             countedE = result.Item1;
             common = result.Item2;
-            findEEtalonELabel.Text = "Etalon : E =" + Numbers.E.ToString();
-            findEResultLabel.Text = "Result : E =" + countedE.ToString();
-            findECommonPartWithEtalonLabel.Text = "Common :   " + common;
+            findEEtalonELabel.Text = @"Etalon : E =" + Numbers.E;
+            findEResultLabel.Text = @"Result : E =" + countedE;
+            findECommonPartWithEtalonLabel.Text = @"Common :   " + common;
             sw.Stop();
             debugRichTextBox.Text = sw.Elapsed.ToString();
         }
         private void findETrackBar_Scroll(object sender, EventArgs e)
         {
-            findEValueLabel.Text = "Value : " + findETrackBar.Value.ToString();
+            findEValueLabel.Text = @"Value : " + findETrackBar.Value;
             if (findEAutoenerateCheckBox.Checked)
             {
                 fineEGenerateButton_Click(sender, e);
@@ -114,29 +117,28 @@ namespace Mega_Project
         private void projectTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            TabControl currentProjectTabControl = projectTabControl;
-            TabPage currentProjectTabPage = currentProjectTabControl.SelectedTab;
-            TabControl currentSubprojectTabControl = (TabControl)currentProjectTabPage.Controls[0];
-            TabPage currentSubprojectTabPage = currentSubprojectTabControl.SelectedTab;
-            string selectedSubprojectTabLabel = ((TabControl)projectTabControl.Controls[projectTabControl.SelectedIndex].Controls[0]).Text;
-            this.Text = String.Format("\n Project: {0} Subroject: {1}", currentProjectTabPage.Text, currentSubprojectTabPage.Text);
+            var currentProjectTabControl = projectTabControl;
+            var currentProjectTabPage = currentProjectTabControl.SelectedTab;
+            var currentSubprojectTabControl = (TabControl)currentProjectTabPage.Controls[0];
+            var currentSubprojectTabPage = currentSubprojectTabControl.SelectedTab;
+            Text = $@"Project: {currentProjectTabPage.Text} Subroject: {currentSubprojectTabPage.Text}";
         }
         private void numbersSubprojectTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TabControl currentProjectTabControl = projectTabControl;
-            TabPage currentProjectTabPage = currentProjectTabControl.SelectedTab;
-            TabControl currentSubprojectTabControl = (TabControl)currentProjectTabPage.Controls[0];
-            TabPage currentSubprojectTabPage = currentSubprojectTabControl.SelectedTab;
-            this.Text = String.Format("\n Project: {0} Subroject: {1}", currentProjectTabPage.Text, currentSubprojectTabPage.Text);
+            var currentProjectTabControl = projectTabControl;
+            var currentProjectTabPage = currentProjectTabControl.SelectedTab;
+            var currentSubprojectTabControl = (TabControl)currentProjectTabPage.Controls[0];
+            var currentSubprojectTabPage = currentSubprojectTabControl.SelectedTab;
+            Text = $@" Project: {currentProjectTabPage.Text} Subroject: {currentSubprojectTabPage.Text}";
         }
         private void findFibonachiSequenceGenerateButton_Click(object sender, EventArgs e)
         {
-            List<int> result = new List<int>();
-            int value = findFibonachiSequenceTrackBar.Value;
-            string key = "Fibonachi" + value.ToString();
+            var result = new List<int>();
+            var value = findFibonachiSequenceTrackBar.Value;
+            var key = "Fibonachi" + value;
             try
             {
-                dictionary_Fibonachi.TryGetValue(key, out result);
+                _dictionaryFibonachi.TryGetValue(key, out result);
             }
             catch (Exception ex)
             {
@@ -144,14 +146,16 @@ namespace Mega_Project
             }
             if (result == null)
             {
-                dictionary_Fibonachi.Add(key, Numbers.Fibonachi(value));
-                dictionary_Fibonachi.TryGetValue(key, out result);
+                _dictionaryFibonachi.Add(key, Numbers.Fibonachi(value));
+                _dictionaryFibonachi.TryGetValue(key, out result);
             }
-            findFibonachiSequenceResultlabel.Text = String.Format("Result : Fibonachi sequence({0})", value) + string.Join(";", result);
+            if (result != null)
+                findFibonachiSequenceResultlabel.Text = $@"Result : Fibonachi sequence({value})" +
+                                                        string.Join(";", result);
         }
         private void findFibonachiSequenceTrackBar_Scroll(object sender, EventArgs e)
         {
-            findFibonachiSequenceValueLabel.Text = "Value : " + findFibonachiSequenceTrackBar.Value.ToString();
+            findFibonachiSequenceValueLabel.Text = @"Value : " + findFibonachiSequenceTrackBar.Value;
             if (findFibonachiSequenceAutogenerateCheckBox.Checked)
             {
                 findFibonachiSequenceGenerateButton_Click(sender, e);
@@ -159,12 +163,12 @@ namespace Mega_Project
         }
         private void findPrimeFactorGenerateButton_Click(object sender, EventArgs e)
         {
-            List<int> result = new List<int>();
-            int value = findPrimeFactorTrackBar.Value;
-            string key = "PrimeFactor" + value.ToString();
+            var result = new List<int>();
+            var value = findPrimeFactorTrackBar.Value;
+            var key = "PrimeFactor" + value;
             try
             {
-                dictionary_PrimeFactor.TryGetValue(key, out result);
+                _dictionaryPrimeFactor.TryGetValue(key, out result);
             }
             catch (Exception ex)
             {
@@ -172,14 +176,15 @@ namespace Mega_Project
             }
             if (result == null)
             {
-                dictionary_PrimeFactor.Add(key, Numbers.PrimeFactor(value));
-                dictionary_PrimeFactor.TryGetValue(key, out result);
+                _dictionaryPrimeFactor.Add(key, Numbers.PrimeFactor(value));
+                _dictionaryPrimeFactor.TryGetValue(key, out result);
             }
-            findPrimeFactorResultLabel.Text = String.Format("Result : Prime factors for ({0})", value) + string.Join(";", result);
+            if (result != null)
+                findPrimeFactorResultLabel.Text = $@"Result : Prime factors for ({value})" + string.Join(";", result);
         }
         private void findPrimeFactorTrackBar_Scroll(object sender, EventArgs e)
         {
-            findPrimeFactorValueLabel.Text = "Value : " + findPrimeFactorTrackBar.Value.ToString();
+            findPrimeFactorValueLabel.Text = @"Value : " + findPrimeFactorTrackBar.Value;
             if (findPrimeFactorAutogenerateCheckBox.Checked)
             {
                 findPrimeFactorGenerateButton_Click(sender, e);
@@ -187,12 +192,12 @@ namespace Mega_Project
         }
         private void findPrimeNumberGenerateButton_Click(object sender, EventArgs e)
         {
-            List<int> result = new List<int>();
-            int value = findPrimeNumberTrackBar.Value;
-            string key = "PrimeNumber" + value.ToString();
+            var result = new List<int>();
+            var value = findPrimeNumberTrackBar.Value;
+            var key = "PrimeNumber" + value;
             try
             {
-                dictionary_PrimeNumber.TryGetValue(key, out result);
+                _dictionaryPrimeNumber.TryGetValue(key, out result);
             }
             catch (Exception ex)
             {
@@ -200,34 +205,32 @@ namespace Mega_Project
             }
             if (result == null)
             {
-                dictionary_PrimeNumber.Add(key, Numbers.PrimeNumbers(start: 0, count: value));
-                dictionary_PrimeNumber.TryGetValue(key, out result);
+                _dictionaryPrimeNumber.Add(key, Numbers.PrimeNumbers(start: 0, count: value));
+                _dictionaryPrimeNumber.TryGetValue(key, out result);
             }
-            findPrimeNumberResultLabel.Text = String.Format("Result : Prime numbers ({0})", value) + string.Join(";", result);
+            if (result != null)
+                findPrimeNumberResultLabel.Text = $@"Result : Prime numbers ({value})" + string.Join(";", result);
         }
         private void findPrimeNumberTrackBar_Scroll(object sender, EventArgs e)
         {
-            findPrimeNumberValueLabel.Text = "Value : " + findPrimeNumberTrackBar.Value.ToString();
+            findPrimeNumberValueLabel.Text = @"Value : " + findPrimeNumberTrackBar.Value;
             if (findPrimeNumberAutogenerateCheckBox.Checked)
             {
                 findPrimeNumberGenerateButton_Click(sender, e);
             }
         }
 
-        Graphics g1;
-        Graphics g2;
-        ArrayList array1;
-        ArrayList array2;
-        Bitmap bmpsave1;
-        Thread thread1;
-        static Random rand = new Random();
+        private ArrayList _array1;
+        private Bitmap _bmpsave1;
+        private Thread _thread1;
+        private static readonly Random Rand = new Random();
 
         private void cmdSort_Click(object sender, EventArgs e)
         {
-            if (thread1 != null)
+            if (_thread1 != null)
             {
-                thread1.Abort();
-                thread1.Join();
+                _thread1.Abort();
+                _thread1.Join();
             }
 
             PrepareForSort();
@@ -238,173 +241,171 @@ namespace Mega_Project
             }
             else if (ddTypeOfData.SelectedItem.ToString() == "Sorted")
             {
-                array1.Sort();
-                array2 = (ArrayList)array1.Clone();
+                _array1.Sort();
             }
             else if (ddTypeOfData.SelectedItem.ToString() == "Nearly Sorted")
             {
-                array1.Sort();
+                _array1.Sort();
 
-                int maxValue = array1.Count / 10;
+                var maxValue = _array1.Count / 10;
 
                 // move anywhere from 2 items to 20% of the items
-                int itemsToMove = rand.Next(1, maxValue);
-                for (int i = 0; i < itemsToMove; i++)
+                var itemsToMove = Rand.Next(1, maxValue);
+                for (var i = 0; i < itemsToMove; i++)
                 {
-                    int a = rand.Next(0, array1.Count);
-                    int b = rand.Next(0, array1.Count);
+                    var a = Rand.Next(0, _array1.Count);
+                    var b = Rand.Next(0, _array1.Count);
 
                     while (a == b)
                     {
-                        a = rand.Next(0, array1.Count);
-                        b = rand.Next(0, array1.Count);
+                        a = Rand.Next(0, _array1.Count);
+                        b = Rand.Next(0, _array1.Count);
                     }
 
-                    object temp = array1[a];
-                    array1[a] = array1[b];
-                    array1[b] = temp;
+                    var temp = _array1[a];
+                    _array1[a] = _array1[b];
+                    _array1[b] = temp;
                 }
 
-                array2 = (ArrayList)array1.Clone();
             }
             else if (ddTypeOfData.SelectedItem.ToString() == "Reversed")
             {
-                array1.Sort();
-                array1.Reverse();
+                _array1.Sort();
+                _array1.Reverse();
 
-                array2 = (ArrayList)array1.Clone();
             }
             else if (ddTypeOfData.SelectedItem.ToString() == "Few Unique")
             {
-                int maxValue = 10;
+                var maxValue = 10;
 
-                if (array1.Count < 100)
+                if (_array1.Count < 100)
                     maxValue = 6;
 
                 // choose a random amount of unique values
-                maxValue = rand.Next(2, maxValue);
+                maxValue = Rand.Next(2, maxValue);
 
-                ArrayList temp = new ArrayList();
-                for (int i = 0; i < maxValue; i++)
+                var temp = new ArrayList();
+                for (var i = 0; i < maxValue; i++)
                 {
-                    int y = (int)((double)(i + 1) / maxValue * pnlSort1.Height);
+                    var y = (int)((double)(i + 1) / maxValue * pnlSort1.Height);
                     temp.Add(y);
                 }
 
-                for (int i = 0; i < array1.Count; i++)
+                for (var i = 0; i < _array1.Count; i++)
                 {
-                    array1[i] = temp[rand.Next(0, maxValue)];
+                    _array1[i] = temp[Rand.Next(0, maxValue)];
                 }
 
-                array2 = (ArrayList)array1.Clone();
             }
 
-            int speed = 1;
-            for (int i = 0; i < tbSpeed.Value; i++)
+            var speed = 1;
+            for (var i = 0; i < tbSpeed.Value; i++)
             {
                 speed *= 2;
             }
-            string alg1 = "";
+            var alg1 = "";
             if (cboAlg1.SelectedItem != null)
                 alg1 = cboAlg1.SelectedItem.ToString();
-            Sorting srt = null;
-            srt = new Sorting(array1, pnlSort1, speed);
+            var srt = new Sorting(_array1, pnlSort1, speed);
             
-            ThreadStart ts = delegate ()
+            ThreadStart ts = delegate
             {
                 switch (alg1)
                 {
                     case "BiDirectional Bubble Sort":
-                        srt.BiDirectionalBubbleSort(array1);
+                        srt.BiDirectionalBubbleSort(_array1);
                         break;
                     case "Bubble Sort":
-                        srt.BubbleSort(array1);
+                        srt.BubbleSort(_array1);
                         break;
                     case "Comb Sort":
-                        srt.CombSort(array1);
+                        srt.CombSort(_array1);
                         break;
                     case "Counting Sort":
-                        srt.CountingSort(array1);
+                        srt.CountingSort(_array1);
                         break;
                     case "Cycle Sort":
-                        srt.CycleSort(array1);
+                        srt.CycleSort(_array1);
                         break;
                     case "Gnome Sort":
-                        srt.GnomeSort(array1);
+                        srt.GnomeSort(_array1);
                         break;
                     case "Heap Sort":
-                        srt.HeapSort(array1);
+                        srt.HeapSort(_array1);
                         break;
                     case "Insertion Sort":
-                        srt.InsertionSort(array1);
+                        srt.InsertionSort(_array1);
                         break;
                     case "Merge Sort (In Place)":
-                        srt.MergeSortInPlace(array1, 0, array1.Count - 1);
+                        srt.MergeSortInPlace(_array1, 0, _array1.Count - 1);
                         break;
                     case "Merge Sort (Double Storage)":
-                        srt.MergeSortDoubleStorage(array1, 0, array1.Count - 1);
+                        srt.MergeSortDoubleStorage(_array1, 0, _array1.Count - 1);
                         break;
                     case "Odd-Even Sort":
-                        srt.OddEvenSort(array1);
+                        srt.OddEvenSort(_array1);
                         break;
                     case "Pigeonhole Sort":
-                        srt.PigeonholeSort(array1);
+                        srt.PigeonholeSort(_array1);
                         break;
                     case "Quicksort":
-                        srt.Quicksort(array1, 0, array1.Count - 1);
+                        srt.Quicksort(_array1, 0, _array1.Count - 1);
                         break;
                     case "Quicksort with Insertion Sort":
-                        srt.QuicksortWithInsertionSort(array1, 0, array1.Count - 1);
+                        srt.QuicksortWithInsertionSort(_array1, 0, _array1.Count - 1);
                         break;
                     case "Radix Sort":
-                        srt.RadixSort(array1);
+                        srt.RadixSort(_array1);
                         break;
                     case "Selection Sort":
-                        srt.SelectionSort(array1);
+                        srt.SelectionSort(_array1);
                         break;
                     case "Shell Sort":
-                        srt.ShellSort(array1);
+                        srt.ShellSort(_array1);
                         break;
                     case "Smoothsort":
-                        srt.Smoothsort(array1);
+                        srt.Smoothsort(_array1);
                         break;
                     case "Timsort":
-                        srt.Timsort(array1, 0, array1.Count);
+                        srt.Timsort(_array1, 0, _array1.Count);
+                        break;
+                    default:
+                        srt.Quicksort(_array1, 0, _array1.Count - 1);
                         break;
                 }
 
                 srt.Draw.FinishDrawing();
 
-                SetText("compare:" + srt.OperationsCompare.ToString() + " swap:" + srt.OperationsSwap.ToString());
+                SetText("compare:" + srt.OperationsCompare + " swap:" + srt.OperationsSwap);
                 
-                if (!isSorted(array1))
-                    MessageBox.Show("#1 Sort Failed!");
+                if (!IsSorted(_array1))
+                    MessageBox.Show(@"#1 Sort Failed!");
             };
             
             if (alg1 != "")
             {
-                thread1 = new Thread(ts);
-                thread1.Start();
+                _thread1 = new Thread(ts);
+                _thread1.Start();
             }
         }
 
-        public void Randomize(IList list)
+        private void Randomize(IList list)
         {
-            for (int i = list.Count - 1; i > 0; i--)
+            for (var i = list.Count - 1; i > 0; i--)
             {
-                int swapIndex = rand.Next(i + 1);
+                var swapIndex = Rand.Next(i + 1);
                 if (swapIndex != i)
                 {
-                    object tmp = list[swapIndex];
+                    var tmp = list[swapIndex];
                     list[swapIndex] = list[i];
                     list[i] = tmp;
                 }
             }
         }
 
-        private bool isSorted(IList checkThis)
+        private bool IsSorted(IList checkThis)
         {
-            for (int i = 0; i < checkThis.Count - 1; i++)
+            for (var i = 0; i < checkThis.Count - 1; i++)
             {
                 if (((IComparable)checkThis[i]).CompareTo(checkThis[i + 1]) > 0)
                     return false;
@@ -415,21 +416,19 @@ namespace Mega_Project
 
         private void PrepareForSort()
         {
-            bmpsave1 = new Bitmap(pnlSort1.Width, pnlSort1.Height);
-            g1 = Graphics.FromImage(bmpsave1);
+            _bmpsave1 = new Bitmap(pnlSort1.Width, pnlSort1.Height);
+            Graphics.FromImage(_bmpsave1);
 
-            pnlSort1.Image = bmpsave1;
+            pnlSort1.Image = _bmpsave1;
 
-            array1 = new ArrayList(tbSamples.Value);
-            array2 = new ArrayList(tbSamples.Value);
-            for (int i = 0; i < array1.Capacity; i++)
+            _array1 = new ArrayList(tbSamples.Value);
+            for (var i = 0; i < _array1.Capacity; i++)
             {
-                int y = (int)((double)(i + 1) / array1.Capacity * pnlSort1.Height);
-                array1.Add(y);
+                var y = (int)((double)(i + 1) / _array1.Capacity * pnlSort1.Height);
+                _array1.Add(y);
             }
-            Randomize(array1);
+            Randomize(_array1);
 
-            array2 = (ArrayList)array1.Clone();
         }
 
         private void tabPage6_Enter(object sender, EventArgs e)
@@ -444,52 +443,56 @@ namespace Mega_Project
             resize_controls();
         }
 
-        delegate void SetTextCallback(string text);
+        private delegate void SetTextCallback(string text);
         private void SetText(string text)
         {
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
-            if (this.debugRichTextBox.InvokeRequired)
+            if (debugRichTextBox.InvokeRequired)
             {
-                SetTextCallback d = new SetTextCallback(SetText);
-                this.Invoke(d, new object[] { text });
+                var d = new SetTextCallback(SetText);
+                Invoke(d, text);
             }
             else
             {
-                this.debugRichTextBox.Text = text;
+                debugRichTextBox.Text = text;
             }
         }
 
         private void resize_controls()
         {
-            projectTabControl.Width = this.Width - 40;
-            projectTabControl.Height = this.Height - 199;
+            projectTabControl.Width = Width - 40;
+            projectTabControl.Height = Height - 199;
 
-            numbersSubprojectTabControl.Width = this.Width - 60;
-            numbersSubprojectTabControl.Height = this.Height - 237;
+            numbersSubprojectTabControl.Width = Width - 60;
+            numbersSubprojectTabControl.Height = Height - 237;
 
-            visualisingSubProjectTabControl.Width = this.Width - 60;
-            visualisingSubProjectTabControl.Height = this.Height - 237;
+            visualisingSubProjectTabControl.Width = Width - 60;
+            visualisingSubProjectTabControl.Height = Height - 237;
 
             debugLabel.Left = 16;
-            debugLabel.Top = this.Height - 180;
+            debugLabel.Top = Height - 180;
 
             debugRichTextBox.Left = 16;
-            debugRichTextBox.Top = this.Height - 161;
+            debugRichTextBox.Top = Height - 161;
 
-            pnlSort1.Height = this.Height - 276;
-            pnlSort1.Width = this.Width - 470;
+            pnlSort1.Height = Height - 276;
+            pnlSort1.Width = Width - 470;
         }
 
         private void cmdSuspend_Click(object sender, EventArgs e)
         {
-            thread1.Suspend();
+#pragma warning disable 618
+            _thread1.Suspend();
+#pragma warning restore 618
         }
 
         private void cmdResume_Click(object sender, EventArgs e)
         {
-            thread1.Resume();
+#pragma warning disable 618
+            _thread1.Resume();
+#pragma warning restore 618
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -499,9 +502,9 @@ namespace Mega_Project
 
         private void findCostOfTileToCoverWxHFloorCalculateButton_Click(object sender, EventArgs e)
         {
-            int cost = findCostOfTileToCoverWxHFloorCostTrackBar.Value;
-            int width = findCostOfTileToCoverWxHFloorWidthTrackBar.Value;
-            int height = findCostOfTileToCoverWxHFloorHeightTrackBar.Value;
+            var cost = findCostOfTileToCoverWxHFloorCostTrackBar.Value;
+            var width = findCostOfTileToCoverWxHFloorWidthTrackBar.Value;
+            var height = findCostOfTileToCoverWxHFloorHeightTrackBar.Value;
             findCostOfTileToCoverWxHFloorResultLabel.Text = (cost * width * height).ToString();
         }
 
@@ -534,35 +537,26 @@ namespace Mega_Project
 
         private void benchmarkMD5_Click(object sender, EventArgs e)
         {
-            ThreadStart ts = delegate ()
+            ThreadStart ts = delegate
             {
                 SetProgressbarStyle(ProgressBarStyle.Marquee);
                 var summ = BenchmarkRunner.Run<BenchmarkMd5>();
-                string columns = "";
                 string[] selectedColumns = { "Method", "Mean", "StdDev", "Allocated" };
-                List<string> report = new List<string>();
-                List<int> indexes = new List<int>();
-                foreach (BenchmarkDotNet.Reports.SummaryTable.SummaryTableColumn str in summ.Table.Columns)
+                var indexes = new List<int>();
+                foreach (var str in summ.Table.Columns)
                 {
-                    foreach (string str2 in selectedColumns)
+                    foreach (var str2 in selectedColumns)
                     {
-                        if (str.Header == str2)
-                        {
-                            indexes.Add(str.Index);
-                            columns += str.Header + " ";
-                            SetDataGridColumns(str.Header, str.Header);
-                        }
+                        if (str.Header != str2) continue;
+                        indexes.Add(str.Index);
+                        SetDataGridColumns(str.Header, str.Header);
                     }
                 }
-                foreach (int index in indexes)
-                {
-                    report.Add(summ.Table.FullContent[0][index]);
-                }
-                AddDataGridRow(report.ToArray());
+                AddDataGridRow(indexes.Select(index => summ.Table.FullContent[0][index]).ToArray());
                 SetProgressbarStyle(ProgressBarStyle.Continuous);
                 SetProgressbarValue(100);
             };
-            Thread thread1 = new Thread(ts);
+            var thread1 = new Thread(ts);
             thread1.Start();
         }
 
@@ -573,7 +567,7 @@ namespace Mega_Project
             if (benchmarkMD5ProgressBar.InvokeRequired)
             {
                 SetProgCallback d = SetProgressbarValue;
-                Invoke(d, new object[] { newVal });
+                Invoke(d, newVal);
             }
             else
             {
@@ -587,7 +581,7 @@ namespace Mega_Project
             if (benchmarkMD5ProgressBar.InvokeRequired)
             {
                 SetProgStyleCallback d = SetProgressbarStyle;
-                Invoke(d, new object[] { newVal });
+                Invoke(d, newVal);
             }
             else
             {
@@ -600,7 +594,7 @@ namespace Mega_Project
             if (benchmarkSha256ProgressBar.InvokeRequired)
             {
                 SetProgCallback d = SetProgressbar2Value;
-                Invoke(d, new object[] { newVal });
+                Invoke(d, newVal);
             }
             else
             {
@@ -613,7 +607,7 @@ namespace Mega_Project
             if (benchmarkSha256ProgressBar.InvokeRequired)
             {
                 SetProgStyleCallback d = SetProgressbar2Style;
-                Invoke(d, new object[] { newVal });
+                Invoke(d, newVal);
             }
             else
             {
@@ -621,13 +615,13 @@ namespace Mega_Project
             }
         }
 
-        delegate void SetDGCCallback(string columnName, string headerText);
+        delegate void SetDgcCallback(string columnName, string headerText);
         private void SetDataGridColumns(string columnName, string headerText)
         {
             if (benchmarkMD5DataGridView.InvokeRequired)
             {
-                SetDGCCallback d = SetDataGridColumns;
-                Invoke(d, new object[] { columnName, headerText });
+                SetDgcCallback d = SetDataGridColumns;
+                Invoke(d, columnName, headerText);
             }
             else
             {
@@ -635,17 +629,18 @@ namespace Mega_Project
             }
         }
 
-        delegate void AddDGRCallback(string[] Row);
-        private void AddDataGridRow(string[] Row)
+        private delegate void AddDgrCallback(string[] row);
+        private void AddDataGridRow(string[] row)
         {
             if (benchmarkMD5DataGridView.InvokeRequired)
             {
-                AddDGRCallback d = AddDataGridRow;
-                Invoke(d, new object[] { Row });
+                AddDgrCallback d = AddDataGridRow;
+                Invoke(d, new object[] { row });
             }
             else
             {
-                benchmarkMD5DataGridView.Rows.Add(Row);
+                // ReSharper disable once CoVariantArrayConversion
+                benchmarkMD5DataGridView.Rows.Add(row);
             }
         }
 
@@ -653,8 +648,8 @@ namespace Mega_Project
         {
             if (benchmarkMD5DataGridView.InvokeRequired)
             {
-                SetDGCCallback d = SetDataGrid2Columns;
-                Invoke(d, new object[] { columnName, headerText });
+                SetDgcCallback d = SetDataGrid2Columns;
+                Invoke(d, columnName, headerText);
             }
             else
             {
@@ -662,43 +657,42 @@ namespace Mega_Project
             }
         }
 
-        private void AddDataGrid2Row(string[] Row)
+        private void AddDataGrid2Row(string[] row)
         {
             if (benchmarkSha256DataGridView.InvokeRequired)
             {
-                AddDGRCallback d = AddDataGrid2Row;
-                Invoke(d, new object[] { Row });
+                AddDgrCallback d = AddDataGrid2Row;
+                Invoke(d, new object[] { row });
             }
             else
             {
-                benchmarkSha256DataGridView.Rows.Add(Row);
+                // ReSharper disable once CoVariantArrayConversion
+                benchmarkSha256DataGridView.Rows.Add(row);
             }
         }
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ThreadStart ts = delegate ()
+            ThreadStart ts = delegate
             {
                 SetProgressbar2Style(ProgressBarStyle.Marquee);
                 var summ = BenchmarkRunner.Run<BenchmarkSha256>();
-                string columns = "";
                 string[] selectedColumns = { "Method", "Mean", "StdDev", "Allocated" };
-                List<string> report = new List<string>();
-                List<int> indexes = new List<int>();
-                foreach (BenchmarkDotNet.Reports.SummaryTable.SummaryTableColumn str in summ.Table.Columns)
+                var report = new List<string>();
+                var indexes = new List<int>();
+                foreach (var str in summ.Table.Columns)
                 {
-                    foreach (string str2 in selectedColumns)
+                    foreach (var str2 in selectedColumns)
                     {
                         if (str.Header == str2)
                         {
                             indexes.Add(str.Index);
-                            columns += str.Header + " ";
                             SetDataGrid2Columns(str.Header, str.Header);
                         }
                     }
                 }
-                foreach (int index in indexes)
+                foreach (var index in indexes)
                 {
                     report.Add(summ.Table.FullContent[0][index]);
                 }
@@ -706,7 +700,7 @@ namespace Mega_Project
                 SetProgressbar2Style(ProgressBarStyle.Continuous);
                 SetProgressbar2Value(100);
             };
-            Thread thread1 = new Thread(ts);
+            var thread1 = new Thread(ts);
             thread1.Start();
         }
 
