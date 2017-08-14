@@ -494,5 +494,40 @@ namespace Mega_Project
         {
             Environment.Exit(0);
         }
+
+        private void findCostOfTileToCoverWxHFloorCalculateButton_Click(object sender, EventArgs e)
+        {
+            int cost = findCostOfTileToCoverWxHFloorCostTrackBar.Value;
+            int width = findCostOfTileToCoverWxHFloorWidthTrackBar.Value;
+            int height = findCostOfTileToCoverWxHFloorHeightTrackBar.Value;
+            findCostOfTileToCoverWxHFloorResultLabel.Text = (cost * width * height).ToString();
+        }
+
+        private void findCostOfTileToCoverWxHFloorCostTrackBar_Scroll(object sender, EventArgs e)
+        {
+            findCostOfTileToCoverWxHFloorCostValueLabel.Text = findCostOfTileToCoverWxHFloorCostTrackBar.Value.ToString();
+            if (findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Checked)
+            {
+                findCostOfTileToCoverWxHFloorCalculateButton_Click(sender, e);
+            }
+        }
+
+        private void findCostOfTileToCoverWxHFloorWidthTrackBar_Scroll(object sender, EventArgs e)
+        {
+            findCostOfTileToCoverWxHFloorWidthValueLabel.Text = findCostOfTileToCoverWxHFloorWidthTrackBar.Value.ToString();
+            if (findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Checked)
+            {
+                findCostOfTileToCoverWxHFloorCalculateButton_Click(sender, e);
+            }
+        }
+
+        private void findCostOfTileToCoverWxHFloorHeightTrackBar_Scroll(object sender, EventArgs e)
+        {
+            findCostOfTileToCoverWxHFloorHeightValueLabel.Text = findCostOfTileToCoverWxHFloorHeightTrackBar.Value.ToString();
+            if (findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Checked)
+            {
+                findCostOfTileToCoverWxHFloorCalculateButton_Click(sender, e);
+            }
+        }
     }
 }
