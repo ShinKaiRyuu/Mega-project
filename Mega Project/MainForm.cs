@@ -373,9 +373,9 @@ namespace Mega_Project
                         break;
                 }
 
-                srt.draw.FinishDrawing();
+                srt.Draw.FinishDrawing();
 
-                SetText("compare:" + srt.operations_compare.ToString() + " swap:" + srt.operations_swap.ToString());
+                SetText("compare:" + srt.OperationsCompare.ToString() + " swap:" + srt.OperationsSwap.ToString());
                 
                 if (!isSorted(array1))
                     MessageBox.Show("#1 Sort Failed!");

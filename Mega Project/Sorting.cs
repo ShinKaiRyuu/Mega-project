@@ -1,58 +1,51 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mega_Project
 {
     public class Sorting
     {
-        public Draw draw;
-        Random rand = new Random();
-        public int operations_compare;
-        public int operations_swap;
+        public readonly Draw Draw;
+        readonly Random _rand = new Random();
+        public int OperationsCompare;
+        public int OperationsSwap;
         public Sorting(ArrayList list, PictureBox pic, int s)
         {
-            draw = new Draw(list, pic, s);
+            Draw = new Draw(list, pic, s);
         }
         // simple to program, but really terrible in performance
-        public IList BubbleSort(IList arrayToSort)
+        public void BubbleSort(IList arrayToSort)
         {
-            bool swapMade = true;
-            int n = arrayToSort.Count - 1;
-            for (int i = 0; i < n && swapMade; i++)
+            var swapMade = true;
+            var n = arrayToSort.Count - 1;
+            for (var i = 0; i < n && swapMade; i++)
             {
                 swapMade = false;
 
-                for (int j = n; j > i; j--)
+                for (var j = n; j > i; j--)
                 {
-                    if (CompareItems(arrayToSort, j - 1, j) > 0)
-                    {
-                        SwapItems(arrayToSort, j - 1, j);
-                        swapMade = true;
-                    }
+                    if (CompareItems(arrayToSort, j - 1, j) <= 0) continue;
+                    SwapItems(arrayToSort, j - 1, j);
+                    swapMade = true;
                 }
             }
-
-            return arrayToSort;
         }
 
         // better than normal bubble sort, but still slow
-        public IList BiDirectionalBubbleSort(IList arrayToSort)
+        public void BiDirectionalBubbleSort(IList arrayToSort)
         {
-            int limit = arrayToSort.Count;
-            int st = -1;
-            bool swapped = false;
+            var limit = arrayToSort.Count;
+            var st = -1;
+            bool swapped;
             do
             {
                 swapped = false;
                 st++;
                 limit--;
 
-                for (int j = st; j < limit; j++)
+                for (var j = st; j < limit; j++)
                 {
                     if (CompareItems(arrayToSort, j, j + 1) > 0)
                     {
@@ -65,7 +58,7 @@ namespace Mega_Project
                 {
                     swapped = false; // stop after this if we make no swaps
 
-                    for (int j = limit - 2; j >= st; j--) // subtract 2 since we already checked and fixed limit - 1
+                    for (var j = limit - 2; j >= st; j--) // subtract 2 since we already checked and fixed limit - 1
                     {
                         if (CompareItems(arrayToSort, j, j + 1) > 0)
                         {
@@ -76,15 +69,13 @@ namespace Mega_Project
                 }
 
             } while (st < limit && swapped);
-
-            return arrayToSort;
         }
 
         // similar concept as Shell Sort, but without trickle-down and with smaller gap shrinkage, so it's slightly slower
-        public IList CombSort(IList arrayToSort)
+        public void CombSort(IList arrayToSort)
         {
-            int gap = arrayToSort.Count;
-            int swaps = 0;
+            var gap = arrayToSort.Count;
+            int swaps;
 
             do
             {
@@ -93,7 +84,7 @@ namespace Mega_Project
                 {
                     gap = 1;
                 }
-                int i = 0;
+                var i = 0;
                 swaps = 0;
 
                 do
@@ -107,12 +98,10 @@ namespace Mega_Project
                 } while (!(i + gap >= arrayToSort.Count));
 
             } while (!(gap == 1 && swaps == 0));
-
-            return arrayToSort;
         }
 
         // super-fast, but it requires the data to have a small amount of variation (ideally n or less)
-        public IList CountingSort(IList arrayToSort)
+        public void CountingSort(IList arrayToSort)
         {
             object min = null;
             object max = null;
@@ -121,7 +110,7 @@ namespace Mega_Project
             SetItem(arrayToSort, ref max, 0);
 
             // start at 1 because we're already considering 0
-            for (int i = 1; i < arrayToSort.Count; i++)
+            for (var i = 1; i < arrayToSort.Count; i++)
             {
                 if (CompareItems(arrayToSort, i, min) < 0)
                 {
@@ -133,24 +122,24 @@ namespace Mega_Project
                 }
             }
 
-            int range = (int)max - (int)min + 1;
+            var range = (int)max - (int)min + 1;
 
             // reserve space to store the array in a different form
-            int[] count = new int[range];
+            var count = new int[range];
 
-            for (int i = 0; i < range; i++)
+            for (var i = 0; i < range; i++)
             {
                 count[i] = 0;
             }
 
-            for (int i = 0; i < arrayToSort.Count; i++)
+            for (var i = 0; i < arrayToSort.Count; i++)
             {
                 count[(int)GetItem(arrayToSort, i) - (int)min]++;
             }
 
             // now create the original array in sorted order
-            int z = 0;
-            for (int i = 0; i < count.Length; i++)
+            var z = 0;
+            for (var i = 0; i < count.Length; i++)
             {
                 while (count[i] > 0)
                 {
@@ -159,26 +148,23 @@ namespace Mega_Project
                     count[i]--;
                 }
             }
-
-            return arrayToSort;
         }
 
         // find the right place for each item by counting the number of items smaller than it, then put it in place and pick up the item that was in its place and find a new place for that
         // only useful if you don't mind waiting a long time and writing data damages the medium
-        public IList CycleSort(IList arrayToSort)
+        public void CycleSort(IList arrayToSort)
         {
-            int writes = 0;
-            for (int cycleStart = 0; cycleStart < arrayToSort.Count; cycleStart++)
+            for (var cycleStart = 0; cycleStart < arrayToSort.Count; cycleStart++)
             {
                 object item = null;
                 SetItem(arrayToSort, ref item, cycleStart);
 
-                int pos = cycleStart;
+                var pos = cycleStart;
 
                 do
                 {
-                    int to = 0;
-                    for (int i = 0; i < arrayToSort.Count; i++)
+                    var to = 0;
+                    for (var i = 0; i < arrayToSort.Count; i++)
                     {
                         if (i != cycleStart)
                         {
@@ -203,21 +189,17 @@ namespace Mega_Project
                         }
                         item = temp;
 
-                        writes++;
-
                         pos = to;
                     }
 
                 } while (cycleStart != pos);
             }
-
-            return arrayToSort;
         }
 
         // This is basically just a slower version of Insertion Sort, because it adds in unnecessary compares after moving an item into position.
-        public IList GnomeSort(IList arrayToSort)
+        public void GnomeSort(IList arrayToSort)
         {
-            int pos = 1;
+            var pos = 1;
             while (pos < arrayToSort.Count)
             {
                 if (CompareItems(arrayToSort, pos, pos - 1) >= 0)
@@ -234,32 +216,28 @@ namespace Mega_Project
                     }
                 }
             }
-
-            return arrayToSort;
         }
 
         // a fast sort O(n log n) with near-zero extra storage (not quite as fast as Quicksort and Merge Sort)
-        public IList HeapSort(IList list)
+        public void HeapSort(IList list)
         {
-            for (int i = (list.Count - 1) / 2; i >= 0; i--)
+            for (var i = (list.Count - 1) / 2; i >= 0; i--)
             {
                 AdjustHeap(list, i, list.Count - 1);
             }
 
-            for (int i = list.Count - 1; i >= 1; i--)
+            for (var i = list.Count - 1; i >= 1; i--)
             {
                 SwapItems(list, 0, i);
                 AdjustHeap(list, 0, i - 1);
             }
-
-            return list;
         }
         private void AdjustHeap(IList list, int i, int m)
         {
-            object Temp = null;
-            SetItem(list, ref Temp, i);
+            object temp = null;
+            SetItem(list, ref temp, i);
 
-            int j = i * 2 + 1;
+            var j = i * 2 + 1;
 
             while (j <= m)
             {
@@ -271,7 +249,7 @@ namespace Mega_Project
                     }
                 }
 
-                if (CompareItems(list, Temp, j) < 0)
+                if (CompareItems(list, temp, j) < 0)
                 {
                     SetItem(list, i, j);
 
@@ -284,18 +262,18 @@ namespace Mega_Project
                 }
             }
 
-            SetItem(list, i, Temp);
+            SetItem(list, i, temp);
         }
 
         // simple concept, but slow
-        public IList InsertionSort(IList arrayToSort)
+        public void InsertionSort(IList arrayToSort)
         {
-            for (int i = 1; i < arrayToSort.Count; i++)
+            for (var i = 1; i < arrayToSort.Count; i++)
             {
                 object val = null;
                 SetItem(arrayToSort, ref val, i);
-                int j = i - 1;
-                bool done = false;
+                var j = i - 1;
+                var done = false;
 
                 do
                 {
@@ -319,15 +297,13 @@ namespace Mega_Project
 
                 SetItem(arrayToSort, j + 1, val);
             }
-
-            return arrayToSort;
         }
 
         // a fast sort with n extra storage
         public IList MergeSortDoubleStorage(IList a, int low, int high)
         {
-            int l = low;
-            int h = high;
+            var l = low;
+            var h = high;
 
             // sorted when down to one element
             IList r = new ArrayList();
@@ -341,20 +317,20 @@ namespace Mega_Project
                 return r; // empty
             }
 
-            int mid = (l + h) / 2;
-            IList firstList = MergeSortDoubleStorage(a, l, mid);
-            IList secondList = MergeSortDoubleStorage(a, mid + 1, h);
+            var mid = (l + h) / 2;
+            var firstList = MergeSortDoubleStorage(a, l, mid);
+            var secondList = MergeSortDoubleStorage(a, mid + 1, h);
 
             // combine the lists
-            int startFirst = 0;
-            int startSecond = 0;
-            int i = l;
+            var startFirst = 0;
+            var startSecond = 0;
+            var i = l;
 
             // create a new array combining the smaller two
             while (startFirst < firstList.Count && startSecond < secondList.Count && i <= h)
             {
                 // penalty for comparing two objects
-                draw.OperationCount++;
+                Draw.OperationCount++;
 
                 if (((IComparable)firstList[startFirst]).CompareTo(secondList[startSecond]) < 0)
                 {
@@ -404,52 +380,50 @@ namespace Mega_Project
         }
 
         // not fast because of how long the merging process takes
-        public IList MergeSortInPlace(IList a, int low, int height)
+        public void MergeSortInPlace(IList a, int low, int height)
         {
-            int l = low;
-            int h = height;
+            var l = low;
+            var h = height;
 
             if (l >= h)
             {
-                return a;
+                return;
             }
 
-            int mid = (l + h) / 2;
+            var mid = (l + h) / 2;
             MergeSortInPlace(a, l, mid);
             MergeSortInPlace(a, mid + 1, h);
 
-            int end_lo = mid;
-            int start_hi = mid + 1;
-            while ((l <= end_lo) && (start_hi <= h))
+            var endLo = mid;
+            var startHi = mid + 1;
+            while ((l <= endLo) && (startHi <= h))
             {
-                if (CompareItems(a, l, start_hi) < 0)
+                if (CompareItems(a, l, startHi) < 0)
                 {
                     l++;
                 }
                 else
                 {
                     object temp = null;
-                    SetItem(a, ref temp, start_hi);
+                    SetItem(a, ref temp, startHi);
 
-                    for (int k = start_hi - 1; k >= l; k--)
+                    for (var k = startHi - 1; k >= l; k--)
                     {
                         SetItem(a, k + 1, k);
                     }
                     SetItem(a, l, temp);
 
                     l++;
-                    end_lo++;
-                    start_hi++;
+                    endLo++;
+                    startHi++;
                 }
             }
-
-            return a;
         }
 
         // like Bubble Sort, except we skip forward after each compare/swap and come back later and do the other compares/swaps we need (first i is odd, then even)
-        public IList OddEvenSort(IList arrayToSort)
+        public void OddEvenSort(IList arrayToSort)
         {
-            bool sorted = false;
+            var sorted = false;
             while (!sorted)
             {
                 sorted = true;
@@ -473,15 +447,13 @@ namespace Mega_Project
                     }
                 }
             }
-
-            return arrayToSort;
         }
 
         // different from Counting sort only in that this sort moves/copies the items to a new list, then moves/copies them back
         // also requires the data to have small variability (can't make a billion-count array)
-        public IList PigeonholeSort(IList arrayToSort)
+        public void PigeonholeSort(IList arrayToSort)
         {
-            if (arrayToSort == null || arrayToSort.Count == 0) return arrayToSort;
+            if (arrayToSort == null || arrayToSort.Count == 0) return;
 
             object max = null;
             object min = null;
@@ -489,7 +461,7 @@ namespace Mega_Project
             SetItem(arrayToSort, ref min, 0);
 
             // find min and max
-            for (int i = 0; i < arrayToSort.Count; i++)
+            for (var i = 0; i < arrayToSort.Count; i++)
             {
                 if (CompareItems(arrayToSort, i, max) > 0)
                 {
@@ -502,44 +474,42 @@ namespace Mega_Project
             }
 
             // reserve space to store array in a different form
-            ArrayList[] holder = new ArrayList[(int)max - (int)min + 1];
+            var holder = new ArrayList[(int)max - (int)min + 1];
 
-            for (int i = 0; i < holder.Length; i++)
+            for (var i = 0; i < holder.Length; i++)
             {
                 holder[i] = new ArrayList();
             }
 
-            for (int i = 0; i < arrayToSort.Count; i++)
+            for (var i = 0; i < arrayToSort.Count; i++)
             {
                 holder[(int)GetItem(arrayToSort, i) - (int)min].Add(GetItem(arrayToSort, i));
             }
 
-            int k = 0;
+            var k = 0;
 
-            for (int i = 0; i < holder.Length; i++)
+            foreach (ArrayList t in holder)
             {
-                if (holder[i].Count > 0)
+                if (t.Count > 0)
                 {
-                    for (int j = 0; j < holder[i].Count; j++)
+                    foreach (object t1 in t)
                     {
-                        SetItem(arrayToSort, k, holder[i][j]);
+                        SetItem(arrayToSort, k, t1);
 
                         k++;
                     }
                 }
             }
-
-            return arrayToSort;
         }
 
         // a fast sort with log2(n) extra storage
-        public IList Quicksort(IList a, int left, int right)
+        public void Quicksort(IList a, int left, int right)
         {
-            int i = left;
-            int j = right;
+            var i = left;
+            var j = right;
 
             object x = null;
-            SetItem(a, ref x, rand.Next(left, right + 1));
+            SetItem(a, ref x, _rand.Next(left, right + 1));
 
             // find items to swap so smaller items are on the left side and larger items are on the right side
             while (i <= j) // when i=j, need to compare to know which way to move (left or right)
@@ -577,23 +547,21 @@ namespace Mega_Project
             {
                 Quicksort(a, i, right);
             }
-
-            return a;
         }
 
         // I don't see much improvement by adding Insertion Sort (more useful if you're using Tri-Median method)
-        public IList QuicksortWithInsertionSort(IList a, int left, int right)
+        public void QuicksortWithInsertionSort(IList a, int left, int right)
         {
-            int i = left;
-            int j = right;
+            var i = left;
+            var j = right;
 
             if (right - left <= 4)
             {
                 InsertionSortHelper(a, left, right);
-                return a;
+                return;
             }
 
-            int pivotLocation = rand.Next(left, right + 1);
+            var pivotLocation = _rand.Next(left, right + 1);
             object x = null;
             SetItem(a, ref x, pivotLocation);
 
@@ -628,18 +596,16 @@ namespace Mega_Project
             {
                 QuicksortWithInsertionSort(a, i, right);
             }
-
-            return a;
         }
-        private IList InsertionSortHelper(IList arrayToSort, int left, int right)
+        private void InsertionSortHelper(IList arrayToSort, int left, int right)
         {
-            for (int i = left + 1; i < right + 1; i++)
+            for (var i = left + 1; i < right + 1; i++)
             {
                 object val = null;
                 SetItem(arrayToSort, ref val, i);
 
-                int j = i - 1;
-                bool done = false;
+                var j = i - 1;
+                var done = false;
 
                 do
                 {
@@ -662,33 +628,31 @@ namespace Mega_Project
 
                 SetItem(arrayToSort, j + 1, val);
             }
-
-            return arrayToSort;
         }
 
         // requires all data to be positive integers (this version), but sorts in O(n) time (the 16-bit version sorts in 2 read passes and 2 write passes and finishes much faster than Quicksort)
         // in practice, 16-bit version doesn't do much better than 8-bit version (in visualization, it makes a HUGE difference)
         // this is comparable to Pigeonhole Sort, but without the variability restriction (this makes set number of buckets depending on which version - 8-bit version makes 256 buckets)
-        public IList RadixSort(IList array)
+        public void RadixSort(IList array)
         {
             // based on http://algorithmsandstuff.blogspot.com/2014/06/radix-sort-in-c-sharp.html and https://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Radix_sort#C.23_least_significant_digit_.28LSD.29_radix_sort_implementation
-            int shift = 0;
-            int totalBits = 32; // 32 bits for int
+            var shift = 0;
+            var totalBits = 32; // 32 bits for int
 
             // decide how many bits to look at during each round (and how many buckets to use)
             //int maskLength = 16; // totalBits must be evenly divided by this
             //int mask = 65535; // 16 bits, all 1's; this many buckets may seem like overkill, but when you have 1 million items to sort, it makes much more sense
 
-            int maskLength = 8; // totalBits must be evenly divided by this (don't use 6 or 10)
-            int mask = 255; // 8 bits, all 1's
+            var maskLength = 8; // totalBits must be evenly divided by this (don't use 6 or 10)
+            var mask = 255; // 8 bits, all 1's
 
             //int maskLength = 1;
             //int mask = 1; // 1 bit at a time
 
-            List<Queue<int>> buckets = new List<Queue<int>>();
-            for (int i = 0; i <= mask; i++) // exponentially more buckets based on how many bits are being checked - so we can't just use 32 bits
+            var buckets = new List<Queue<int>>();
+            for (var i = 0; i <= mask; i++) // exponentially more buckets based on how many bits are being checked - so we can't just use 32 bits
             {
-                Queue<int> q = new Queue<int>();
+                var q = new Queue<int>();
                 buckets.Add(q);
             }
 
@@ -700,14 +664,14 @@ namespace Mega_Project
                 // put every item into a bucket based on its lowest bits, then the next lowest bits, and so on
                 for (i = 0; i < array.Count; i++)
                 {
-                    int bucketNumber = ((int)GetItem(array, i) >> shift) & mask;
+                    var bucketNumber = ((int)GetItem(array, i) >> shift) & mask;
 
                     buckets[bucketNumber].Enqueue((int)GetItem(array, i));
                 }
 
                 i = 0;
                 // put all items back into the array, lowest buckets first, first-in-first-out
-                foreach (Queue<int> bucket in buckets)
+                foreach (var bucket in buckets)
                 {
                     while (bucket.Count > 0)
                     {
@@ -718,19 +682,16 @@ namespace Mega_Project
 
                 shift += maskLength;
             }
-
-            return array;
         }
 
         // simple concept, but slow
-        public IList SelectionSort(IList arrayToSort)
+        public void SelectionSort(IList arrayToSort)
         {
-            int min;
-            for (int i = 0; i < arrayToSort.Count; i++)
+            for (var i = 0; i < arrayToSort.Count; i++)
             {
-                min = i;
+                var min = i;
 
-                for (int j = i + 1; j < arrayToSort.Count; j++)
+                for (var j = i + 1; j < arrayToSort.Count; j++)
                 {
                     if (CompareItems(arrayToSort, j, min) < 0)
                     {
@@ -743,23 +704,20 @@ namespace Mega_Project
                     SwapItems(arrayToSort, i, min);
                 }
             }
-
-            return arrayToSort;
         }
 
         // surprisingly fast considering how simple it is to understand
-        public IList ShellSort(IList arrayToSort)
+        public void ShellSort(IList arrayToSort)
         {
-            int i, j, increment;
             object temp = null;
 
             // better sequence
-            List<int> shellSequence = new List<int> { 0, 1, 4, 10, 23, 57, 132, 301, 701, 1750 };
+            var shellSequence = new List<int> { 0, 1, 4, 10, 23, 57, 132, 301, 701, 1750 };
             while (shellSequence[shellSequence.Count - 1] < arrayToSort.Count)
                 shellSequence.Add(shellSequence[shellSequence.Count - 1] * 701 / 301);
 
-            int sequenceIndex = shellSequence.Count - 1; // the end of the sequence is too large, so look at the next one down
-            increment = shellSequence[sequenceIndex];
+            var sequenceIndex = shellSequence.Count - 1; // the end of the sequence is too large, so look at the next one down
+            var increment = shellSequence[sequenceIndex];
             while (increment >= arrayToSort.Count)
             {
                 sequenceIndex--;
@@ -768,12 +726,13 @@ namespace Mega_Project
 
             while (increment > 0)
             {
+                int i;
                 for (i = increment; i < arrayToSort.Count; i++)
                 {
-                    j = i;
+                    var j = i;
                     SetItem(arrayToSort, ref temp, i);
 
-                    bool changeMade = false;
+                    var changeMade = false;
 
                     while ((j >= increment) && CompareItems(arrayToSort, j - increment, temp) > 0)
                     {
@@ -793,8 +752,6 @@ namespace Mega_Project
                 sequenceIndex--;
                 increment = shellSequence[sequenceIndex];
             }
-
-            return arrayToSort;
         }
 
 
@@ -810,11 +767,11 @@ namespace Mega_Project
             // 'is nothing left in the heap and all of the data is sorted.
 
             // 'Initialise the variables.
-            int lngOneBasedIndex = 1;
-            int lngNodeIndex = 0;
-            int lngLeftRightTreeAddress = 1;
-            int lngSubTreeSize = 1;
-            int lngLeftSubTreeSize = 1;
+            var lngOneBasedIndex = 1;
+            var lngNodeIndex = 0;
+            var lngLeftRightTreeAddress = 1;
+            var lngSubTreeSize = 1;
+            var lngLeftSubTreeSize = 1;
 
             // 'The first phase is to build the heap.  Loop through the data
             // 'one element at a time.
@@ -973,7 +930,7 @@ namespace Mega_Project
             // 'If called once, it will calculate the size of the left sibling of a right child.
             // 'If called twice, it will calculate the size of a parent heap for a right child.
 
-            int temp = lngSubTreeSize + lngLeftSubTreeSize + 1;
+            var temp = lngSubTreeSize + lngLeftSubTreeSize + 1;
             lngLeftSubTreeSize = lngSubTreeSize;
             lngSubTreeSize = temp;
         }
@@ -989,7 +946,7 @@ namespace Mega_Project
             // 'If called once, it will calculate the size of the right sibling of a left child.
             // 'If called twice, it will calculate the size of a right child sub-heap.
 
-            int temp = lngSubTreeSize - lngLeftSubTreeSize - 1;
+            var temp = lngSubTreeSize - lngLeftSubTreeSize - 1;
             lngSubTreeSize = lngLeftSubTreeSize;
             lngLeftSubTreeSize = temp;
         }
@@ -999,13 +956,11 @@ namespace Mega_Project
             // 'until it reaches the correct place in the heap.
             // 'Just like heap sort.
 
-            int lngChildIndex;
-
             // 'Do while the current tree has children
             while (lngSubTreeSize >= 3)
             {
                 // 'Get the index of the left child
-                lngChildIndex = lngNodeIndex - lngSubTreeSize + lngLeftSubTreeSize;
+                var lngChildIndex = lngNodeIndex - lngSubTreeSize + lngLeftSubTreeSize;
 
                 // 'Compare the value of the left child with the right child to find
                 // 'the child with the maximum value.
@@ -1055,9 +1010,6 @@ namespace Mega_Project
             // '
             // 'It assumes that the node is already the top of a properly constructed
             // 'heap with the normal 2 children.
-
-            int lngChildIndex;
-            int lngPreviousCompleteTreeIndex;
 
             // 'Consider the complete virtual tree:
             // '
@@ -1140,7 +1092,7 @@ namespace Mega_Project
                 }
 
                 // 'Get the index of the last full tree prior to this sub tree
-                lngPreviousCompleteTreeIndex = lngNodeIndex - lngSubTreeSize;
+                var lngPreviousCompleteTreeIndex = lngNodeIndex - lngSubTreeSize;
                 // 'In the above example, for the node #43, get the address of #21 (ie its left sibling)
                 // 'In the above example, for the node #21, get the address of #5 (ie left sibling of parent)
 
@@ -1268,7 +1220,7 @@ namespace Mega_Project
 
                         // 'Identify the maximum child of this heap
                         // 'First get the top of the left child
-                        lngChildIndex = lngNodeIndex - lngSubTreeSize + lngLeftSubTreeSize;
+                        var lngChildIndex = lngNodeIndex - lngSubTreeSize + lngLeftSubTreeSize;
 
                         // 'See whether the left or right child is greater.
                         if (CompareItems(plngArray, lngChildIndex, lngNodeIndex - 1) < 0)
@@ -1324,8 +1276,6 @@ namespace Mega_Project
             // 'Function to call SmoothTrinkle but only if needed and from the context
             // 'of removing items from the heap.
 
-            int lngIndexTopPreviousCompleteHeap;
-
             // 'Parameters to this function are:
             // '  lngNodeIndex -            The index of the right child of a node being removed from the heap
             // '  lngLeftRightTreeAddress - Tree address of the left node of a node being removed from the heap
@@ -1348,7 +1298,7 @@ namespace Mega_Project
 
 
             // 'Get the index of the previous complete heap.
-            lngIndexTopPreviousCompleteHeap = lngNodeIndex - lngLeftSubTreeSize;
+            var lngIndexTopPreviousCompleteHeap = lngNodeIndex - lngLeftSubTreeSize;
 
             // 'If the top of the previous complete heap is larger then this one then swap it and Trinkle It.
             // If plngArray(lngIndexTopPreviousCompleteHeap).theKey > plngArray(lngNodeIndex).theKey Then
@@ -1387,19 +1337,9 @@ namespace Mega_Project
             // to maintain stack invariant.
             //var sorter = new Int32ArrayTimSort(array);
 
-            /// <summary>
-            /// A stack of pending runs yet to be merged.  Run i starts at
-            /// address base[i] and extends for len[i] elements.  It's always
-            /// true (so long as the indices are in bounds) that:
-            /// <c>runBase[i] + runLen[i] == runBase[i + 1]</c>
-            /// so we could cut the storage for this, but it's a minor amount,
-            /// and keeping all the info explicit simplifies the code.
-            /// </summary>
-            int m_StackSize = 0; // Number of pending runs on stack
-            int[] m_RunBase;
-            int[] m_RunLength;
+            var mStackSize = 0; // Number of pending runs on stack
 
-            int arrayLength = array.Count;
+            var arrayLength = array.Count;
 
             // Allocate runs-to-be-merged stack (which cannot be expanded).  The
             // stack length requirements are described in listsort.txt.  The C
@@ -1409,18 +1349,18 @@ namespace Mega_Project
             // large) stack lengths for smaller arrays.  The "magic numbers" in the
             // computation below must be changed if MIN_MERGE is decreased.  See
             // the MIN_MERGE declaration above for more information.
-            int stackLength =
+            var stackLength =
                 arrayLength < 120 ? 5 :
                 arrayLength < 1542 ? 10 :
                 arrayLength < 119151 ? 19 :
                 40;
-            m_RunBase = new int[stackLength];
-            m_RunLength = new int[stackLength];
+            var mRunBase = new int[stackLength];
+            var mRunLength = new int[stackLength];
 
-            int MIN_GALLOP = 7;
-            int m_MinGallop = MIN_GALLOP;
+            const int minGallop = 7;
+            var mMinGallop = minGallop;
 
-            int minRun = GetMinimumRunLength(width);
+            var minRun = GetMinimumRunLength(width);
             do
             {
                 // Identify next run
@@ -1435,8 +1375,8 @@ namespace Mega_Project
                 }
 
                 // Push run onto pending-run stack, and maybe merge
-                PushRun(lo, runLen, ref m_RunBase, ref m_RunLength, ref m_StackSize); //PushRun(array, lo, runLen);
-                MergeCollapse(array, ref m_RunBase, ref m_RunLength, ref m_StackSize, ref m_MinGallop);
+                PushRun(lo, runLen, ref mRunBase, ref mRunLength, ref mStackSize); //PushRun(array, lo, runLen);
+                MergeCollapse(array, ref mRunBase, ref mRunLength, ref mStackSize, ref mMinGallop);
 
                 // Advance to find next run
                 lo += runLen;
@@ -1445,7 +1385,7 @@ namespace Mega_Project
 
             // Merge all remaining runs to complete sort
             //Debug.Assert(lo == hi);
-            MergeForceCollapse(array, ref m_RunBase, ref m_RunLength, ref m_StackSize, ref m_MinGallop);
+            MergeForceCollapse(array, ref mRunBase, ref mRunLength, ref mStackSize, ref mMinGallop);
             //Debug.Assert(sorter._stackSize == 1);
         }
         /// <summary>
@@ -1455,15 +1395,17 @@ namespace Mega_Project
         /// <param name="arrayLen">the length of the array.</param>
         /// <param name="fromIndex">the index of the first element of the range.</param>
         /// <param name="toIndex">the index after the last element of the range.</param>
-        private void CheckRange(int arrayLen, int fromIndex, int toIndex)
+        private static void CheckRange(int arrayLen, int fromIndex, int toIndex)
         {
             if (fromIndex > toIndex)
-                throw new ArgumentException(string.Format("fromIndex({0}) > toIndex({1})", fromIndex, toIndex));
+                throw new ArgumentException($"fromIndex({fromIndex}) > toIndex({toIndex})");
             if (fromIndex < 0)
-                throw new IndexOutOfRangeException(string.Format("fromIndex ({0}) is out of bounds", fromIndex));
+                throw new IndexOutOfRangeException($"fromIndex ({fromIndex}) is out of bounds");
             if (toIndex > arrayLen)
-                throw new IndexOutOfRangeException(string.Format("toIndex ({0}) is out of bounds", toIndex));
+                throw new IndexOutOfRangeException($"toIndex ({toIndex}) is out of bounds");
+            if (arrayLen <= 0) throw new ArgumentOutOfRangeException(nameof(arrayLen));
         }
+
         /// <summary>
         /// Returns the length of the run beginning at the specified position in
         /// the specified array and reverses the run if it is descending (ensuring
@@ -1478,11 +1420,10 @@ namespace Mega_Project
         /// <param name="lo">index of the first element in the run.</param>
         /// <param name="hi">index after the last element that may be contained in the run. It is required 
         /// that <c><![CDATA[lo < hi]]></c>.</param>
-        /// <param name="c">the comparator to used for the sort.</param>
         /// <returns>the length of the run beginning at the specified position in the specified array</returns>
         private int CountRunAndMakeAscending(IList a, int lo, int hi)
         {
-            int runHi = lo + 1;
+            var runHi = lo + 1;
             if (runHi == hi) return 1;
 
             // Find end of run, and reverse range if descending
@@ -1516,6 +1457,7 @@ namespace Mega_Project
                 SwapItems(array, i, j);
             }
         }
+
         /// <summary>
         /// Sorts the specified portion of the specified array using a binary insertion sort. This is the best method for 
         /// sorting small numbers of elements. It requires O(n log n) compares, but O(n^2) data movement (worst case).
@@ -1527,7 +1469,6 @@ namespace Mega_Project
         /// <param name="hi">the index after the last element in the range to be sorted.</param>
         /// <param name="start">start the index of the first element in the range that is not already known to be sorted 
         /// (<c><![CDATA[lo <= start <= hi]]></c>)</param>
-        /// <param name="c">The comparator to used for the sort.</param>
         private void BinarySort(IList a, int lo, int hi, int start)
         {
             //Debug.Assert(lo <= start && start <= hi);
@@ -1536,11 +1477,11 @@ namespace Mega_Project
 
             for (/* nothing */; start < hi; start++)
             {
-                object pivot = GetItem(a, start);
+                var pivot = GetItem(a, start);
 
                 // Set left (and right) to the index where a[start] (pivot) belongs
-                int left = lo;
-                int right = start;
+                var left = lo;
+                var right = start;
                 //Debug.Assert(left <= right);
 
                 /*
@@ -1550,7 +1491,7 @@ namespace Mega_Project
                  */
                 while (left < right)
                 {
-                    int mid = (left + right) >> 1;
+                    var mid = (left + right) >> 1;
                     if (CompareItems(a, pivot, mid) < 0)//if (c(pivot, a[mid]) < 0)
                     {
                         right = mid;
@@ -1568,7 +1509,7 @@ namespace Mega_Project
                 // first slot after them -- that's why this sort is stable.
                 // Slide elements over to make room to make room for pivot.
 
-                int n = start - left; // The number of elements to move
+                var n = start - left; // The number of elements to move
 
                 // switch is just an optimization for copyRange in default case
                 switch (n)
@@ -1602,12 +1543,12 @@ namespace Mega_Project
 
             if (srcIndex < dstIndex) // could just be moving items to the right, so go through backward
             {
-                for (int i = length - 1; i >= 0; i--)
+                for (var i = length - 1; i >= 0; i--)
                     SetItem(dst, dstIndex + i, src[srcIndex + i]); // purposely not using GetItem here
             }
             else // could just be moving items to the left, so go through forward
             {
-                for (int i = 0; i < length; i++)
+                for (var i = 0; i < length; i++)
                     SetItem(dst, dstIndex + i, src[srcIndex + i]); // purposely not using GetItem here
             }
         }
@@ -1615,7 +1556,7 @@ namespace Mega_Project
         {
             //Array.Copy(src, srcIndex, dst, dstIndex, length);
 
-            for (int i = 0; i < length; i++)
+            for (var i = 0; i < length; i++)
             {
                 while (dst.Count < dstIndex + i)
                     dst.Add(0);
@@ -1640,7 +1581,7 @@ namespace Mega_Project
         private static int GetMinimumRunLength(int n)
         {
             //Debug.Assert(n >= 0);
-            int r = 0; // Becomes 1 if any 1 bits are shifted off
+            var r = 0; // Becomes 1 if any 1 bits are shifted off
             while (n >= 32) //while (n >= MIN_MERGE)
             {
                 r |= (n & 1);
@@ -1648,16 +1589,20 @@ namespace Mega_Project
             }
             return n + r;
         }
+
         /// <summary>
         /// Pushes the specified run onto the pending-run stack.
         /// </summary>
         /// <param name="runBase">index of the first element in the run.</param>
         /// <param name="runLength">the number of elements in the run.</param>
-        private void PushRun(int runBase, int runLength, ref int[] m_RunBase, ref int[] m_RunLength, ref int m_StackSize)
+        /// <param name="mRunBase"></param>
+        /// <param name="mRunLength"></param>
+        /// <param name="mStackSize"></param>
+        private static void PushRun(int runBase, int runLength, ref int[] mRunBase, ref int[] mRunLength, ref int mStackSize)
         {
-            m_RunBase[m_StackSize] = runBase;
-            m_RunLength[m_StackSize] = runLength;
-            m_StackSize++;
+            mRunBase[mStackSize] = runBase;
+            mRunLength[mStackSize] = runLength;
+            mStackSize++;
         }
         /// <summary>
         /// Examines the stack of runs waiting to be merged and merges adjacent runs until the stack invariants are
@@ -1668,7 +1613,7 @@ namespace Mega_Project
         /// so the invariants are guaranteed to hold for i &lt; stackSize upon
         /// entry to the method.
         /// </summary>
-        private void MergeCollapse(IList m_Array, ref int[] m_RunBase, ref int[] m_RunLength, ref int m_StackSize, ref int m_MinGallop)
+        private void MergeCollapse(IList mArray, ref int[] mRunBase, ref int[] mRunLength, ref int mStackSize, ref int mMinGallop)
         {
             //while (m_StackSize > 1)
             //{
@@ -1690,54 +1635,61 @@ namespace Mega_Project
             //}
 
             //Better? http://www.envisage-project.eu/proving-android-java-and-python-sorting-algorithm-is-broken-and-how-to-fix-it/#sec3.4
-            while (m_StackSize > 1)
+            while (mStackSize > 1)
             {
-                int n = m_StackSize - 2;
-                if ((n >= 1 && m_RunLength[n - 1] <= m_RunLength[n] + m_RunLength[n + 1])
-                    || (n >= 2 && m_RunLength[n - 2] <= m_RunLength[n] + m_RunLength[n - 1]))
+                var n = mStackSize - 2;
+                if ((n >= 1 && mRunLength[n - 1] <= mRunLength[n] + mRunLength[n + 1])
+                    || (n >= 2 && mRunLength[n - 2] <= mRunLength[n] + mRunLength[n - 1]))
                 {
-                    if (m_RunLength[n - 1] < m_RunLength[n + 1])
+                    if (mRunLength[n - 1] < mRunLength[n + 1])
                         n--;
                 }
-                else if (m_RunLength[n] > m_RunLength[n + 1])
+                else if (mRunLength[n] > mRunLength[n + 1])
                 {
                     break; // Invariant is established
                 }
-                MergeAt(n, m_Array, ref m_RunBase, ref m_RunLength, ref m_StackSize, ref m_MinGallop);
+                MergeAt(n, mArray, ref mRunBase, ref mRunLength, ref mStackSize, ref mMinGallop);
             }
         }
+
         /// <summary>
         /// Merges the two runs at stack indices i and i+1.  Run i must be the penultimate or antepenultimate run on the stack. 
         /// In other words, i must be equal to stackSize-2 or stackSize-3.
         /// </summary>
         /// <param name="runIndex">stack index of the first of the two runs to merge.</param>
-        private void MergeAt(int runIndex, IList m_Array, ref int[] m_RunBase, ref int[] m_RunLength, ref int m_StackSize, ref int m_MinGallop)
+        /// <param name="mArray"></param>
+        /// <param name="mRunBase"></param>
+        /// <param name="mRunLength"></param>
+        /// <param name="mStackSize">
+        /// </param>
+        /// <param name="mMinGallop"></param>
+        private void MergeAt(int runIndex, IList mArray, ref int[] mRunBase, ref int[] mRunLength, ref int mStackSize, ref int mMinGallop)
         {
             //Debug.Assert(m_StackSize >= 2);
             //Debug.Assert(runIndex >= 0);
             //Debug.Assert(runIndex == m_StackSize - 2 || runIndex == m_StackSize - 3);
 
-            int base1 = m_RunBase[runIndex];
-            int len1 = m_RunLength[runIndex];
-            int base2 = m_RunBase[runIndex + 1];
-            int len2 = m_RunLength[runIndex + 1];
+            var base1 = mRunBase[runIndex];
+            var len1 = mRunLength[runIndex];
+            var base2 = mRunBase[runIndex + 1];
+            var len2 = mRunLength[runIndex + 1];
             //Debug.Assert(len1 > 0 && len2 > 0);
             //Debug.Assert(base1 + len1 == base2);
 
             // Record the length of the combined runs; if i is the 3rd-last
             // run now, also slide over the last run (which isn't involved
             // in this merge). The current run (i+1) goes away in any case.
-            m_RunLength[runIndex] = len1 + len2;
-            if (runIndex == m_StackSize - 3)
+            mRunLength[runIndex] = len1 + len2;
+            if (runIndex == mStackSize - 3)
             {
-                m_RunBase[runIndex + 1] = m_RunBase[runIndex + 2];
-                m_RunLength[runIndex + 1] = m_RunLength[runIndex + 2];
+                mRunBase[runIndex + 1] = mRunBase[runIndex + 2];
+                mRunLength[runIndex + 1] = mRunLength[runIndex + 2];
             }
-            m_StackSize--;
+            mStackSize--;
 
             // Find where the first element of run2 goes in run1. Prior elements
             // in run1 can be ignored (because they're already in place).
-            int k = GallopRight(m_Array[base2], m_Array, base1, len1, 0); //int k = GallopRight(m_Array[base2], m_Array, base1, len1, 0, m_Comparer);
+            var k = GallopRight(mArray[base2], mArray, base1, len1, 0); //int k = GallopRight(m_Array[base2], m_Array, base1, len1, 0, m_Comparer);
             //Debug.Assert(k >= 0);
             base1 += k;
             len1 -= k;
@@ -1745,16 +1697,17 @@ namespace Mega_Project
 
             // Find where the last element of run1 goes in run2. Subsequent elements
             // in run2 can be ignored (because they're already in place).
-            len2 = GallopLeft(m_Array[base1 + len1 - 1], m_Array, base2, len2, len2 - 1);//len2 = GallopLeft(m_Array[base1 + len1 - 1], m_Array, base2, len2, len2 - 1, m_Comparer);
+            len2 = GallopLeft(mArray[base1 + len1 - 1], mArray, base2, len2, len2 - 1);//len2 = GallopLeft(m_Array[base1 + len1 - 1], m_Array, base2, len2, len2 - 1, m_Comparer);
             //Debug.Assert(len2 >= 0);
             if (len2 == 0) return;
 
             // Merge remaining runs, using tmp array with min(len1, len2) elements
             if (len1 <= len2)
-                MergeLo(m_Array, base1, len1, base2, len2, ref m_MinGallop);
+                MergeLo(mArray, base1, len1, base2, len2, ref mMinGallop);
             else
-                MergeHi(m_Array, base1, len1, base2, len2, ref m_MinGallop);
+                MergeHi(mArray, base1, len1, base2, len2, ref mMinGallop);
         }
+
         /// <summary>
         /// Like gallopLeft, except that if the range contains an element equal to
         /// key, gallopRight returns the index after the rightmost equal element.
@@ -1765,18 +1718,17 @@ namespace Mega_Project
         /// <param name="length">the length of the range; must be &gt; 0.</param>
         /// <param name="hint">the index at which to begin the search, 0 &lt;= hint &lt; n. The closer hint is to the result, 
         /// the faster this method will run.</param>
-        /// <param name="comparer">the comparator used to order the range, and to search.</param>
         /// <returns>int k, that 0 &lt;= k &lt;= n such that a[b + k - 1] &lt;= key &lt; a[b + k]</returns>
         private int GallopRight(object key, IList array, int lo, int length, int hint)
         {
             //Debug.Assert(length > 0 && hint >= 0 && hint < length);
 
-            int ofs = 1;
-            int lastOfs = 0;
+            var ofs = 1;
+            var lastOfs = 0;
             if (CompareItems(array, key, lo + hint) < 0) //if (comparer(key, array[lo + hint]) < 0)
             {
                 // Gallop left until a[b+hint - ofs] <= key < a[b+hint - lastOfs]
-                int maxOfs = hint + 1;
+                var maxOfs = hint + 1;
                 while (ofs < maxOfs && CompareItems(array, key, lo + hint - ofs) < 0) //while (ofs < maxOfs && comparer(key, array[lo + hint - ofs]) < 0)
                 {
                     lastOfs = ofs;
@@ -1788,7 +1740,7 @@ namespace Mega_Project
                     ofs = maxOfs;
 
                 // Make offsets relative to b
-                int tmp = lastOfs;
+                var tmp = lastOfs;
                 lastOfs = hint - ofs;
                 ofs = hint - tmp;
             }
@@ -1796,7 +1748,7 @@ namespace Mega_Project
             {
                 // a[b + hint] <= key
                 // Gallop right until a[b+hint + lastOfs] <= key < a[b+hint + ofs]
-                int maxOfs = length - hint;
+                var maxOfs = length - hint;
                 while (ofs < maxOfs && CompareItems(array, key, lo + hint + ofs) >= 0) //while (ofs < maxOfs && comparer(key, array[lo + hint + ofs]) >= 0)
                 {
                     lastOfs = ofs;
@@ -1819,7 +1771,7 @@ namespace Mega_Project
             lastOfs++;
             while (lastOfs < ofs)
             {
-                int m = lastOfs + ((ofs - lastOfs) >> 1);
+                var m = lastOfs + ((ofs - lastOfs) >> 1);
 
                 if (CompareItems(array, key, lo + m) < 0) //if (comparer(key, array[lo + m]) < 0)
                     ofs = m; // key < a[b + m]
@@ -1830,6 +1782,7 @@ namespace Mega_Project
             //Debug.Assert(lastOfs == ofs); // so a[b + ofs - 1] <= key < a[b + ofs]
             return ofs;
         }
+
         /// <summary>
         /// Locates the position at which to insert the specified key into the
         /// specified sorted range; if the range contains an element equal to key,
@@ -1837,24 +1790,23 @@ namespace Mega_Project
         /// </summary>
         /// <param name="key">the key whose insertion point to search for.</param>
         /// <param name="array">the array in which to search.</param>
-        /// <param name="base">the index of the first element in the range.</param>
+        /// <param name="lo"></param>
         /// <param name="length">the length of the range; must be &gt; 0.</param>
         /// <param name="hint">the index at which to begin the search, 0 &lt;= hint &lt; n. The closer hint is to the result, 
         /// the faster this method will run.</param>
-        /// <param name="comparer">the comparator used to order the range, and to search.</param>
         /// <returns>the int k,  0 &lt;= k &lt;= n such that a[b + k - 1] &lt; key &lt;= a[b + k], pretending that a[b - 1] 
         /// is minus infinity and a[b + n] is infinity. In other words, key belongs at index b + k; or in other words, the 
         /// first k elements of a should precede key, and the last n - k should follow it.</returns>
         private int GallopLeft(object key, IList array, int lo, int length, int hint)
         {
             //Debug.Assert(length > 0 && hint >= 0 && hint < length);
-            int lastOfs = 0;
-            int ofs = 1;
+            var lastOfs = 0;
+            var ofs = 1;
 
             if (CompareItems(array, key, lo + hint) > 0) //if (comparer(key, array[lo + hint]) > 0)
             {
                 // Gallop right until a[base+hint+lastOfs] < key <= a[base+hint+ofs]
-                int maxOfs = length - hint;
+                var maxOfs = length - hint;
                 while (ofs < maxOfs && CompareItems(array, key, lo + hint + ofs) > 0) //while (ofs < maxOfs && comparer(key, array[lo + hint + ofs]) > 0)
                 {
                     lastOfs = ofs;
@@ -1872,7 +1824,7 @@ namespace Mega_Project
             else // if (key <= a[base + hint])
             {
                 // Gallop left until a[base+hint-ofs] < key <= a[base+hint-lastOfs]
-                int maxOfs = hint + 1;
+                var maxOfs = hint + 1;
                 while (ofs < maxOfs && CompareItems(array, key, lo + hint - ofs) <= 0) //while (ofs < maxOfs && comparer(key, array[lo + hint - ofs]) <= 0)
                 {
                     lastOfs = ofs;
@@ -1884,7 +1836,7 @@ namespace Mega_Project
                     ofs = maxOfs;
 
                 // Make offsets relative to base
-                int tmp = lastOfs;
+                var tmp = lastOfs;
                 lastOfs = hint - ofs;
                 ofs = hint - tmp;
             }
@@ -1896,7 +1848,7 @@ namespace Mega_Project
             lastOfs++;
             while (lastOfs < ofs)
             {
-                int m = lastOfs + ((ofs - lastOfs) >> 1);
+                var m = lastOfs + ((ofs - lastOfs) >> 1);
 
                 if (CompareItems(array, key, lo + m) > 0) //if (comparer(key, array[lo + m]) > 0)
                     lastOfs = m + 1; // a[base + m] < key
@@ -1906,6 +1858,7 @@ namespace Mega_Project
             //Debug.Assert(lastOfs == ofs); // so a[base + ofs - 1] < key <= a[base + ofs]
             return ofs;
         }
+
         /// <summary>
         /// Merges two adjacent runs in place, in a stable fashion. The first element of the first run must be greater than 
         /// the first element of the second run (a[base1] &gt; a[base2]), and the last element of the first run 
@@ -1913,23 +1866,25 @@ namespace Mega_Project
         /// For performance, this method should be called only when len1 &lt;= len2; its twin, mergeHi should be called if 
         /// len1 &gt;= len2. (Either method may be called if len1 == len2.)
         /// </summary>
+        /// <param name="array"></param>
         /// <param name="base1">index of first element in first run to be merged.</param>
         /// <param name="len1">length of first run to be merged (must be &gt; 0).</param>
         /// <param name="base2">index of first element in second run to be merged (must be aBase + aLen).</param>
         /// <param name="len2">length of second run to be merged (must be &gt; 0).</param>
-        private void MergeLo(IList array, int base1, int len1, int base2, int len2, ref int m_MinGallop)
+        /// <param name="mMinGallop"></param>
+        private void MergeLo(IList array, int base1, int len1, int base2, int len2, ref int mMinGallop)
         {
             //Debug.Assert(len1 > 0 && len2 > 0 && base1 + len1 == base2);
 
             // Copy first run into temp array
             //var array = m_Array; // For performance
             //var mergeBuffer = EnsureCapacity(len1);
-            ArrayList mergeBuffer = new ArrayList(len1);
+            var mergeBuffer = new ArrayList(len1);
             CopyRangeToTemp(array, base1, mergeBuffer, 0, len1);
 
-            int cursor1 = 0;       // Indexes into tmp array
-            int cursor2 = base2;   // Indexes int a
-            int dest = base1;      // Indexes int a
+            var cursor1 = 0;       // Indexes into tmp array
+            var cursor2 = base2;   // Indexes int a
+            var dest = base1;      // Indexes int a
 
             // Move first element of second run and deal with degenerate cases
             SetItem(array, dest, cursor2); dest++; cursor2++; //array[dest++] = array[cursor2++];
@@ -1947,13 +1902,12 @@ namespace Mega_Project
             }
 
             //var c = m_Comparer;  // Use local variables for performance
-            int MIN_GALLOP = 7;
-            int minGallop = m_MinGallop;
+            var minGallop = mMinGallop;
 
             while (true)
             {
-                int count1 = 0; // Number of times in a row that first run won
-                int count2 = 0; // Number of times in a row that second run won
+                var count1 = 0; // Number of times in a row that first run won
+                var count2 = 0; // Number of times in a row that second run won
 
                 /*
                  * Do the straightforward thing until (if ever) one run starts
@@ -2014,7 +1968,7 @@ namespace Mega_Project
                     if (--len1 == 1)
                         goto break_outer;
                     minGallop--;
-                } while (count1 >= MIN_GALLOP | count2 >= MIN_GALLOP);
+                } while (count1 >= 7 | count2 >= 7);
 
                 if (minGallop < 0)
                     minGallop = 0;
@@ -2023,7 +1977,7 @@ namespace Mega_Project
 
             break_outer: // goto me! ;)
 
-            m_MinGallop = minGallop < 1 ? 1 : minGallop;  // Write back to field
+            mMinGallop = minGallop < 1 ? 1 : minGallop;  // Write back to field
 
             if (len1 == 1)
             {
@@ -2042,26 +1996,29 @@ namespace Mega_Project
                 CopyRange(mergeBuffer, cursor1, array, dest, len1);
             }
         }
+
         /// <summary>
         /// Like mergeLo, except that this method should be called only if
         /// len1 &gt;= len2; mergeLo should be called if len1 &lt;= len2. (Either method may be called if len1 == len2.)
         /// </summary>
+        /// <param name="a"></param>
         /// <param name="base1">index of first element in first run to be merged.</param>
         /// <param name="len1">length of first run to be merged (must be &gt; 0).</param>
         /// <param name="base2">index of first element in second run to be merged (must be aBase + aLen).</param>
         /// <param name="len2">length of second run to be merged (must be &gt; 0).</param>
-        private void MergeHi(IList a, int base1, int len1, int base2, int len2, ref int m_MinGallop)
+        /// <param name="mMinGallop"></param>
+        private void MergeHi(IList a, int base1, int len1, int base2, int len2, ref int mMinGallop)
         {
             //Debug.Assert(len1 > 0 && len2 > 0 && base1 + len1 == base2);
 
             // Copy second run into temp array
             //var a = m_Array; // For performance
-            ArrayList tmp = new ArrayList(len2); //var tmp = EnsureCapacity(len2);
+            var tmp = new ArrayList(len2); //var tmp = EnsureCapacity(len2);
             CopyRangeToTemp(a, base2, tmp, 0, len2);
 
-            int cursor1 = base1 + len1 - 1;  // Indexes into a
-            int cursor2 = len2 - 1;          // Indexes into tmp array
-            int dest = base2 + len2 - 1;     // Indexes into a
+            var cursor1 = base1 + len1 - 1;  // Indexes into a
+            var cursor2 = len2 - 1;          // Indexes into tmp array
+            var dest = base2 + len2 - 1;     // Indexes into a
 
             // Move last element of first run and deal with degenerate cases
             SetItem(a, dest, cursor1); dest--; cursor1--; //a[dest--] = a[cursor1--];
@@ -2080,13 +2037,12 @@ namespace Mega_Project
             }
 
             //var c = m_Comparer;  // Use local variables for performance
-            int MIN_GALLOP = 7;
-            int minGallop = m_MinGallop;
+            var minGallop = mMinGallop;
 
             while (true)
             {
-                int count1 = 0; // Number of times in a row that first run won
-                int count2 = 0; // Number of times in a row that second run won
+                var count1 = 0; // Number of times in a row that first run won
+                var count2 = 0; // Number of times in a row that second run won
 
                 // Do the straightforward thing until (if ever) one run appears to win consistently.
                 do
@@ -2144,7 +2100,7 @@ namespace Mega_Project
                     if (--len1 == 0)
                         goto break_outer;
                     minGallop--;
-                } while (count1 >= MIN_GALLOP | count2 >= MIN_GALLOP);
+                } while (count1 >= 7 | count2 >= 7);
 
                 if (minGallop < 0)
                     minGallop = 0;
@@ -2153,7 +2109,7 @@ namespace Mega_Project
 
             break_outer: // goto me! ;)
 
-            m_MinGallop = minGallop < 1 ? 1 : minGallop;  // Write back to field
+            mMinGallop = minGallop < 1 ? 1 : minGallop;  // Write back to field
 
             if (len2 == 1)
             {
@@ -2177,24 +2133,24 @@ namespace Mega_Project
         /// <summary>
         /// Merges all runs on the stack until only one remains.  This method is called once, to complete the sort.
         /// </summary>
-        private void MergeForceCollapse(IList array, ref int[] m_RunBase, ref int[] m_RunLength, ref int m_StackSize, ref int m_MinGallop)
+        private void MergeForceCollapse(IList array, ref int[] mRunBase, ref int[] mRunLength, ref int mStackSize, ref int mMinGallop)
         {
-            while (m_StackSize > 1)
+            while (mStackSize > 1)
             {
-                int n = m_StackSize - 2;
-                if (n > 0 && m_RunLength[n - 1] < m_RunLength[n + 1]) n--;
-                MergeAt(n, array, ref m_RunBase, ref m_RunLength, ref m_StackSize, ref m_MinGallop);
+                var n = mStackSize - 2;
+                if (n > 0 && mRunLength[n - 1] < mRunLength[n + 1]) n--;
+                MergeAt(n, array, ref mRunBase, ref mRunLength, ref mStackSize, ref mMinGallop);
             }
         }
 
 
         private object GetItem(IList arrayToSort, int index)
         {
-            if (!draw.HighlightedIndexes.ContainsKey(index))
-                draw.HighlightedIndexes.Add(index, false);
-            operations_swap++;
-            draw.OperationCount++;
-            draw.CheckForFrame();
+            if (!Draw.HighlightedIndexes.ContainsKey(index))
+                Draw.HighlightedIndexes.Add(index, false);
+            OperationsSwap++;
+            Draw.OperationCount++;
+            Draw.CheckForFrame();
 
             return arrayToSort[index];
         }
@@ -2202,76 +2158,79 @@ namespace Mega_Project
         {
             arrayToSort[toIndex] = arrayToSort[fromIndex];
 
-            if (!draw.HighlightedIndexes.ContainsKey(toIndex))
-                draw.HighlightedIndexes.Add(toIndex, false);
-            operations_swap++;
-            draw.OperationCount++;
-            draw.CheckForFrame();
+            if (!Draw.HighlightedIndexes.ContainsKey(toIndex))
+                Draw.HighlightedIndexes.Add(toIndex, false);
+            OperationsSwap++;
+            Draw.OperationCount++;
+            Draw.CheckForFrame();
         }
         private void SetItem(IList arrayToSort, int toIndex, object fromObject)
         {
             arrayToSort[toIndex] = fromObject;
 
-            if (!draw.HighlightedIndexes.ContainsKey(toIndex))
-                draw.HighlightedIndexes.Add(toIndex, false);
-            operations_swap++;
-            draw.OperationCount++;
-            draw.CheckForFrame();
+            if (!Draw.HighlightedIndexes.ContainsKey(toIndex))
+                Draw.HighlightedIndexes.Add(toIndex, false);
+            OperationsSwap++;
+            Draw.OperationCount++;
+            Draw.CheckForFrame();
         }
         private void SetItem(IList arrayToSort, ref object toObject, int fromIndex)
         {
+            if (toObject == null)
+            {
+            }
             toObject = arrayToSort[fromIndex];
 
-            if (!draw.HighlightedIndexes.ContainsKey(fromIndex))
-                draw.HighlightedIndexes.Add(fromIndex, false);
+            if (!Draw.HighlightedIndexes.ContainsKey(fromIndex))
+                Draw.HighlightedIndexes.Add(fromIndex, false);
 
-            draw.OperationCount++;
-            draw.CheckForFrame();
+            Draw.OperationCount++;
+            Draw.CheckForFrame();
         }
         private void SwapItems(IList arrayToSort, int index1, int index2)
         {
-            object temp = arrayToSort[index1];
+            var temp = arrayToSort[index1];
             arrayToSort[index1] = arrayToSort[index2];
             arrayToSort[index2] = temp;
 
-            if (!draw.HighlightedIndexes.ContainsKey(index1))
-                draw.HighlightedIndexes.Add(index1, false);
-            if (!draw.HighlightedIndexes.ContainsKey(index2))
-                draw.HighlightedIndexes.Add(index2, false);
+            if (!Draw.HighlightedIndexes.ContainsKey(index1))
+                Draw.HighlightedIndexes.Add(index1, false);
+            if (!Draw.HighlightedIndexes.ContainsKey(index2))
+                Draw.HighlightedIndexes.Add(index2, false);
 
-            operations_swap++;
-            draw.OperationCount += 2;
-            draw.CheckForFrame();
+            OperationsSwap++;
+            Draw.OperationCount += 2;
+            Draw.CheckForFrame();
         }
         private int CompareItems(IList arrayToSort, int index1, int index2)
         {
-            if (!draw.HighlightedIndexes.ContainsKey(index1))
-                draw.HighlightedIndexes.Add(index1, false);
-            if (!draw.HighlightedIndexes.ContainsKey(index2))
-                draw.HighlightedIndexes.Add(index2, false);
-            operations_compare++;
-            draw.OperationCount++;
-            draw.CheckForFrame();
+            if (!Draw.HighlightedIndexes.ContainsKey(index1))
+                Draw.HighlightedIndexes.Add(index1, false);
+            if (!Draw.HighlightedIndexes.ContainsKey(index2))
+                Draw.HighlightedIndexes.Add(index2, false);
+            OperationsCompare++;
+            Draw.OperationCount++;
+            Draw.CheckForFrame();
 
             return ((IComparable)arrayToSort[index1]).CompareTo(arrayToSort[index2]);
         }
         private int CompareItems(IList arrayToSort, int index1, object o)
         {
-            if (!draw.HighlightedIndexes.ContainsKey(index1))
-                draw.HighlightedIndexes.Add(index1, false);
-            operations_compare++;
-            draw.OperationCount++;
-            draw.CheckForFrame();
+            if (!Draw.HighlightedIndexes.ContainsKey(index1))
+                Draw.HighlightedIndexes.Add(index1, false);
+            OperationsCompare++;
+            Draw.OperationCount++;
+            Draw.CheckForFrame();
 
             return ((IComparable)arrayToSort[index1]).CompareTo(o);
         }
         private int CompareItems(IList arrayToSort, object o, int index1)
         {
-            if (!draw.HighlightedIndexes.ContainsKey(index1))
-                draw.HighlightedIndexes.Add(index1, false);
-            operations_compare++;
-            draw.OperationCount++;
-            draw.CheckForFrame();
+            if (!Draw.HighlightedIndexes.ContainsKey(index1))
+                Draw.HighlightedIndexes.Add(index1, false);
+            OperationsCompare++;
+            Draw.OperationCount++;
+            Draw.CheckForFrame();
 
             return ((IComparable)o).CompareTo(arrayToSort[index1]);
         }
