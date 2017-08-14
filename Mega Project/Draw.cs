@@ -20,7 +20,7 @@ namespace Mega_Project
         private readonly int _originalPanelHeight;
         private readonly int _frameMs;
 
-        public Draw(ArrayList list, PictureBox pic,  int s)
+        public Draw(ArrayList list, PictureBox pic, int s)
         {
             _arrayToSort = list;
             _pnlSamples = pic;
@@ -50,7 +50,7 @@ namespace Mega_Project
             // time to draw a new frame and wait
             DrawSamples();
             RefreshPanel(_pnlSamples);
-                
+
             // prepare for next frame
             HighlightedIndexes.Clear();
             OperationCount -= _operationsPerFrame; // if there were more operations than needed, don't just forget those
@@ -110,7 +110,7 @@ namespace Mega_Project
             // draw a nice width based on number of elements
             var w = (_pnlSamples.Width / _arrayToSort.Count) - 1;
             var a = new List<int>();
-            
+
             for (var i = 0; i < _arrayToSort.Count; i++)
             {
                 var x = (int)(((double)_pnlSamples.Width / _arrayToSort.Count) * i);
@@ -132,7 +132,7 @@ namespace Mega_Project
                         a.Add((int)_arrayToSort[i]);
                     }
                 }
-                
+
                 else // draw normal versions
                 {
                     if (w <= 1)
@@ -144,14 +144,14 @@ namespace Mega_Project
                         _g.FillRectangle(b, x, _pnlSamples.Height - itemHeight, w, _pnlSamples.Height);
                     }
                 }
-                
+
             }
-            if (a.Count>1)
+            if (a.Count > 1)
             {
                 string text;
                 if (a[0] > a[1])
                 {
-                    text = "SWAPING "+a[0]+" / "+a[1];
+                    text = "SWAPING " + a[0] + " / " + a[1];
                     _g.DrawString(text, new Font("Arial", 10), redBrush, new Point(0, 5));
                 }
                 else
@@ -160,8 +160,8 @@ namespace Mega_Project
                     _g.DrawString(text, new Font("Arial", 10), redBrush, new Point(0, 5));
                 }
             }
-           
-            
+
+
         }
         public void FinishDrawing()
         {
