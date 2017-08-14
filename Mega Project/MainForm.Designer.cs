@@ -70,12 +70,8 @@
             this.findPrimeNumberValueLabel = new System.Windows.Forms.Label();
             this.findPrimeNumberDescriptionLabel = new System.Windows.Forms.Label();
             this.findPrimeNumberTrackBar = new System.Windows.Forms.TrackBar();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.benchmarkTabPage = new System.Windows.Forms.TabPage();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.benchmarkSubprojectTabControl = new System.Windows.Forms.TabControl();
             this.MD5TabPage = new System.Windows.Forms.TabPage();
             this.benchmarkMD5DataGridView = new System.Windows.Forms.DataGridView();
             this.benchmarkMD5ProgressBar = new System.Windows.Forms.ProgressBar();
@@ -99,10 +95,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeFactorTrackBar)).BeginInit();
             this.findPrimeNumberTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            this.tabControl1.SuspendLayout();
             this.benchmarkTabPage.SuspendLayout();
-            this.tabControl2.SuspendLayout();
+            this.benchmarkSubprojectTabControl.SuspendLayout();
             this.MD5TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.benchmarkMD5DataGridView)).BeginInit();
             this.Sha256TabPage.SuspendLayout();
@@ -112,7 +106,6 @@
             // projectTabControl
             // 
             this.projectTabControl.Controls.Add(this.tabPage1);
-            this.projectTabControl.Controls.Add(this.tabPage2);
             this.projectTabControl.Controls.Add(this.benchmarkTabPage);
             this.projectTabControl.Location = new System.Drawing.Point(12, 11);
             this.projectTabControl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -606,54 +599,9 @@
             this.findPrimeNumberTrackBar.TabIndex = 6;
             this.findPrimeNumberTrackBar.Scroll += new System.EventHandler(this.findPrimeNumberTrackBar_Scroll);
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.tabControl1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage2.Size = new System.Drawing.Size(702, 291);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "TBD";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Location = new System.Drawing.Point(6, 7);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(688, 278);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage5.Size = new System.Drawing.Size(680, 252);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage6.Size = new System.Drawing.Size(680, 252);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "tabPage6";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
             // benchmarkTabPage
             // 
-            this.benchmarkTabPage.Controls.Add(this.tabControl2);
+            this.benchmarkTabPage.Controls.Add(this.benchmarkSubprojectTabControl);
             this.benchmarkTabPage.Location = new System.Drawing.Point(4, 22);
             this.benchmarkTabPage.Name = "benchmarkTabPage";
             this.benchmarkTabPage.Size = new System.Drawing.Size(702, 291);
@@ -661,15 +609,15 @@
             this.benchmarkTabPage.Text = "Benchmark";
             this.benchmarkTabPage.UseVisualStyleBackColor = true;
             // 
-            // tabControl2
+            // benchmarkSubprojectTabControl
             // 
-            this.tabControl2.Controls.Add(this.MD5TabPage);
-            this.tabControl2.Controls.Add(this.Sha256TabPage);
-            this.tabControl2.Location = new System.Drawing.Point(3, 6);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(696, 282);
-            this.tabControl2.TabIndex = 2;
+            this.benchmarkSubprojectTabControl.Controls.Add(this.MD5TabPage);
+            this.benchmarkSubprojectTabControl.Controls.Add(this.Sha256TabPage);
+            this.benchmarkSubprojectTabControl.Location = new System.Drawing.Point(3, 6);
+            this.benchmarkSubprojectTabControl.Name = "benchmarkSubprojectTabControl";
+            this.benchmarkSubprojectTabControl.SelectedIndex = 0;
+            this.benchmarkSubprojectTabControl.Size = new System.Drawing.Size(696, 282);
+            this.benchmarkSubprojectTabControl.TabIndex = 2;
             // 
             // MD5TabPage
             // 
@@ -797,10 +745,8 @@
             this.findPrimeNumberTabPage.ResumeLayout(false);
             this.findPrimeNumberTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
             this.benchmarkTabPage.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
+            this.benchmarkSubprojectTabControl.ResumeLayout(false);
             this.MD5TabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.benchmarkMD5DataGridView)).EndInit();
             this.Sha256TabPage.ResumeLayout(false);
@@ -813,7 +759,6 @@
         #endregion
 
         private System.Windows.Forms.TabControl projectTabControl;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabControl numbersSubprojectTabControl;
         private System.Windows.Forms.TabPage findPiTabPage;
@@ -830,9 +775,6 @@
         private System.Windows.Forms.Label findEValueLabel;
         private System.Windows.Forms.Label findEDescriptionLabel;
         private System.Windows.Forms.TrackBar findETrackBar;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.RichTextBox debugRichTextBox;
         private System.Windows.Forms.Label debugLabel;
         private System.Windows.Forms.TabPage findFibonachiSequenceTabPage;
@@ -862,7 +804,7 @@
         private System.Windows.Forms.TrackBar findPrimeNumberTrackBar;
         private System.Windows.Forms.TabPage benchmarkTabPage;
         private System.Windows.Forms.Button benchmarkMD5RunBenchmarkButton;
-        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabControl benchmarkSubprojectTabControl;
         private System.Windows.Forms.TabPage MD5TabPage;
         private System.Windows.Forms.TabPage Sha256TabPage;
         private System.Windows.Forms.ProgressBar benchmarkMD5ProgressBar;
