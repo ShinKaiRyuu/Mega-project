@@ -537,7 +537,7 @@ namespace Mega_Project
             ThreadStart ts = delegate ()
             {
                 SetProgressbarStyle(ProgressBarStyle.Marquee);
-                var summ = BenchmarkRunner.Run<BenchmarkMD5>();
+                var summ = BenchmarkRunner.Run<BenchmarkMd5>();
                 string columns = "";
                 string[] selectedColumns = { "Method", "Mean", "StdDev", "Allocated" };
                 List<string> report = new List<string>();
