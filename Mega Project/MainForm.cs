@@ -91,13 +91,13 @@ namespace Mega_Project
             if (result == null)
             {
                 countedE = Numbers.CountingE(value);
-                common = Numbers.CommonPrefix(new[] { countedE.ToString(), Numbers.e.ToString() });
+                common = Numbers.CommonPrefix(new[] { countedE.ToString(), Numbers.E.ToString() });
                 dictionary_e.Add(key, new Tuple<double, string>(countedE, common));
                 dictionary_e.TryGetValue(key, out result);
             }
             countedE = result.Item1;
             common = result.Item2;
-            findEEtalonELabel.Text = "Etalon : E =" + Numbers.e.ToString();
+            findEEtalonELabel.Text = "Etalon : E =" + Numbers.E.ToString();
             findEResultLabel.Text = "Result : E =" + countedE.ToString();
             findECommonPartWithEtalonLabel.Text = "Common :   " + common;
             sw.Stop();
