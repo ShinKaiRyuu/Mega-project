@@ -1,7 +1,9 @@
 ﻿using BenchmarkDotNet.Running;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Mega_Project
@@ -218,10 +220,192 @@ namespace Mega_Project
             }
         }
 
+        private void benchmarkMD5_Click(object sender, EventArgs e)
+        {
+            ThreadStart ts = delegate ()
+            {
+                SetProgressbarStyle(ProgressBarStyle.Marquee);
+                var summ = BenchmarkRunner.Run<BenchmarkMD5>();
+                string columns = "";
+                string[] selectedColumns = { "Method", "Mean", "StdDev", "Allocated" };
+                List<string> report = new List<string>();
+                List<int> indexes = new List<int>();
+                foreach (BenchmarkDotNet.Reports.SummaryTable.SummaryTableColumn str in summ.Table.Columns)
+                {
+                    foreach (string str2 in selectedColumns)
+                    {
+                        if (str.Header == str2)
+                        {
+                            indexes.Add(str.Index);
+                            columns += str.Header + " ";
+                            SetDataGridColumns(str.Header, str.Header);
+                        }
+                    }
+                }
+                foreach (int index in indexes)
+                {
+                    report.Add(summ.Table.FullContent[0][index]);
+                }
+                AddDataGridRow(report.ToArray());
+                SetProgressbarStyle(ProgressBarStyle.Continuous);
+                SetProgressbarValue(100);
+            };
+            Thread thread1 = new Thread(ts);
+            thread1.Start();
+        }
+
+
+        delegate void SetProgCallback(int newVal);
+        private void SetProgressbarValue(int newVal)
+        {
+            if (progressBar1.InvokeRequired)
+            {
+                SetProgCallback d = SetProgressbarValue;
+                Invoke(d, new object[] { newVal });
+            }
+            else
+            {
+                progressBar1.Value = newVal;
+            }
+        }
+
+        delegate void SetProgStyleCallback(ProgressBarStyle newVal);
+        private void SetProgressbarStyle(ProgressBarStyle newVal)
+        {
+            if (progressBar1.InvokeRequired)
+            {
+                SetProgStyleCallback d = SetProgressbarStyle;
+                Invoke(d, new object[] { newVal });
+            }
+            else
+            {
+                progressBar1.Style = newVal;
+            }
+        }
+
+        private void SetProgressbar2Value(int newVal)
+        {
+            if (progressBar2.InvokeRequired)
+            {
+                SetProgCallback d = SetProgressbar2Value;
+                Invoke(d, new object[] { newVal });
+            }
+            else
+            {
+                progressBar2.Value = newVal;
+            }
+        }
+
+        private void SetProgressbar2Style(ProgressBarStyle newVal)
+        {
+            if (progressBar2.InvokeRequired)
+            {
+                SetProgStyleCallback d = SetProgressbar2Style;
+                Invoke(d, new object[] { newVal });
+            }
+            else
+            {
+                progressBar2.Style = newVal;
+            }
+        }
+
+        delegate void SetDGCCallback(string columnName, string headerText);
+        private void SetDataGridColumns(string columnName, string headerText)
+        {
+            if (dataGridView1.InvokeRequired)
+            {
+                SetDGCCallback d = SetDataGridColumns;
+                Invoke(d, new object[] { columnName, headerText });
+            }
+            else
+            {
+                dataGridView1.Columns.Add(columnName, headerText);
+            }
+        }
+
+        delegate void AddDGRCallback(string[] Row);
+        private void AddDataGridRow(string[] Row)
+        {
+            if (dataGridView1.InvokeRequired)
+            {
+                AddDGRCallback d = AddDataGridRow;
+                Invoke(d, new object[] { Row });
+            }
+            else
+            {
+                dataGridView1.Rows.Add(Row);
+            }
+        }
+
+        private void SetDataGrid2Columns(string columnName, string headerText)
+        {
+            if (dataGridView1.InvokeRequired)
+            {
+                SetDGCCallback d = SetDataGrid2Columns;
+                Invoke(d, new object[] { columnName, headerText });
+            }
+            else
+            {
+                dataGridView2.Columns.Add(columnName, headerText);
+            }
+        }
+
+        private void AddDataGrid2Row(string[] Row)
+        {
+            if (dataGridView2.InvokeRequired)
+            {
+                AddDGRCallback d = AddDataGrid2Row;
+                Invoke(d, new object[] { Row });
+            }
+            else
+            {
+                dataGridView2.Rows.Add(Row);
+            }
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
-            var summary = BenchmarkRunner.Run<Benchmark>();
-            richTextBox1.Text = summary.ToString();
+            ThreadStart ts = delegate ()
+            {
+                SetProgressbar2Style(ProgressBarStyle.Marquee);
+                var summ = BenchmarkRunner.Run<BenchmarkSha256>();
+                string columns = "";
+                string[] selectedColumns = { "Method", "Mean", "StdDev", "Allocated" };
+                List<string> report = new List<string>();
+                List<int> indexes = new List<int>();
+                foreach (BenchmarkDotNet.Reports.SummaryTable.SummaryTableColumn str in summ.Table.Columns)
+                {
+                    foreach (string str2 in selectedColumns)
+                    {
+                        if (str.Header == str2)
+                        {
+                            indexes.Add(str.Index);
+                            columns += str.Header + " ";
+                            SetDataGrid2Columns(str.Header, str.Header);
+                        }
+                    }
+                }
+                foreach (int index in indexes)
+                {
+                    report.Add(summ.Table.FullContent[0][index]);
+                }
+                AddDataGrid2Row(report.ToArray());
+                SetProgressbar2Style(ProgressBarStyle.Continuous);
+                SetProgressbar2Value(100);
+            };
+            Thread thread1 = new Thread(ts);
+            thread1.Start();
+        }
+
+        private void progressBar2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

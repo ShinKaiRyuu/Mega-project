@@ -74,14 +74,18 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.debugLabel = new System.Windows.Forms.Label();
             this.benchmarkTabPage = new System.Windows.Forms.TabPage();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.benchmarkButton = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.debugLabel = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.button1 = new System.Windows.Forms.Button();
             this.projectTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
@@ -100,6 +104,9 @@
             this.benchmarkTabPage.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // projectTabControl
@@ -644,6 +651,78 @@
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // benchmarkTabPage
+            // 
+            this.benchmarkTabPage.Controls.Add(this.tabControl2);
+            this.benchmarkTabPage.Location = new System.Drawing.Point(4, 22);
+            this.benchmarkTabPage.Name = "benchmarkTabPage";
+            this.benchmarkTabPage.Size = new System.Drawing.Size(702, 291);
+            this.benchmarkTabPage.TabIndex = 2;
+            this.benchmarkTabPage.Text = "Benchmark";
+            this.benchmarkTabPage.UseVisualStyleBackColor = true;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Location = new System.Drawing.Point(3, 6);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(696, 282);
+            this.tabControl2.TabIndex = 2;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dataGridView1);
+            this.tabPage3.Controls.Add(this.progressBar1);
+            this.tabPage3.Controls.Add(this.benchmarkButton);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(688, 256);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "MD5";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(211, 29);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ShowCellToolTips = false;
+            this.dataGridView1.Size = new System.Drawing.Size(471, 221);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(45, 85);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 2;
+            // 
+            // benchmarkButton
+            // 
+            this.benchmarkButton.Location = new System.Drawing.Point(6, 29);
+            this.benchmarkButton.Name = "benchmarkButton";
+            this.benchmarkButton.Size = new System.Drawing.Size(199, 23);
+            this.benchmarkButton.TabIndex = 1;
+            this.benchmarkButton.Text = "Benchmark";
+            this.benchmarkButton.UseVisualStyleBackColor = true;
+            this.benchmarkButton.Click += new System.EventHandler(this.benchmarkMD5_Click);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.dataGridView2);
+            this.tabPage4.Controls.Add(this.progressBar2);
+            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(688, 256);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "sha256";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // debugRichTextBox
             // 
             this.debugRichTextBox.Location = new System.Drawing.Point(16, 353);
@@ -663,65 +742,33 @@
             this.debugLabel.TabIndex = 2;
             this.debugLabel.Text = "Debug";
             // 
-            // benchmarkTabPage
+            // dataGridView2
             // 
-            this.benchmarkTabPage.Controls.Add(this.tabControl2);
-            this.benchmarkTabPage.Location = new System.Drawing.Point(4, 22);
-            this.benchmarkTabPage.Name = "benchmarkTabPage";
-            this.benchmarkTabPage.Size = new System.Drawing.Size(702, 291);
-            this.benchmarkTabPage.TabIndex = 2;
-            this.benchmarkTabPage.Text = "Benchmark";
-            this.benchmarkTabPage.UseVisualStyleBackColor = true;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(211, 18);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ShowCellToolTips = false;
+            this.dataGridView2.Size = new System.Drawing.Size(471, 221);
+            this.dataGridView2.TabIndex = 6;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
-            // richTextBox1
+            // progressBar2
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(211, 6);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(471, 244);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.progressBar2.Location = new System.Drawing.Point(45, 74);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(100, 23);
+            this.progressBar2.TabIndex = 5;
+            this.progressBar2.Click += new System.EventHandler(this.progressBar2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(84, 64);
+            this.button1.Location = new System.Drawing.Point(6, 18);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Size = new System.Drawing.Size(199, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Benchmark";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // tabControl2
-            // 
-            this.tabControl2.Controls.Add(this.tabPage3);
-            this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Location = new System.Drawing.Point(3, 6);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(696, 282);
-            this.tabControl2.TabIndex = 2;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.richTextBox1);
-            this.tabPage3.Controls.Add(this.button1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(688, 256);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(192, 74);
-            this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -757,6 +804,9 @@
             this.benchmarkTabPage.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -813,11 +863,15 @@
         private System.Windows.Forms.Label findPrimeNumberDescriptionLabel;
         private System.Windows.Forms.TrackBar findPrimeNumberTrackBar;
         private System.Windows.Forms.TabPage benchmarkTabPage;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button benchmarkButton;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
