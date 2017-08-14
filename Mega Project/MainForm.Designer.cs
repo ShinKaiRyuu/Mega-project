@@ -70,6 +70,19 @@
             this.findPrimeNumberValueLabel = new System.Windows.Forms.Label();
             this.findPrimeNumberDescriptionLabel = new System.Windows.Forms.Label();
             this.findPrimeNumberTrackBar = new System.Windows.Forms.TrackBar();
+            this.findCostOfTileToCoverWxHFloorTabPage = new System.Windows.Forms.TabPage();
+            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.findCostOfTileToCoverWxHFloorResultLabel = new System.Windows.Forms.Label();
+            this.findCostOfTileToCoverWxHFloorHeightValueLabel = new System.Windows.Forms.Label();
+            this.findCostOfTileToCoverWxHFloorWidthValueLabel = new System.Windows.Forms.Label();
+            this.findCostOfTileToCoverWxHFloorCostValueLabel = new System.Windows.Forms.Label();
+            this.findCostOfTileToCoverWxHFloorHeightTrackBar = new System.Windows.Forms.TrackBar();
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar = new System.Windows.Forms.TrackBar();
+            this.findCostOfTileToCoverWxHFloorFloorHeightLabel = new System.Windows.Forms.Label();
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel = new System.Windows.Forms.Label();
+            this.findCostOfTileToCoverWxHFloorCostTrackBar = new System.Windows.Forms.TrackBar();
+            this.findCostOfTileToCoverWxHFloorFloorCostM2Label = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.visualisingSubProjectTabControl = new System.Windows.Forms.TabControl();
             this.visualiseSortingTabPage = new System.Windows.Forms.TabPage();
@@ -98,19 +111,6 @@
             this.benchmarkSha256RunBenchmarkButton = new System.Windows.Forms.Button();
             this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
             this.debugLabel = new System.Windows.Forms.Label();
-            this.findCostOfTileToCoverWxHFloorTabPage = new System.Windows.Forms.TabPage();
-            this.findCostOfTileToCoverWxHFloorFloorCostM2Label = new System.Windows.Forms.Label();
-            this.findCostOfTileToCoverWxHFloorCostTrackBar = new System.Windows.Forms.TrackBar();
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel = new System.Windows.Forms.Label();
-            this.findCostOfTileToCoverWxHFloorFloorHeightLabel = new System.Windows.Forms.Label();
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar = new System.Windows.Forms.TrackBar();
-            this.findCostOfTileToCoverWxHFloorHeightTrackBar = new System.Windows.Forms.TrackBar();
-            this.findCostOfTileToCoverWxHFloorCostValueLabel = new System.Windows.Forms.Label();
-            this.findCostOfTileToCoverWxHFloorWidthValueLabel = new System.Windows.Forms.Label();
-            this.findCostOfTileToCoverWxHFloorHeightValueLabel = new System.Windows.Forms.Label();
-            this.findCostOfTileToCoverWxHFloorResultLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox = new System.Windows.Forms.CheckBox();
             this.projectTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
@@ -124,17 +124,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeFactorTrackBar)).BeginInit();
             this.findPrimeNumberTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).BeginInit();
+            this.findCostOfTileToCoverWxHFloorTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorHeightTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorWidthTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorCostTrackBar)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.visualisingSubProjectTabControl.SuspendLayout();
             this.visualiseSortingTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSamples)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlSort1)).BeginInit();
-            this.projectTabControl.SuspendLayout();
-            this.findCostOfTileToCoverWxHFloorTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorCostTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorWidthTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorHeightTrackBar)).BeginInit();
             this.benchmarkTabPage.SuspendLayout();
             this.benchmarkSubprojectTabControl.SuspendLayout();
             this.MD5TabPage.SuspendLayout();
@@ -641,77 +640,142 @@
             this.findPrimeNumberTrackBar.TabIndex = 6;
             this.findPrimeNumberTrackBar.Scroll += new System.EventHandler(this.findPrimeNumberTrackBar_Scroll);
             // 
-            // benchmarkTabPage
+            // findCostOfTileToCoverWxHFloorTabPage
             // 
-            this.benchmarkTabPage.Controls.Add(this.benchmarkSubprojectTabControl);
-            this.benchmarkTabPage.Location = new System.Drawing.Point(4, 22);
-            this.benchmarkTabPage.Name = "benchmarkTabPage";
-            this.benchmarkTabPage.Size = new System.Drawing.Size(702, 291);
-            this.benchmarkTabPage.TabIndex = 2;
-            this.benchmarkTabPage.Text = "Benchmark";
-            this.benchmarkTabPage.UseVisualStyleBackColor = true;
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.button1);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorResultLabel);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorHeightValueLabel);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorWidthValueLabel);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorCostValueLabel);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorHeightTrackBar);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorWidthTrackBar);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorFloorHeightLabel);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorFloorWidthLabel);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorCostTrackBar);
+            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorFloorCostM2Label);
+            this.findCostOfTileToCoverWxHFloorTabPage.Location = new System.Drawing.Point(4, 22);
+            this.findCostOfTileToCoverWxHFloorTabPage.Name = "findCostOfTileToCoverWxHFloorTabPage";
+            this.findCostOfTileToCoverWxHFloorTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.findCostOfTileToCoverWxHFloorTabPage.Size = new System.Drawing.Size(682, 253);
+            this.findCostOfTileToCoverWxHFloorTabPage.TabIndex = 5;
+            this.findCostOfTileToCoverWxHFloorTabPage.Text = "Find Cost of Tile to Cover W x H Floor";
+            this.findCostOfTileToCoverWxHFloorTabPage.UseVisualStyleBackColor = true;
             // 
-            // benchmarkSubprojectTabControl
+            // findCostOfTileToCoverWxHFloorAutocalculateCheckBox
             // 
-            this.benchmarkSubprojectTabControl.Controls.Add(this.MD5TabPage);
-            this.benchmarkSubprojectTabControl.Controls.Add(this.Sha256TabPage);
-            this.benchmarkSubprojectTabControl.Location = new System.Drawing.Point(3, 6);
-            this.benchmarkSubprojectTabControl.Name = "benchmarkSubprojectTabControl";
-            this.benchmarkSubprojectTabControl.SelectedIndex = 0;
-            this.benchmarkSubprojectTabControl.Size = new System.Drawing.Size(696, 282);
-            this.benchmarkSubprojectTabControl.TabIndex = 2;
+            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.AutoSize = true;
+            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Location = new System.Drawing.Point(393, 194);
+            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Name = "findCostOfTileToCoverWxHFloorAutocalculateCheckBox";
+            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Size = new System.Drawing.Size(91, 17);
+            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.TabIndex = 11;
+            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Text = "Autocalculate";
+            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.UseVisualStyleBackColor = true;
             // 
-            // MD5TabPage
+            // button1
             // 
-            this.MD5TabPage.Controls.Add(this.benchmarkMD5DataGridView);
-            this.MD5TabPage.Controls.Add(this.benchmarkMD5ProgressBar);
-            this.MD5TabPage.Controls.Add(this.benchmarkMD5RunBenchmarkButton);
-            this.MD5TabPage.Location = new System.Drawing.Point(4, 22);
-            this.MD5TabPage.Name = "MD5TabPage";
-            this.MD5TabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MD5TabPage.Size = new System.Drawing.Size(688, 256);
-            this.MD5TabPage.TabIndex = 0;
-            this.MD5TabPage.Text = "MD5";
-            this.MD5TabPage.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(311, 189);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Calculate";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.findCostOfTileToCoverWxHFloorCalculateButton_Click);
             // 
-            // benchmarkMD5DataGridView
+            // findCostOfTileToCoverWxHFloorResultLabel
             // 
-            this.benchmarkMD5DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.benchmarkMD5DataGridView.Location = new System.Drawing.Point(211, 29);
-            this.benchmarkMD5DataGridView.Name = "benchmarkMD5DataGridView";
-            this.benchmarkMD5DataGridView.ShowCellToolTips = false;
-            this.benchmarkMD5DataGridView.Size = new System.Drawing.Size(471, 221);
-            this.benchmarkMD5DataGridView.TabIndex = 3;
+            this.findCostOfTileToCoverWxHFloorResultLabel.AutoSize = true;
+            this.findCostOfTileToCoverWxHFloorResultLabel.Location = new System.Drawing.Point(24, 222);
+            this.findCostOfTileToCoverWxHFloorResultLabel.Name = "findCostOfTileToCoverWxHFloorResultLabel";
+            this.findCostOfTileToCoverWxHFloorResultLabel.Size = new System.Drawing.Size(60, 13);
+            this.findCostOfTileToCoverWxHFloorResultLabel.TabIndex = 9;
+            this.findCostOfTileToCoverWxHFloorResultLabel.Text = "Total cost :";
             // 
-            // benchmarkMD5ProgressBar
+            // findCostOfTileToCoverWxHFloorHeightValueLabel
             // 
-            this.benchmarkMD5ProgressBar.Location = new System.Drawing.Point(45, 85);
-            this.benchmarkMD5ProgressBar.Name = "benchmarkMD5ProgressBar";
-            this.benchmarkMD5ProgressBar.Size = new System.Drawing.Size(100, 23);
-            this.benchmarkMD5ProgressBar.TabIndex = 2;
+            this.findCostOfTileToCoverWxHFloorHeightValueLabel.AutoSize = true;
+            this.findCostOfTileToCoverWxHFloorHeightValueLabel.Location = new System.Drawing.Point(634, 138);
+            this.findCostOfTileToCoverWxHFloorHeightValueLabel.Name = "findCostOfTileToCoverWxHFloorHeightValueLabel";
+            this.findCostOfTileToCoverWxHFloorHeightValueLabel.Size = new System.Drawing.Size(13, 13);
+            this.findCostOfTileToCoverWxHFloorHeightValueLabel.TabIndex = 8;
+            this.findCostOfTileToCoverWxHFloorHeightValueLabel.Text = "0";
             // 
-            // benchmarkMD5RunBenchmarkButton
+            // findCostOfTileToCoverWxHFloorWidthValueLabel
             // 
-            this.benchmarkMD5RunBenchmarkButton.Location = new System.Drawing.Point(6, 29);
-            this.benchmarkMD5RunBenchmarkButton.Name = "benchmarkMD5RunBenchmarkButton";
-            this.benchmarkMD5RunBenchmarkButton.Size = new System.Drawing.Size(199, 23);
-            this.benchmarkMD5RunBenchmarkButton.TabIndex = 1;
-            this.benchmarkMD5RunBenchmarkButton.Text = "Benchmark";
-            this.benchmarkMD5RunBenchmarkButton.UseVisualStyleBackColor = true;
-            this.benchmarkMD5RunBenchmarkButton.Click += new System.EventHandler(this.benchmarkMD5_Click);
+            this.findCostOfTileToCoverWxHFloorWidthValueLabel.AutoSize = true;
+            this.findCostOfTileToCoverWxHFloorWidthValueLabel.Location = new System.Drawing.Point(635, 87);
+            this.findCostOfTileToCoverWxHFloorWidthValueLabel.Name = "findCostOfTileToCoverWxHFloorWidthValueLabel";
+            this.findCostOfTileToCoverWxHFloorWidthValueLabel.Size = new System.Drawing.Size(13, 13);
+            this.findCostOfTileToCoverWxHFloorWidthValueLabel.TabIndex = 7;
+            this.findCostOfTileToCoverWxHFloorWidthValueLabel.Text = "0";
             // 
-            // Sha256TabPage
+            // findCostOfTileToCoverWxHFloorCostValueLabel
             // 
-            this.Sha256TabPage.Controls.Add(this.benchmarkSha256DataGridView);
-            this.Sha256TabPage.Controls.Add(this.benchmarkSha256ProgressBar);
-            this.Sha256TabPage.Controls.Add(this.benchmarkSha256RunBenchmarkButton);
-            this.Sha256TabPage.Location = new System.Drawing.Point(4, 22);
-            this.Sha256TabPage.Name = "Sha256TabPage";
-            this.Sha256TabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.Sha256TabPage.Size = new System.Drawing.Size(688, 256);
-            this.Sha256TabPage.TabIndex = 1;
-            this.Sha256TabPage.Text = "sha256";
-            this.Sha256TabPage.UseVisualStyleBackColor = true;
+            this.findCostOfTileToCoverWxHFloorCostValueLabel.AutoSize = true;
+            this.findCostOfTileToCoverWxHFloorCostValueLabel.Location = new System.Drawing.Point(635, 39);
+            this.findCostOfTileToCoverWxHFloorCostValueLabel.Name = "findCostOfTileToCoverWxHFloorCostValueLabel";
+            this.findCostOfTileToCoverWxHFloorCostValueLabel.Size = new System.Drawing.Size(13, 13);
+            this.findCostOfTileToCoverWxHFloorCostValueLabel.TabIndex = 6;
+            this.findCostOfTileToCoverWxHFloorCostValueLabel.Text = "0";
+            // 
+            // findCostOfTileToCoverWxHFloorHeightTrackBar
+            // 
+            this.findCostOfTileToCoverWxHFloorHeightTrackBar.BackColor = System.Drawing.SystemColors.Window;
+            this.findCostOfTileToCoverWxHFloorHeightTrackBar.Location = new System.Drawing.Point(63, 138);
+            this.findCostOfTileToCoverWxHFloorHeightTrackBar.Name = "findCostOfTileToCoverWxHFloorHeightTrackBar";
+            this.findCostOfTileToCoverWxHFloorHeightTrackBar.Size = new System.Drawing.Size(565, 45);
+            this.findCostOfTileToCoverWxHFloorHeightTrackBar.TabIndex = 5;
+            this.findCostOfTileToCoverWxHFloorHeightTrackBar.Scroll += new System.EventHandler(this.findCostOfTileToCoverWxHFloorHeightTrackBar_Scroll);
+            // 
+            // findCostOfTileToCoverWxHFloorWidthTrackBar
+            // 
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.BackColor = System.Drawing.SystemColors.Window;
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Location = new System.Drawing.Point(63, 87);
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Name = "findCostOfTileToCoverWxHFloorWidthTrackBar";
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Size = new System.Drawing.Size(566, 45);
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.TabIndex = 4;
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Scroll += new System.EventHandler(this.findCostOfTileToCoverWxHFloorWidthTrackBar_Scroll);
+            // 
+            // findCostOfTileToCoverWxHFloorFloorHeightLabel
+            // 
+            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.AutoSize = true;
+            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.Location = new System.Drawing.Point(16, 138);
+            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.Name = "findCostOfTileToCoverWxHFloorFloorHeightLabel";
+            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.Size = new System.Drawing.Size(38, 13);
+            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.TabIndex = 3;
+            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.Text = "Height";
+            // 
+            // findCostOfTileToCoverWxHFloorFloorWidthLabel
+            // 
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.AutoSize = true;
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Location = new System.Drawing.Point(16, 87);
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Name = "findCostOfTileToCoverWxHFloorFloorWidthLabel";
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Size = new System.Drawing.Size(35, 13);
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.TabIndex = 2;
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Text = "Width";
+            // 
+            // findCostOfTileToCoverWxHFloorCostTrackBar
+            // 
+            this.findCostOfTileToCoverWxHFloorCostTrackBar.BackColor = System.Drawing.SystemColors.Window;
+            this.findCostOfTileToCoverWxHFloorCostTrackBar.Location = new System.Drawing.Point(63, 39);
+            this.findCostOfTileToCoverWxHFloorCostTrackBar.Minimum = 1;
+            this.findCostOfTileToCoverWxHFloorCostTrackBar.Name = "findCostOfTileToCoverWxHFloorCostTrackBar";
+            this.findCostOfTileToCoverWxHFloorCostTrackBar.Size = new System.Drawing.Size(566, 45);
+            this.findCostOfTileToCoverWxHFloorCostTrackBar.TabIndex = 1;
+            this.findCostOfTileToCoverWxHFloorCostTrackBar.Value = 1;
+            this.findCostOfTileToCoverWxHFloorCostTrackBar.Scroll += new System.EventHandler(this.findCostOfTileToCoverWxHFloorCostTrackBar_Scroll);
+            // 
+            // findCostOfTileToCoverWxHFloorFloorCostM2Label
+            // 
+            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.AutoSize = true;
+            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.Location = new System.Drawing.Point(16, 39);
+            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.Name = "findCostOfTileToCoverWxHFloorFloorCostM2Label";
+            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.Size = new System.Drawing.Size(45, 13);
+            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.TabIndex = 0;
+            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.Text = "Cost m2";
+            // 
+            // tabPage2
+            // 
             this.tabPage2.Controls.Add(this.visualisingSubProjectTabControl);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -723,7 +787,6 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // visualisingSubProjectTabControl
-            // benchmarkSha256DataGridView
             // 
             this.visualisingSubProjectTabControl.Controls.Add(this.visualiseSortingTabPage);
             this.visualisingSubProjectTabControl.Location = new System.Drawing.Point(6, 7);
@@ -732,15 +795,8 @@
             this.visualisingSubProjectTabControl.SelectedIndex = 0;
             this.visualisingSubProjectTabControl.Size = new System.Drawing.Size(688, 278);
             this.visualisingSubProjectTabControl.TabIndex = 0;
-            this.benchmarkSha256DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.benchmarkSha256DataGridView.Location = new System.Drawing.Point(211, 18);
-            this.benchmarkSha256DataGridView.Name = "benchmarkSha256DataGridView";
-            this.benchmarkSha256DataGridView.ShowCellToolTips = false;
-            this.benchmarkSha256DataGridView.Size = new System.Drawing.Size(471, 221);
-            this.benchmarkSha256DataGridView.TabIndex = 6;
             // 
             // visualiseSortingTabPage
-            // benchmarkSha256ProgressBar
             // 
             this.visualiseSortingTabPage.Controls.Add(this.selectSortingAlghorithmLabel);
             this.visualiseSortingTabPage.Controls.Add(this.cmdResume);
@@ -917,13 +973,8 @@
             this.cboAlg1.Name = "cboAlg1";
             this.cboAlg1.Size = new System.Drawing.Size(204, 21);
             this.cboAlg1.TabIndex = 51;
-            this.benchmarkSha256ProgressBar.Location = new System.Drawing.Point(45, 74);
-            this.benchmarkSha256ProgressBar.Name = "benchmarkSha256ProgressBar";
-            this.benchmarkSha256ProgressBar.Size = new System.Drawing.Size(100, 23);
-            this.benchmarkSha256ProgressBar.TabIndex = 5;
             // 
             // pnlSort1
-            // benchmarkSha256RunBenchmarkButton
             // 
             this.pnlSort1.BackColor = System.Drawing.Color.White;
             this.pnlSort1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -932,6 +983,97 @@
             this.pnlSort1.Size = new System.Drawing.Size(280, 240);
             this.pnlSort1.TabIndex = 53;
             this.pnlSort1.TabStop = false;
+            // 
+            // benchmarkTabPage
+            // 
+            this.benchmarkTabPage.Controls.Add(this.benchmarkSubprojectTabControl);
+            this.benchmarkTabPage.Location = new System.Drawing.Point(4, 22);
+            this.benchmarkTabPage.Name = "benchmarkTabPage";
+            this.benchmarkTabPage.Size = new System.Drawing.Size(702, 291);
+            this.benchmarkTabPage.TabIndex = 2;
+            this.benchmarkTabPage.Text = "Benchmark";
+            this.benchmarkTabPage.UseVisualStyleBackColor = true;
+            // 
+            // benchmarkSubprojectTabControl
+            // 
+            this.benchmarkSubprojectTabControl.Controls.Add(this.MD5TabPage);
+            this.benchmarkSubprojectTabControl.Controls.Add(this.Sha256TabPage);
+            this.benchmarkSubprojectTabControl.Location = new System.Drawing.Point(3, 6);
+            this.benchmarkSubprojectTabControl.Name = "benchmarkSubprojectTabControl";
+            this.benchmarkSubprojectTabControl.SelectedIndex = 0;
+            this.benchmarkSubprojectTabControl.Size = new System.Drawing.Size(696, 282);
+            this.benchmarkSubprojectTabControl.TabIndex = 2;
+            // 
+            // MD5TabPage
+            // 
+            this.MD5TabPage.Controls.Add(this.benchmarkMD5DataGridView);
+            this.MD5TabPage.Controls.Add(this.benchmarkMD5ProgressBar);
+            this.MD5TabPage.Controls.Add(this.benchmarkMD5RunBenchmarkButton);
+            this.MD5TabPage.Location = new System.Drawing.Point(4, 22);
+            this.MD5TabPage.Name = "MD5TabPage";
+            this.MD5TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.MD5TabPage.Size = new System.Drawing.Size(688, 256);
+            this.MD5TabPage.TabIndex = 0;
+            this.MD5TabPage.Text = "MD5";
+            this.MD5TabPage.UseVisualStyleBackColor = true;
+            // 
+            // benchmarkMD5DataGridView
+            // 
+            this.benchmarkMD5DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.benchmarkMD5DataGridView.Location = new System.Drawing.Point(211, 29);
+            this.benchmarkMD5DataGridView.Name = "benchmarkMD5DataGridView";
+            this.benchmarkMD5DataGridView.ShowCellToolTips = false;
+            this.benchmarkMD5DataGridView.Size = new System.Drawing.Size(471, 221);
+            this.benchmarkMD5DataGridView.TabIndex = 3;
+            // 
+            // benchmarkMD5ProgressBar
+            // 
+            this.benchmarkMD5ProgressBar.Location = new System.Drawing.Point(53, 141);
+            this.benchmarkMD5ProgressBar.Name = "benchmarkMD5ProgressBar";
+            this.benchmarkMD5ProgressBar.Size = new System.Drawing.Size(100, 23);
+            this.benchmarkMD5ProgressBar.TabIndex = 2;
+            // 
+            // benchmarkMD5RunBenchmarkButton
+            // 
+            this.benchmarkMD5RunBenchmarkButton.Location = new System.Drawing.Point(6, 29);
+            this.benchmarkMD5RunBenchmarkButton.Name = "benchmarkMD5RunBenchmarkButton";
+            this.benchmarkMD5RunBenchmarkButton.Size = new System.Drawing.Size(199, 23);
+            this.benchmarkMD5RunBenchmarkButton.TabIndex = 1;
+            this.benchmarkMD5RunBenchmarkButton.Text = "Benchmark";
+            this.benchmarkMD5RunBenchmarkButton.UseVisualStyleBackColor = true;
+            this.benchmarkMD5RunBenchmarkButton.Click += new System.EventHandler(this.benchmarkMD5_Click);
+            // 
+            // Sha256TabPage
+            // 
+            this.Sha256TabPage.Controls.Add(this.benchmarkSha256DataGridView);
+            this.Sha256TabPage.Controls.Add(this.benchmarkSha256ProgressBar);
+            this.Sha256TabPage.Controls.Add(this.benchmarkSha256RunBenchmarkButton);
+            this.Sha256TabPage.Location = new System.Drawing.Point(4, 22);
+            this.Sha256TabPage.Name = "Sha256TabPage";
+            this.Sha256TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.Sha256TabPage.Size = new System.Drawing.Size(688, 256);
+            this.Sha256TabPage.TabIndex = 1;
+            this.Sha256TabPage.Text = "sha256";
+            this.Sha256TabPage.UseVisualStyleBackColor = true;
+            // 
+            // benchmarkSha256DataGridView
+            // 
+            this.benchmarkSha256DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.benchmarkSha256DataGridView.Location = new System.Drawing.Point(211, 18);
+            this.benchmarkSha256DataGridView.Name = "benchmarkSha256DataGridView";
+            this.benchmarkSha256DataGridView.ShowCellToolTips = false;
+            this.benchmarkSha256DataGridView.Size = new System.Drawing.Size(471, 221);
+            this.benchmarkSha256DataGridView.TabIndex = 6;
+            // 
+            // benchmarkSha256ProgressBar
+            // 
+            this.benchmarkSha256ProgressBar.Location = new System.Drawing.Point(41, 127);
+            this.benchmarkSha256ProgressBar.Name = "benchmarkSha256ProgressBar";
+            this.benchmarkSha256ProgressBar.Size = new System.Drawing.Size(100, 23);
+            this.benchmarkSha256ProgressBar.TabIndex = 5;
+            // 
+            // benchmarkSha256RunBenchmarkButton
+            // 
             this.benchmarkSha256RunBenchmarkButton.Location = new System.Drawing.Point(6, 18);
             this.benchmarkSha256RunBenchmarkButton.Name = "benchmarkSha256RunBenchmarkButton";
             this.benchmarkSha256RunBenchmarkButton.Size = new System.Drawing.Size(199, 23);
@@ -958,140 +1100,6 @@
             this.debugLabel.Size = new System.Drawing.Size(39, 13);
             this.debugLabel.TabIndex = 2;
             this.debugLabel.Text = "Debug";
-            // 
-            // findCostOfTileToCoverWxHFloorTabPage
-            // 
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.button1);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorResultLabel);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorHeightValueLabel);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorWidthValueLabel);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorCostValueLabel);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorHeightTrackBar);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorWidthTrackBar);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorFloorHeightLabel);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorFloorWidthLabel);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorCostTrackBar);
-            this.findCostOfTileToCoverWxHFloorTabPage.Controls.Add(this.findCostOfTileToCoverWxHFloorFloorCostM2Label);
-            this.findCostOfTileToCoverWxHFloorTabPage.Location = new System.Drawing.Point(4, 22);
-            this.findCostOfTileToCoverWxHFloorTabPage.Name = "findCostOfTileToCoverWxHFloorTabPage";
-            this.findCostOfTileToCoverWxHFloorTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.findCostOfTileToCoverWxHFloorTabPage.Size = new System.Drawing.Size(682, 253);
-            this.findCostOfTileToCoverWxHFloorTabPage.TabIndex = 5;
-            this.findCostOfTileToCoverWxHFloorTabPage.Text = "Find Cost of Tile to Cover W x H Floor";
-            this.findCostOfTileToCoverWxHFloorTabPage.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.AutoSize = true;
-            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.Location = new System.Drawing.Point(16, 39);
-            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.Name = "FloorCostM2";
-            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.Size = new System.Drawing.Size(45, 13);
-            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.TabIndex = 0;
-            this.findCostOfTileToCoverWxHFloorFloorCostM2Label.Text = "Cost m2";
-            // 
-            // findCostOfTileToCoverWxHFloorCostTrackBar
-            // 
-            this.findCostOfTileToCoverWxHFloorCostTrackBar.BackColor = System.Drawing.SystemColors.Window;
-            this.findCostOfTileToCoverWxHFloorCostTrackBar.Location = new System.Drawing.Point(63, 39);
-            this.findCostOfTileToCoverWxHFloorCostTrackBar.Minimum = 1;
-            this.findCostOfTileToCoverWxHFloorCostTrackBar.Name = "findCostOfTileToCoverWxHFloorCostTrackBar";
-            this.findCostOfTileToCoverWxHFloorCostTrackBar.Size = new System.Drawing.Size(566, 45);
-            this.findCostOfTileToCoverWxHFloorCostTrackBar.TabIndex = 1;
-            this.findCostOfTileToCoverWxHFloorCostTrackBar.Value = 1;
-            this.findCostOfTileToCoverWxHFloorCostTrackBar.Scroll += new System.EventHandler(this.findCostOfTileToCoverWxHFloorCostTrackBar_Scroll);
-            // 
-            // label2
-            // 
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.AutoSize = true;
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Location = new System.Drawing.Point(16, 87);
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Name = "FloorWidth";
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Size = new System.Drawing.Size(35, 13);
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.TabIndex = 2;
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Text = "Width";
-            // 
-            // label3
-            // 
-            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.AutoSize = true;
-            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.Location = new System.Drawing.Point(16, 138);
-            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.Name = "label3";
-            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.Size = new System.Drawing.Size(38, 13);
-            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.TabIndex = 3;
-            this.findCostOfTileToCoverWxHFloorFloorHeightLabel.Text = "Height";
-            // 
-            // findCostOfTileToCoverWxHFloorWidthTrackBar
-            // 
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.BackColor = System.Drawing.SystemColors.Window;
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Location = new System.Drawing.Point(63, 87);
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Name = "findCostOfTileToCoverWxHFloorWidthTrackBar";
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Size = new System.Drawing.Size(566, 45);
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.TabIndex = 4;
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Scroll += new System.EventHandler(this.findCostOfTileToCoverWxHFloorWidthTrackBar_Scroll);
-            // 
-            // findCostOfTileToCoverWxHFloorHeightTrackBar
-            // 
-            this.findCostOfTileToCoverWxHFloorHeightTrackBar.BackColor = System.Drawing.SystemColors.Window;
-            this.findCostOfTileToCoverWxHFloorHeightTrackBar.Location = new System.Drawing.Point(63, 138);
-            this.findCostOfTileToCoverWxHFloorHeightTrackBar.Name = "findCostOfTileToCoverWxHFloorHeightTrackBar";
-            this.findCostOfTileToCoverWxHFloorHeightTrackBar.Size = new System.Drawing.Size(565, 45);
-            this.findCostOfTileToCoverWxHFloorHeightTrackBar.TabIndex = 5;
-            this.findCostOfTileToCoverWxHFloorHeightTrackBar.Scroll += new System.EventHandler(this.findCostOfTileToCoverWxHFloorHeightTrackBar_Scroll);
-            // 
-            // findCostOfTileToCoverWxHFloorCostValueLabel
-            // 
-            this.findCostOfTileToCoverWxHFloorCostValueLabel.AutoSize = true;
-            this.findCostOfTileToCoverWxHFloorCostValueLabel.Location = new System.Drawing.Point(635, 39);
-            this.findCostOfTileToCoverWxHFloorCostValueLabel.Name = "findCostOfTileToCoverWxHFloorCostValueLabel";
-            this.findCostOfTileToCoverWxHFloorCostValueLabel.Size = new System.Drawing.Size(13, 13);
-            this.findCostOfTileToCoverWxHFloorCostValueLabel.TabIndex = 6;
-            this.findCostOfTileToCoverWxHFloorCostValueLabel.Text = "0";
-            // 
-            // findCostOfTileToCoverWxHFloorWidthValueLabel
-            // 
-            this.findCostOfTileToCoverWxHFloorWidthValueLabel.AutoSize = true;
-            this.findCostOfTileToCoverWxHFloorWidthValueLabel.Location = new System.Drawing.Point(635, 87);
-            this.findCostOfTileToCoverWxHFloorWidthValueLabel.Name = "findCostOfTileToCoverWxHFloorWidthValueLabel";
-            this.findCostOfTileToCoverWxHFloorWidthValueLabel.Size = new System.Drawing.Size(13, 13);
-            this.findCostOfTileToCoverWxHFloorWidthValueLabel.TabIndex = 7;
-            this.findCostOfTileToCoverWxHFloorWidthValueLabel.Text = "0";
-            // 
-            // findCostOfTileToCoverWxHFloorHeightValueLabel
-            // 
-            this.findCostOfTileToCoverWxHFloorHeightValueLabel.AutoSize = true;
-            this.findCostOfTileToCoverWxHFloorHeightValueLabel.Location = new System.Drawing.Point(634, 138);
-            this.findCostOfTileToCoverWxHFloorHeightValueLabel.Name = "findCostOfTileToCoverWxHFloorHeightValueLabel";
-            this.findCostOfTileToCoverWxHFloorHeightValueLabel.Size = new System.Drawing.Size(13, 13);
-            this.findCostOfTileToCoverWxHFloorHeightValueLabel.TabIndex = 8;
-            this.findCostOfTileToCoverWxHFloorHeightValueLabel.Text = "0";
-            // 
-            // findCostOfTileToCoverWxHFloorResultLabel
-            // 
-            this.findCostOfTileToCoverWxHFloorResultLabel.AutoSize = true;
-            this.findCostOfTileToCoverWxHFloorResultLabel.Location = new System.Drawing.Point(24, 222);
-            this.findCostOfTileToCoverWxHFloorResultLabel.Name = "findCostOfTileToCoverWxHFloorResultLabel";
-            this.findCostOfTileToCoverWxHFloorResultLabel.Size = new System.Drawing.Size(60, 13);
-            this.findCostOfTileToCoverWxHFloorResultLabel.TabIndex = 9;
-            this.findCostOfTileToCoverWxHFloorResultLabel.Text = "Total cost :";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(311, 189);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Calculate";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.findCostOfTileToCoverWxHFloorCalculateButton_Click);
-            // 
-            // findCostOfTileToCoverWxHFloorAutocalculateCheckBox
-            // 
-            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.AutoSize = true;
-            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Location = new System.Drawing.Point(393, 194);
-            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Name = "findCostOfTileToCoverWxHFloorAutocalculateCheckBox";
-            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Size = new System.Drawing.Size(91, 17);
-            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.TabIndex = 11;
-            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.Text = "Autocalculate";
-            this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1126,20 +1134,18 @@
             this.findPrimeNumberTabPage.ResumeLayout(false);
             this.findPrimeNumberTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.projectTabControl.ResumeLayout(false);
             this.findCostOfTileToCoverWxHFloorTabPage.ResumeLayout(false);
             this.findCostOfTileToCoverWxHFloorTabPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorCostTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorWidthTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorHeightTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorWidthTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorCostTrackBar)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.visualisingSubProjectTabControl.ResumeLayout(false);
             this.visualiseSortingTabPage.ResumeLayout(false);
             this.visualiseSortingTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSamples)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlSort1)).EndInit();
-            this.tabPage2.ResumeLayout(false);
             this.benchmarkTabPage.ResumeLayout(false);
             this.benchmarkSubprojectTabControl.ResumeLayout(false);
             this.MD5TabPage.ResumeLayout(false);
