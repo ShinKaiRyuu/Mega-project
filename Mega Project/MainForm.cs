@@ -258,108 +258,108 @@ namespace Mega_Project
         delegate void SetProgCallback(int newVal);
         private void SetProgressbarValue(int newVal)
         {
-            if (progressBar1.InvokeRequired)
+            if (benchmarkMD5ProgressBar.InvokeRequired)
             {
                 SetProgCallback d = SetProgressbarValue;
                 Invoke(d, new object[] { newVal });
             }
             else
             {
-                progressBar1.Value = newVal;
+                benchmarkMD5ProgressBar.Value = newVal;
             }
         }
 
         delegate void SetProgStyleCallback(ProgressBarStyle newVal);
         private void SetProgressbarStyle(ProgressBarStyle newVal)
         {
-            if (progressBar1.InvokeRequired)
+            if (benchmarkMD5ProgressBar.InvokeRequired)
             {
                 SetProgStyleCallback d = SetProgressbarStyle;
                 Invoke(d, new object[] { newVal });
             }
             else
             {
-                progressBar1.Style = newVal;
+                benchmarkMD5ProgressBar.Style = newVal;
             }
         }
 
         private void SetProgressbar2Value(int newVal)
         {
-            if (progressBar2.InvokeRequired)
+            if (benchmarkSha256ProgressBar.InvokeRequired)
             {
                 SetProgCallback d = SetProgressbar2Value;
                 Invoke(d, new object[] { newVal });
             }
             else
             {
-                progressBar2.Value = newVal;
+                benchmarkSha256ProgressBar.Value = newVal;
             }
         }
 
         private void SetProgressbar2Style(ProgressBarStyle newVal)
         {
-            if (progressBar2.InvokeRequired)
+            if (benchmarkSha256ProgressBar.InvokeRequired)
             {
                 SetProgStyleCallback d = SetProgressbar2Style;
                 Invoke(d, new object[] { newVal });
             }
             else
             {
-                progressBar2.Style = newVal;
+                benchmarkSha256ProgressBar.Style = newVal;
             }
         }
 
         delegate void SetDGCCallback(string columnName, string headerText);
         private void SetDataGridColumns(string columnName, string headerText)
         {
-            if (dataGridView1.InvokeRequired)
+            if (benchmarkMD5DataGridView.InvokeRequired)
             {
                 SetDGCCallback d = SetDataGridColumns;
                 Invoke(d, new object[] { columnName, headerText });
             }
             else
             {
-                dataGridView1.Columns.Add(columnName, headerText);
+                benchmarkMD5DataGridView.Columns.Add(columnName, headerText);
             }
         }
 
         delegate void AddDGRCallback(string[] Row);
         private void AddDataGridRow(string[] Row)
         {
-            if (dataGridView1.InvokeRequired)
+            if (benchmarkMD5DataGridView.InvokeRequired)
             {
                 AddDGRCallback d = AddDataGridRow;
                 Invoke(d, new object[] { Row });
             }
             else
             {
-                dataGridView1.Rows.Add(Row);
+                benchmarkMD5DataGridView.Rows.Add(Row);
             }
         }
 
         private void SetDataGrid2Columns(string columnName, string headerText)
         {
-            if (dataGridView1.InvokeRequired)
+            if (benchmarkMD5DataGridView.InvokeRequired)
             {
                 SetDGCCallback d = SetDataGrid2Columns;
                 Invoke(d, new object[] { columnName, headerText });
             }
             else
             {
-                dataGridView2.Columns.Add(columnName, headerText);
+                benchmarkSha256DataGridView.Columns.Add(columnName, headerText);
             }
         }
 
         private void AddDataGrid2Row(string[] Row)
         {
-            if (dataGridView2.InvokeRequired)
+            if (benchmarkSha256DataGridView.InvokeRequired)
             {
                 AddDGRCallback d = AddDataGrid2Row;
                 Invoke(d, new object[] { Row });
             }
             else
             {
-                dataGridView2.Rows.Add(Row);
+                benchmarkSha256DataGridView.Rows.Add(Row);
             }
         }
 
@@ -398,14 +398,6 @@ namespace Mega_Project
             thread1.Start();
         }
 
-        private void progressBar2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
