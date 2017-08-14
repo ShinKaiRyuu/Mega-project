@@ -73,11 +73,12 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.visualisingSubProjectTabControl = new System.Windows.Forms.TabControl();
             this.visualiseSortingTabPage = new System.Windows.Forms.TabPage();
+            this.selectSortingAlghorithmLabel = new System.Windows.Forms.Label();
             this.cmdResume = new System.Windows.Forms.Button();
             this.cmdSuspend = new System.Windows.Forms.Button();
             this.ddTypeOfData = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.MaxLabel = new System.Windows.Forms.Label();
+            this.MinLabel = new System.Windows.Forms.Label();
             this.tbSpeed = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.lblSamples = new System.Windows.Forms.Label();
@@ -87,7 +88,6 @@
             this.pnlSort1 = new System.Windows.Forms.PictureBox();
             this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
             this.debugLabel = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.projectTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
@@ -629,12 +629,12 @@
             // 
             // visualiseSortingTabPage
             // 
-            this.visualiseSortingTabPage.Controls.Add(this.label4);
+            this.visualiseSortingTabPage.Controls.Add(this.selectSortingAlghorithmLabel);
             this.visualiseSortingTabPage.Controls.Add(this.cmdResume);
             this.visualiseSortingTabPage.Controls.Add(this.cmdSuspend);
             this.visualiseSortingTabPage.Controls.Add(this.ddTypeOfData);
-            this.visualiseSortingTabPage.Controls.Add(this.label3);
-            this.visualiseSortingTabPage.Controls.Add(this.label2);
+            this.visualiseSortingTabPage.Controls.Add(this.MaxLabel);
+            this.visualiseSortingTabPage.Controls.Add(this.MinLabel);
             this.visualiseSortingTabPage.Controls.Add(this.tbSpeed);
             this.visualiseSortingTabPage.Controls.Add(this.label1);
             this.visualiseSortingTabPage.Controls.Add(this.lblSamples);
@@ -651,6 +651,16 @@
             this.visualiseSortingTabPage.Text = "Sorting";
             this.visualiseSortingTabPage.UseVisualStyleBackColor = true;
             this.visualiseSortingTabPage.Enter += new System.EventHandler(this.tabPage6_Enter);
+            // 
+            // selectSortingAlghorithmLabel
+            // 
+            this.selectSortingAlghorithmLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectSortingAlghorithmLabel.AutoSize = true;
+            this.selectSortingAlghorithmLabel.Location = new System.Drawing.Point(298, 23);
+            this.selectSortingAlghorithmLabel.Name = "selectSortingAlghorithmLabel";
+            this.selectSortingAlghorithmLabel.Size = new System.Drawing.Size(122, 13);
+            this.selectSortingAlghorithmLabel.TabIndex = 64;
+            this.selectSortingAlghorithmLabel.Text = "Select sorting alghorithm";
             // 
             // cmdResume
             // 
@@ -689,25 +699,25 @@
             this.ddTypeOfData.Size = new System.Drawing.Size(83, 21);
             this.ddTypeOfData.TabIndex = 60;
             // 
-            // label3
+            // MaxLabel
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(551, 112);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 13);
-            this.label3.TabIndex = 59;
-            this.label3.Text = "Max";
+            this.MaxLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaxLabel.AutoSize = true;
+            this.MaxLabel.Location = new System.Drawing.Point(551, 112);
+            this.MaxLabel.Name = "MaxLabel";
+            this.MaxLabel.Size = new System.Drawing.Size(27, 13);
+            this.MaxLabel.TabIndex = 59;
+            this.MaxLabel.Text = "Max";
             // 
-            // label2
+            // MinLabel
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(395, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 13);
-            this.label2.TabIndex = 58;
-            this.label2.Text = "Min";
+            this.MinLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MinLabel.AutoSize = true;
+            this.MinLabel.Location = new System.Drawing.Point(395, 112);
+            this.MinLabel.Name = "MinLabel";
+            this.MinLabel.Size = new System.Drawing.Size(24, 13);
+            this.MinLabel.TabIndex = 58;
+            this.MinLabel.Text = "Min";
             // 
             // tbSpeed
             // 
@@ -824,16 +834,6 @@
             this.debugLabel.TabIndex = 2;
             this.debugLabel.Text = "Debug";
             // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(298, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 13);
-            this.label4.TabIndex = 64;
-            this.label4.Text = "Select sorting alghorithm";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -931,8 +931,8 @@
         private System.Windows.Forms.Button cmdResume;
         private System.Windows.Forms.Button cmdSuspend;
         private System.Windows.Forms.ComboBox ddTypeOfData;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label MaxLabel;
+        private System.Windows.Forms.Label MinLabel;
         private System.Windows.Forms.TrackBar tbSpeed;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSamples;
@@ -940,7 +940,7 @@
         private System.Windows.Forms.Button cmdSort;
         private System.Windows.Forms.ComboBox cboAlg1;
         private System.Windows.Forms.PictureBox pnlSort1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label selectSortingAlghorithmLabel;
     }
 }
 
