@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
+// ReSharper disable UnusedMember.Global
 
 namespace Mega_Project
 {
     public class Sorting
     {
         public readonly Draw Draw;
-        readonly Random _rand = new Random();
+        private readonly Random _rand = new Random();
         public int OperationsCompare;
         public int OperationsSwap;
         public Sorting(ArrayList list, PictureBox pic, int s)

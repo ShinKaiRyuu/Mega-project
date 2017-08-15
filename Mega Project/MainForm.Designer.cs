@@ -72,6 +72,7 @@
             this.findPrimeNumberDescriptionLabel = new System.Windows.Forms.Label();
             this.findPrimeNumberTrackBar = new System.Windows.Forms.TrackBar();
             this.findCostOfTileToCoverWxHFloorTabPage = new System.Windows.Forms.TabPage();
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel = new System.Windows.Forms.Label();
             this.findCostOfTileTOCoverWxHFloorDescriptionLabel = new System.Windows.Forms.Label();
             this.findCostOfTileToCoverWxHFloorAutocalculateCheckBox = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -80,14 +81,14 @@
             this.findCostOfTileToCoverWxHFloorWidthValueLabel = new System.Windows.Forms.Label();
             this.findCostOfTileToCoverWxHFloorCostValueLabel = new System.Windows.Forms.Label();
             this.findCostOfTileToCoverWxHFloorHeightTrackBar = new System.Windows.Forms.TrackBar();
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar = new System.Windows.Forms.TrackBar();
             this.findCostOfTileToCoverWxHFloorFloorHeightLabel = new System.Windows.Forms.Label();
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel = new System.Windows.Forms.Label();
             this.findCostOfTileToCoverWxHFloorCostTrackBar = new System.Windows.Forms.TrackBar();
             this.findCostOfTileToCoverWxHFloorFloorCostM2Label = new System.Windows.Forms.Label();
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar = new System.Windows.Forms.TrackBar();
             this.visualisationTabPage = new System.Windows.Forms.TabPage();
             this.visualisingSubProjectTabControl = new System.Windows.Forms.TabControl();
             this.visualiseSortingTabPage = new System.Windows.Forms.TabPage();
+            this.cmdAbort = new System.Windows.Forms.Button();
             this.selectSortingAlghorithmLabel = new System.Windows.Forms.Label();
             this.cmdResume = new System.Windows.Forms.Button();
             this.cmdSuspend = new System.Windows.Forms.Button();
@@ -104,20 +105,19 @@
             this.benchmarkTabPage = new System.Windows.Forms.TabPage();
             this.benchmarkSubprojectTabControl = new System.Windows.Forms.TabControl();
             this.MD5TabPage = new System.Windows.Forms.TabPage();
+            this.benchmarkMD5DescriptionLabel = new System.Windows.Forms.Label();
+            this.benchmarkMD5MD5WikiDescriptionLabel = new System.Windows.Forms.Label();
             this.benchmarkMD5DataGridView = new System.Windows.Forms.DataGridView();
             this.benchmarkMD5ProgressBar = new System.Windows.Forms.ProgressBar();
             this.benchmarkMD5RunBenchmarkButton = new System.Windows.Forms.Button();
             this.Sha256TabPage = new System.Windows.Forms.TabPage();
+            this.benchmarkSha256DescriptionLabel = new System.Windows.Forms.Label();
+            this.benchmarkSha256Sha256WikiDescriptionLabel = new System.Windows.Forms.Label();
             this.benchmarkSha256DataGridView = new System.Windows.Forms.DataGridView();
             this.benchmarkSha256ProgressBar = new System.Windows.Forms.ProgressBar();
             this.benchmarkSha256RunBenchmarkButton = new System.Windows.Forms.Button();
             this.debugRichTextBox = new System.Windows.Forms.RichTextBox();
             this.debugLabel = new System.Windows.Forms.Label();
-            this.cmdAbort = new System.Windows.Forms.Button();
-            this.benchmarkMD5MD5WikiDescriptionLabel = new System.Windows.Forms.Label();
-            this.benchmarkMD5DescriptionLabel = new System.Windows.Forms.Label();
-            this.benchmarkSha256DescriptionLabel = new System.Windows.Forms.Label();
-            this.benchmarkSha256Sha256WikiDescriptionLabel = new System.Windows.Forms.Label();
             this.projectTabControl.SuspendLayout();
             this.numbersTabPage.SuspendLayout();
             this.numbersSubprojectTabControl.SuspendLayout();
@@ -133,8 +133,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.findPrimeNumberTrackBar)).BeginInit();
             this.findCostOfTileToCoverWxHFloorTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorHeightTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorWidthTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorCostTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorWidthTrackBar)).BeginInit();
             this.visualisationTabPage.SuspendLayout();
             this.visualisingSubProjectTabControl.SuspendLayout();
             this.visualiseSortingTabPage.SuspendLayout();
@@ -596,7 +596,7 @@
             // findPrimeNumberAutogenerateCheckBox
             // 
             this.findPrimeNumberAutogenerateCheckBox.AutoSize = true;
-            this.findPrimeNumberAutogenerateCheckBox.Location = new System.Drawing.Point(612, 149);
+            this.findPrimeNumberAutogenerateCheckBox.Location = new System.Drawing.Point(613, 149);
             this.findPrimeNumberAutogenerateCheckBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.findPrimeNumberAutogenerateCheckBox.Name = "findPrimeNumberAutogenerateCheckBox";
             this.findPrimeNumberAutogenerateCheckBox.Size = new System.Drawing.Size(175, 17);
@@ -609,7 +609,7 @@
             this.findPrimeNumberGenerateButton.Location = new System.Drawing.Point(5, 120);
             this.findPrimeNumberGenerateButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.findPrimeNumberGenerateButton.Name = "findPrimeNumberGenerateButton";
-            this.findPrimeNumberGenerateButton.Size = new System.Drawing.Size(603, 72);
+            this.findPrimeNumberGenerateButton.Size = new System.Drawing.Size(604, 72);
             this.findPrimeNumberGenerateButton.TabIndex = 9;
             this.findPrimeNumberGenerateButton.Text = "Generate";
             this.findPrimeNumberGenerateButton.UseVisualStyleBackColor = true;
@@ -668,6 +668,15 @@
             this.findCostOfTileToCoverWxHFloorTabPage.TabIndex = 5;
             this.findCostOfTileToCoverWxHFloorTabPage.Text = "Find Cost of Tile to Cover W x H Floor";
             this.findCostOfTileToCoverWxHFloorTabPage.UseVisualStyleBackColor = true;
+            // 
+            // findCostOfTileToCoverWxHFloorFloorWidthLabel
+            // 
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.AutoSize = true;
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Location = new System.Drawing.Point(5, 75);
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Name = "findCostOfTileToCoverWxHFloorFloorWidthLabel";
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Size = new System.Drawing.Size(35, 13);
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.TabIndex = 2;
+            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Text = "Width";
             // 
             // findCostOfTileTOCoverWxHFloorDescriptionLabel
             // 
@@ -745,15 +754,6 @@
             this.findCostOfTileToCoverWxHFloorHeightTrackBar.TabIndex = 5;
             this.findCostOfTileToCoverWxHFloorHeightTrackBar.Scroll += new System.EventHandler(this.findCostOfTileToCoverWxHFloorHeightTrackBar_Scroll);
             // 
-            // findCostOfTileToCoverWxHFloorWidthTrackBar
-            // 
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.BackColor = System.Drawing.SystemColors.Window;
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Location = new System.Drawing.Point(9, 90);
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Name = "findCostOfTileToCoverWxHFloorWidthTrackBar";
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Size = new System.Drawing.Size(758, 45);
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.TabIndex = 4;
-            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Scroll += new System.EventHandler(this.findCostOfTileToCoverWxHFloorWidthTrackBar_Scroll);
-            // 
             // findCostOfTileToCoverWxHFloorFloorHeightLabel
             // 
             this.findCostOfTileToCoverWxHFloorFloorHeightLabel.AutoSize = true;
@@ -762,15 +762,6 @@
             this.findCostOfTileToCoverWxHFloorFloorHeightLabel.Size = new System.Drawing.Size(38, 13);
             this.findCostOfTileToCoverWxHFloorFloorHeightLabel.TabIndex = 5;
             this.findCostOfTileToCoverWxHFloorFloorHeightLabel.Text = "Height";
-            // 
-            // findCostOfTileToCoverWxHFloorFloorWidthLabel
-            // 
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.AutoSize = true;
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Location = new System.Drawing.Point(5, 75);
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Name = "findCostOfTileToCoverWxHFloorFloorWidthLabel";
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Size = new System.Drawing.Size(35, 13);
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.TabIndex = 2;
-            this.findCostOfTileToCoverWxHFloorFloorWidthLabel.Text = "Width";
             // 
             // findCostOfTileToCoverWxHFloorCostTrackBar
             // 
@@ -791,6 +782,15 @@
             this.findCostOfTileToCoverWxHFloorFloorCostM2Label.Size = new System.Drawing.Size(45, 13);
             this.findCostOfTileToCoverWxHFloorFloorCostM2Label.TabIndex = 0;
             this.findCostOfTileToCoverWxHFloorFloorCostM2Label.Text = "Cost m2";
+            // 
+            // findCostOfTileToCoverWxHFloorWidthTrackBar
+            // 
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.BackColor = System.Drawing.SystemColors.Window;
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Location = new System.Drawing.Point(9, 90);
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Name = "findCostOfTileToCoverWxHFloorWidthTrackBar";
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Size = new System.Drawing.Size(758, 45);
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.TabIndex = 4;
+            this.findCostOfTileToCoverWxHFloorWidthTrackBar.Scroll += new System.EventHandler(this.findCostOfTileToCoverWxHFloorWidthTrackBar_Scroll);
             // 
             // visualisationTabPage
             // 
@@ -838,7 +838,18 @@
             this.visualiseSortingTabPage.TabIndex = 1;
             this.visualiseSortingTabPage.Text = "Sorting";
             this.visualiseSortingTabPage.UseVisualStyleBackColor = true;
-            this.visualiseSortingTabPage.Enter += new System.EventHandler(this.tabPage6_Enter);
+            this.visualiseSortingTabPage.Enter += new System.EventHandler(this.visualisationTabPage_Enter);
+            // 
+            // cmdAbort
+            // 
+            this.cmdAbort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdAbort.Location = new System.Drawing.Point(550, 242);
+            this.cmdAbort.Name = "cmdAbort";
+            this.cmdAbort.Size = new System.Drawing.Size(75, 23);
+            this.cmdAbort.TabIndex = 65;
+            this.cmdAbort.Text = "Abort";
+            this.cmdAbort.UseVisualStyleBackColor = true;
+            this.cmdAbort.Click += new System.EventHandler(this.cmdAbort_Click);
             // 
             // selectSortingAlghorithmLabel
             // 
@@ -982,7 +993,7 @@
             "Odd-Even Sort",
             "Pigeonhole Sort",
             "Quicksort",
-            "Quicksort with Insertion Sort",
+            "Quicksort With Insertion Sort",
             "Radix Sort",
             "Selection Sort",
             "Shell Sort",
@@ -1038,6 +1049,24 @@
             this.MD5TabPage.Text = "MD5";
             this.MD5TabPage.UseVisualStyleBackColor = true;
             // 
+            // benchmarkMD5DescriptionLabel
+            // 
+            this.benchmarkMD5DescriptionLabel.AutoSize = true;
+            this.benchmarkMD5DescriptionLabel.Location = new System.Drawing.Point(5, 4);
+            this.benchmarkMD5DescriptionLabel.Name = "benchmarkMD5DescriptionLabel";
+            this.benchmarkMD5DescriptionLabel.Size = new System.Drawing.Size(158, 26);
+            this.benchmarkMD5DescriptionLabel.TabIndex = 5;
+            this.benchmarkMD5DescriptionLabel.Text = "Press Benchmark button to test \r\nsystem with MD5 hashing";
+            // 
+            // benchmarkMD5MD5WikiDescriptionLabel
+            // 
+            this.benchmarkMD5MD5WikiDescriptionLabel.AutoSize = true;
+            this.benchmarkMD5MD5WikiDescriptionLabel.Location = new System.Drawing.Point(5, 99);
+            this.benchmarkMD5MD5WikiDescriptionLabel.Name = "benchmarkMD5MD5WikiDescriptionLabel";
+            this.benchmarkMD5MD5WikiDescriptionLabel.Size = new System.Drawing.Size(182, 143);
+            this.benchmarkMD5MD5WikiDescriptionLabel.TabIndex = 4;
+            this.benchmarkMD5MD5WikiDescriptionLabel.Text = resources.GetString("benchmarkMD5MD5WikiDescriptionLabel.Text");
+            // 
             // benchmarkMD5DataGridView
             // 
             this.benchmarkMD5DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1079,6 +1108,24 @@
             this.Sha256TabPage.Text = "Sha256";
             this.Sha256TabPage.UseVisualStyleBackColor = true;
             // 
+            // benchmarkSha256DescriptionLabel
+            // 
+            this.benchmarkSha256DescriptionLabel.AutoSize = true;
+            this.benchmarkSha256DescriptionLabel.Location = new System.Drawing.Point(5, 4);
+            this.benchmarkSha256DescriptionLabel.Name = "benchmarkSha256DescriptionLabel";
+            this.benchmarkSha256DescriptionLabel.Size = new System.Drawing.Size(158, 26);
+            this.benchmarkSha256DescriptionLabel.TabIndex = 8;
+            this.benchmarkSha256DescriptionLabel.Text = "Press Benchmark button to test \r\nsystem with Sha256 hashing";
+            // 
+            // benchmarkSha256Sha256WikiDescriptionLabel
+            // 
+            this.benchmarkSha256Sha256WikiDescriptionLabel.AutoSize = true;
+            this.benchmarkSha256Sha256WikiDescriptionLabel.Location = new System.Drawing.Point(6, 86);
+            this.benchmarkSha256Sha256WikiDescriptionLabel.Name = "benchmarkSha256Sha256WikiDescriptionLabel";
+            this.benchmarkSha256Sha256WikiDescriptionLabel.Size = new System.Drawing.Size(190, 156);
+            this.benchmarkSha256Sha256WikiDescriptionLabel.TabIndex = 7;
+            this.benchmarkSha256Sha256WikiDescriptionLabel.Text = resources.GetString("benchmarkSha256Sha256WikiDescriptionLabel.Text");
+            // 
             // benchmarkSha256DataGridView
             // 
             this.benchmarkSha256DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1103,7 +1150,7 @@
             this.benchmarkSha256RunBenchmarkButton.TabIndex = 4;
             this.benchmarkSha256RunBenchmarkButton.Text = "Benchmark";
             this.benchmarkSha256RunBenchmarkButton.UseVisualStyleBackColor = true;
-            this.benchmarkSha256RunBenchmarkButton.Click += new System.EventHandler(this.button1_Click);
+            this.benchmarkSha256RunBenchmarkButton.Click += new System.EventHandler(this.benchmarkSha256_Click);
             // 
             // debugRichTextBox
             // 
@@ -1123,53 +1170,6 @@
             this.debugLabel.Size = new System.Drawing.Size(39, 13);
             this.debugLabel.TabIndex = 2;
             this.debugLabel.Text = "Debug";
-            // 
-            // cmdAbort
-            // 
-            this.cmdAbort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdAbort.Location = new System.Drawing.Point(550, 242);
-            this.cmdAbort.Name = "cmdAbort";
-            this.cmdAbort.Size = new System.Drawing.Size(75, 23);
-            this.cmdAbort.TabIndex = 65;
-            this.cmdAbort.Text = "Abort";
-            this.cmdAbort.UseVisualStyleBackColor = true;
-            this.cmdAbort.Click += new System.EventHandler(this.cmdAbort_Click);
-            // 
-            // benchmarkMD5MD5WikiDescriptionLabel
-            // 
-            this.benchmarkMD5MD5WikiDescriptionLabel.AutoSize = true;
-            this.benchmarkMD5MD5WikiDescriptionLabel.Location = new System.Drawing.Point(5, 99);
-            this.benchmarkMD5MD5WikiDescriptionLabel.Name = "benchmarkMD5MD5WikiDescriptionLabel";
-            this.benchmarkMD5MD5WikiDescriptionLabel.Size = new System.Drawing.Size(182, 143);
-            this.benchmarkMD5MD5WikiDescriptionLabel.TabIndex = 4;
-            this.benchmarkMD5MD5WikiDescriptionLabel.Text = resources.GetString("benchmarkMD5MD5WikiDescriptionLabel.Text");
-            // 
-            // benchmarkMD5DescriptionLabel
-            // 
-            this.benchmarkMD5DescriptionLabel.AutoSize = true;
-            this.benchmarkMD5DescriptionLabel.Location = new System.Drawing.Point(5, 4);
-            this.benchmarkMD5DescriptionLabel.Name = "benchmarkMD5DescriptionLabel";
-            this.benchmarkMD5DescriptionLabel.Size = new System.Drawing.Size(158, 26);
-            this.benchmarkMD5DescriptionLabel.TabIndex = 5;
-            this.benchmarkMD5DescriptionLabel.Text = "Press Benchmark button to test \r\nsystem with MD5 hashing";
-            // 
-            // benchmarkSha256DescriptionLabel
-            // 
-            this.benchmarkSha256DescriptionLabel.AutoSize = true;
-            this.benchmarkSha256DescriptionLabel.Location = new System.Drawing.Point(5, 4);
-            this.benchmarkSha256DescriptionLabel.Name = "benchmarkSha256DescriptionLabel";
-            this.benchmarkSha256DescriptionLabel.Size = new System.Drawing.Size(158, 26);
-            this.benchmarkSha256DescriptionLabel.TabIndex = 8;
-            this.benchmarkSha256DescriptionLabel.Text = "Press Benchmark button to test \r\nsystem with Sha256 hashing";
-            // 
-            // benchmarkSha256Sha256WikiDescriptionLabel
-            // 
-            this.benchmarkSha256Sha256WikiDescriptionLabel.AutoSize = true;
-            this.benchmarkSha256Sha256WikiDescriptionLabel.Location = new System.Drawing.Point(6, 86);
-            this.benchmarkSha256Sha256WikiDescriptionLabel.Name = "benchmarkSha256Sha256WikiDescriptionLabel";
-            this.benchmarkSha256Sha256WikiDescriptionLabel.Size = new System.Drawing.Size(190, 156);
-            this.benchmarkSha256Sha256WikiDescriptionLabel.TabIndex = 7;
-            this.benchmarkSha256Sha256WikiDescriptionLabel.Text = resources.GetString("benchmarkSha256Sha256WikiDescriptionLabel.Text");
             // 
             // MainForm
             // 
@@ -1207,8 +1207,8 @@
             this.findCostOfTileToCoverWxHFloorTabPage.ResumeLayout(false);
             this.findCostOfTileToCoverWxHFloorTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorHeightTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorWidthTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorCostTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.findCostOfTileToCoverWxHFloorWidthTrackBar)).EndInit();
             this.visualisationTabPage.ResumeLayout(false);
             this.visualisingSubProjectTabControl.ResumeLayout(false);
             this.visualiseSortingTabPage.ResumeLayout(false);
