@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -225,169 +226,210 @@ namespace Mega_Project
         private Bitmap _bmpsave1;
         private Thread _thread1;
         private static readonly Random Rand = new Random();
+        private int _speed;
+        private string _alg1;
+        private Sorting _srt;
+        private ThreadStart _ts;
 
-        private void cmdSort_Click(object sender, EventArgs e)
+        private void PrepareArrayRandom()
+        {
+
+        }
+
+        private void PrepareArraySorted()
+        {
+            _array1.Sort();
+        }
+
+        private void PrepareArrayNearlySorted()
+        {
+            _array1.Sort();
+
+            var maxValue = _array1.Count / 10;
+
+            // move anywhere from 2 items to 20% of the items
+            var itemsToMove = Rand.Next(1, maxValue);
+            for (var i = 0; i < itemsToMove; i++)
+            {
+                var a = Rand.Next(0, _array1.Count);
+                var b = Rand.Next(0, _array1.Count);
+
+                while (a == b)
+                {
+                    a = Rand.Next(0, _array1.Count);
+                    b = Rand.Next(0, _array1.Count);
+                }
+
+                var temp = _array1[a];
+                _array1[a] = _array1[b];
+                _array1[b] = temp;
+            }
+        }
+
+        private void PrepareArrayReversed()
+        {
+            _array1.Sort();
+            _array1.Reverse();
+        }
+
+        private void PrepareArrayFewUnique()
+        {
+            var maxValue = 10;
+
+            if (_array1.Count < 100)
+                maxValue = 6;
+
+            // choose a random amount of unique values
+            maxValue = Rand.Next(2, maxValue);
+
+            var temp = new ArrayList();
+            for (var i = 0; i < maxValue; i++)
+            {
+                var y = (int)((double)(i + 1) / maxValue * pnlSort1.Height);
+                temp.Add(y);
+            }
+
+            for (var i = 0; i < _array1.Count; i++)
+            {
+                _array1[i] = temp[Rand.Next(0, maxValue)];
+            }
+        }
+
+        private void PrepareArrayForSorting()
+        {
+            if (ddTypeOfData.SelectedItem.ToString() == "Random")
+            {
+                PrepareArrayRandom();
+            }
+            else if (ddTypeOfData.SelectedItem.ToString() == "Sorted")
+            {
+                PrepareArraySorted();
+            }
+            else if (ddTypeOfData.SelectedItem.ToString() == "Nearly Sorted")
+            {
+                PrepareArrayNearlySorted();
+            }
+            else if (ddTypeOfData.SelectedItem.ToString() == "Reversed")
+            {
+                PrepareArrayReversed();
+            }
+            else if (ddTypeOfData.SelectedItem.ToString() == "Few Unique")
+            {
+                PrepareArrayFewUnique();
+            }
+        }
+
+        private void InitializeVisualisationParameters(out int speed,out string alg1,out Sorting srt)
+        {
+            speed = 1;
+            for (var i = 0; i < tbSpeed.Value; i++)
+            {
+                speed *= 2;
+            }
+            alg1 = "";
+            if (cboAlg1.SelectedItem != null)
+                alg1 = cboAlg1.SelectedItem.ToString();
+            srt = new Sorting(_array1, pnlSort1, speed);
+        }
+
+        private void RerunThread()
         {
             if (_thread1 != null)
             {
                 _thread1.Abort();
                 _thread1.Join();
             }
+        }
 
-            PrepareForSort();
-
-            if (ddTypeOfData.SelectedItem.ToString() == "Random")
+        private void RunThread()
+        {
+            if (_alg1 != "")
             {
-                // ready to go
-            }
-            else if (ddTypeOfData.SelectedItem.ToString() == "Sorted")
-            {
-                _array1.Sort();
-            }
-            else if (ddTypeOfData.SelectedItem.ToString() == "Nearly Sorted")
-            {
-                _array1.Sort();
-
-                var maxValue = _array1.Count / 10;
-
-                // move anywhere from 2 items to 20% of the items
-                var itemsToMove = Rand.Next(1, maxValue);
-                for (var i = 0; i < itemsToMove; i++)
-                {
-                    var a = Rand.Next(0, _array1.Count);
-                    var b = Rand.Next(0, _array1.Count);
-
-                    while (a == b)
-                    {
-                        a = Rand.Next(0, _array1.Count);
-                        b = Rand.Next(0, _array1.Count);
-                    }
-
-                    var temp = _array1[a];
-                    _array1[a] = _array1[b];
-                    _array1[b] = temp;
-                }
-
-            }
-            else if (ddTypeOfData.SelectedItem.ToString() == "Reversed")
-            {
-                _array1.Sort();
-                _array1.Reverse();
-
-            }
-            else if (ddTypeOfData.SelectedItem.ToString() == "Few Unique")
-            {
-                var maxValue = 10;
-
-                if (_array1.Count < 100)
-                    maxValue = 6;
-
-                // choose a random amount of unique values
-                maxValue = Rand.Next(2, maxValue);
-
-                var temp = new ArrayList();
-                for (var i = 0; i < maxValue; i++)
-                {
-                    var y = (int)((double)(i + 1) / maxValue * pnlSort1.Height);
-                    temp.Add(y);
-                }
-
-                for (var i = 0; i < _array1.Count; i++)
-                {
-                    _array1[i] = temp[Rand.Next(0, maxValue)];
-                }
-
-            }
-
-            var speed = 1;
-            for (var i = 0; i < tbSpeed.Value; i++)
-            {
-                speed *= 2;
-            }
-            var alg1 = "";
-            if (cboAlg1.SelectedItem != null)
-                alg1 = cboAlg1.SelectedItem.ToString();
-            var srt = new Sorting(_array1, pnlSort1, speed);
-
-            ThreadStart ts = delegate
-            {
-                switch (alg1)
-                {
-                    case "BiDirectional Bubble Sort":
-                        srt.BiDirectionalBubbleSort(_array1);
-                        break;
-                    case "Bubble Sort":
-                        srt.BubbleSort(_array1);
-                        break;
-                    case "Comb Sort":
-                        srt.CombSort(_array1);
-                        break;
-                    case "Counting Sort":
-                        srt.CountingSort(_array1);
-                        break;
-                    case "Cycle Sort":
-                        srt.CycleSort(_array1);
-                        break;
-                    case "Gnome Sort":
-                        srt.GnomeSort(_array1);
-                        break;
-                    case "Heap Sort":
-                        srt.HeapSort(_array1);
-                        break;
-                    case "Insertion Sort":
-                        srt.InsertionSort(_array1);
-                        break;
-                    case "Merge Sort (In Place)":
-                        srt.MergeSortInPlace(_array1, 0, _array1.Count - 1);
-                        break;
-                    case "Merge Sort (Double Storage)":
-                        srt.MergeSortDoubleStorage(_array1, 0, _array1.Count - 1);
-                        break;
-                    case "Odd-Even Sort":
-                        srt.OddEvenSort(_array1);
-                        break;
-                    case "Pigeonhole Sort":
-                        srt.PigeonholeSort(_array1);
-                        break;
-                    case "Quicksort":
-                        srt.Quicksort(_array1, 0, _array1.Count - 1);
-                        break;
-                    case "Quicksort with Insertion Sort":
-                        srt.QuicksortWithInsertionSort(_array1, 0, _array1.Count - 1);
-                        break;
-                    case "Radix Sort":
-                        srt.RadixSort(_array1);
-                        break;
-                    case "Selection Sort":
-                        srt.SelectionSort(_array1);
-                        break;
-                    case "Shell Sort":
-                        srt.ShellSort(_array1);
-                        break;
-                    case "Smoothsort":
-                        srt.Smoothsort(_array1);
-                        break;
-                    case "Timsort":
-                        srt.Timsort(_array1, 0, _array1.Count);
-                        break;
-                    default:
-                        srt.Quicksort(_array1, 0, _array1.Count - 1);
-                        break;
-                }
-
-                srt.Draw.FinishDrawing();
-
-                SetText("compare:" + srt.OperationsCompare + " swap:" + srt.OperationsSwap);
-
-                if (!IsSorted(_array1))
-                    MessageBox.Show(@"#1 Sort Failed!");
-            };
-
-            if (alg1 != "")
-            {
-                _thread1 = new Thread(ts);
+                _thread1 = new Thread(_ts);
                 _thread1.Start();
             }
+        }
+
+        private void SelectSortAlghoritm()
+        {
+            _ts = delegate
+            {
+                switch (_alg1)
+                {
+                    case "BiDirectional Bubble Sort":
+                        _srt.BiDirectionalBubbleSort(_array1);
+                        break;
+                    case "Bubble Sort":
+                        _srt.BubbleSort(_array1);
+                        break;
+                    case "Comb Sort":
+                        _srt.CombSort(_array1);
+                        break;
+                    case "Counting Sort":
+                        _srt.CountingSort(_array1);
+                        break;
+                    case "Cycle Sort":
+                        _srt.CycleSort(_array1);
+                        break;
+                    case "Gnome Sort":
+                        _srt.GnomeSort(_array1);
+                        break;
+                    case "Heap Sort":
+                        _srt.HeapSort(_array1);
+                        break;
+                    case "Insertion Sort":
+                        _srt.InsertionSort(_array1);
+                        break;
+                    case "Merge Sort (In Place)":
+                        _srt.MergeSortInPlace(_array1, 0, _array1.Count - 1);
+                        break;
+                    case "Merge Sort (Double Storage)":
+                        _srt.MergeSortDoubleStorage(_array1, 0, _array1.Count - 1);
+                        break;
+                    case "Odd-Even Sort":
+                        _srt.OddEvenSort(_array1);
+                        break;
+                    case "Pigeonhole Sort":
+                        _srt.PigeonholeSort(_array1);
+                        break;
+                    case "Quicksort":
+                        _srt.Quicksort(_array1, 0, _array1.Count - 1);
+                        break;
+                    case "Quicksort with Insertion Sort":
+                        _srt.QuicksortWithInsertionSort(_array1, 0, _array1.Count - 1);
+                        break;
+                    case "Radix Sort":
+                        _srt.RadixSort(_array1);
+                        break;
+                    case "Selection Sort":
+                        _srt.SelectionSort(_array1);
+                        break;
+                    case "Shell Sort":
+                        _srt.ShellSort(_array1);
+                        break;
+                    case "Smoothsort":
+                        _srt.Smoothsort(_array1);
+                        break;
+                    case "Timsort":
+                        _srt.Timsort(_array1, 0, _array1.Count);
+                        break;
+                    default:
+                        _srt.Quicksort(_array1, 0, _array1.Count - 1);
+                        break;
+                }
+                _srt.Draw.FinishDrawing();
+                SetText("compare:" + _srt.OperationsCompare + " swap:" + _srt.OperationsSwap);
+            };
+        }
+
+        private void cmdSort_Click(object sender, EventArgs e)
+        {
+            RerunThread();
+            PrepareForSort();
+            PrepareArrayForSorting();
+            InitializeVisualisationParameters(out _speed,out _alg1,out _srt);
+            SelectSortAlghoritm();
+            RunThread();
         }
 
         private void Randomize(IList list)
@@ -471,6 +513,9 @@ namespace Mega_Project
 
             visualisingSubProjectTabControl.Width = Width - 60;
             visualisingSubProjectTabControl.Height = Height - 237;
+
+            benchmarkSubprojectTabControl.Width = Width - 60;
+            benchmarkSubprojectTabControl.Height = Height - 237;
 
             debugLabel.Left = 16;
             debugLabel.Top = Height - 180;
