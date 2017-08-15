@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Mega_Project
 {
@@ -10,14 +11,14 @@ namespace Mega_Project
 
         public static List<int> Fibonachi(int n)
         {
-            List<int> fibonachiSequence = new List<int>();
-            int a = 0;
-            int b = 1;
+            var fibonachiSequence = new List<int>();
+            var a = 0;
+            var b = 1;
             fibonachiSequence.Add(a);
             fibonachiSequence.Add(b);
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
-                int temp = a;
+                var temp = a;
                 a = b;
                 b = temp + b;
                 fibonachiSequence.Add(a);
@@ -27,8 +28,8 @@ namespace Mega_Project
 
         public static List<int> PrimeFactor(int n)
         {
-            List<int> dividers = new List<int>();
-            for (int a = 2; n > 1; a++)
+            var dividers = new List<int>();
+            for (var a = 2; n > 1; a++)
             {
                 while (n % a == 0)
                 {
@@ -56,30 +57,27 @@ namespace Mega_Project
             return eCalculated;
         }
 
-        public static string CommonPrefix(string[] ss)
+        public static string CommonPrefix(string[] strings)
         {
-            switch (ss.Length)
+            switch (strings.Length)
             {
                 case 0:
                     return "";
                 case 1:
-                    return ss[0];
+                    return strings[0];
                 default:
-                    int prefixLength = 0;
+                    var prefixLength = 0;
 
-                    foreach (char c in ss[0])
+                    foreach (var c in strings[0])
                     {
-                        foreach (string s in ss)
+                        if (strings.Any(s => s.Length <= prefixLength || s[prefixLength] != c))
                         {
-                            if (s.Length <= prefixLength || s[prefixLength] != c)
-                            {
-                                return ss[0].Substring(0, prefixLength);
-                            }
+                            return strings[0].Substring(0, prefixLength);
                         }
                         prefixLength++;
                     }
 
-                    return ss[0]; // all strings identical up to length of ss[0];
+                    return strings[0]; 
             }
 
 
