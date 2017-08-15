@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using ThreadState = System.Threading.ThreadState;
 
 namespace Mega_Project
 {
@@ -150,7 +151,7 @@ namespace Mega_Project
                 _dictionaryFibonachi.TryGetValue(key, out result);
             }
             if (result != null)
-                findFibonachiSequenceResultlabel.Text = $@"Result : Fibonachi sequence({value})" +
+                findFibonachiSequenceResultlabel.Text = $@"Result : Fibonachi sequence({value})=" +
                                                         string.Join(";", result);
         }
         private void findFibonachiSequenceTrackBar_Scroll(object sender, EventArgs e)
@@ -307,7 +308,7 @@ namespace Mega_Project
             if (cboAlg1.SelectedItem != null)
                 alg1 = cboAlg1.SelectedItem.ToString();
             var srt = new Sorting(_array1, pnlSort1, speed);
-            
+
             ThreadStart ts = delegate
             {
                 switch (alg1)
@@ -377,11 +378,11 @@ namespace Mega_Project
                 srt.Draw.FinishDrawing();
 
                 SetText("compare:" + srt.OperationsCompare + " swap:" + srt.OperationsSwap);
-                
+
                 if (!IsSorted(_array1))
                     MessageBox.Show(@"#1 Sort Failed!");
             };
-            
+
             if (alg1 != "")
             {
                 _thread1 = new Thread(ts);
@@ -484,14 +485,22 @@ namespace Mega_Project
         private void cmdSuspend_Click(object sender, EventArgs e)
         {
 #pragma warning disable 618
-            _thread1.Suspend();
+            if (_thread1?.ThreadState == ThreadState.WaitSleepJoin)
+            {
+                debugRichTextBox.Text = _thread1.ThreadState.ToString();
+                _thread1?.Suspend();
+            }
+
 #pragma warning restore 618
         }
 
         private void cmdResume_Click(object sender, EventArgs e)
         {
 #pragma warning disable 618
-            _thread1.Resume();
+            if (_thread1?.ThreadState == ThreadState.Suspended)
+            {
+                _thread1?.Resume();
+            }
 #pragma warning restore 618
         }
 
@@ -505,7 +514,7 @@ namespace Mega_Project
             var cost = findCostOfTileToCoverWxHFloorCostTrackBar.Value;
             var width = findCostOfTileToCoverWxHFloorWidthTrackBar.Value;
             var height = findCostOfTileToCoverWxHFloorHeightTrackBar.Value;
-            findCostOfTileToCoverWxHFloorResultLabel.Text = (cost * width * height).ToString();
+            findCostOfTileToCoverWxHFloorResultLabel.Text = @"Total cost : " + (cost * width * height);
         }
 
         private void findCostOfTileToCoverWxHFloorCostTrackBar_Scroll(object sender, EventArgs e)
@@ -704,6 +713,17 @@ namespace Mega_Project
             thread1.Start();
         }
 
-
+        private void cmdAbort_Click(object sender, EventArgs e)
+        {
+            if (_thread1?.ThreadState == ThreadState.Suspended)
+            {
+                _thread1.Resume();
+                _thread1.Abort();
+            }
+            else
+            {
+                _thread1?.Abort();
+            }
+        }
     }
 }

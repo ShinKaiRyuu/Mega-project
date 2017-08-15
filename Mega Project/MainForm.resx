@@ -117,4 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="benchmarkMD5MD5WikiDescriptionLabel.Text" xml:space="preserve">
+    <value>The MD5 algorithm is a widely used 
+hash function producing a 128-bit 
+hash value. 
+Although MD5 was initially designed
+ to be used as a cryptographic hash 
+function, 
+it has been found to suffer from
+ extensive vulnerabilities. 
+It can still be used as a checksum to 
+verify data integrity, but only against
+ unintentional corruption.</value>
+  </data>
+  <data name="benchmarkSha256Sha256WikiDescriptionLabel.Text" xml:space="preserve">
+    <value>The SHA-256 compression function 
+operates on a 512-bit message block 
+and a 256-bit intermediate hash value. 
+It is essentially a 256-bit block cipher 
+algorithm which encrypts the 
+intermediate hash value using 
+the message block as key. 
+Hence there are two main 
+components to describe: (1)
+ the SHA-256 compression
+ function, and (2) the SHA-256
+ message schedule.</value>
+  </data>
 </root>
