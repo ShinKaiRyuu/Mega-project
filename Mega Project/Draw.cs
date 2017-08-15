@@ -2,81 +2,81 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mega_Project
 {
     public class Draw
     {
-        ArrayList arrayToSort;
-        Graphics g;
-        public int operationCount;
-        public int operationsPerFrame;
-        DateTime nextFrameTime;
-        public Dictionary<int, bool> highlightedIndexes = new Dictionary<int, bool>();
-        Bitmap bmpsave;
-        PictureBox pnlSamples;
-        int originalPanelHeight;
-        int imgCount;
-        int frameMS;
+        private readonly ArrayList _arrayToSort;
+        private Graphics _g;
+        public int OperationCount;
+        private readonly int _operationsPerFrame;
+        private DateTime _nextFrameTime;
+        public readonly Dictionary<int, bool> HighlightedIndexes = new Dictionary<int, bool>();
+        private Bitmap _bmpsave;
+        private readonly PictureBox _pnlSamples;
+        private readonly int _originalPanelHeight;
+        private readonly int _frameMs;
+        private double _multiplyHeight;
+        private Pen _blackPen;
+        private SolidBrush _blackBrush;
+        private Pen _redPen;
+        private SolidBrush _redBrush;
+        private int _width;
+        private List<int> _swaps;
 
-        public Draw(ArrayList list, PictureBox pic,  int s)
+        public Draw(ArrayList list, PictureBox pic, int s)
         {
-            imgCount = 0;
-            arrayToSort = list;
-            pnlSamples = pic;
+            _arrayToSort = list;
+            _pnlSamples = pic;
 
-            operationCount = 0;
-            operationsPerFrame = s;
-            frameMS = 1000; // so now operationsPerFrame is operations per second
+            OperationCount = 0;
+            _operationsPerFrame = s;
+            _frameMs = 1000; // so now operationsPerFrame is operations per second
 
             // reduce the frame wait for better visuals (increased frame rate)
-            while (frameMS >= 40 && operationsPerFrame > 1)
+            while (_frameMs >= 40 && _operationsPerFrame > 1)
             {
-                operationsPerFrame = operationsPerFrame / 2;
-                frameMS = frameMS / 2;
+                _operationsPerFrame = _operationsPerFrame / 2;
+                _frameMs = _frameMs / 2;
             }
 
-            bmpsave = new Bitmap(pnlSamples.Width, pnlSamples.Height);
-            g = Graphics.FromImage(bmpsave);
-            originalPanelHeight = pnlSamples.Height;
-            pnlSamples.Image = bmpsave;
-            nextFrameTime = DateTime.UtcNow;
+            _bmpsave = new Bitmap(_pnlSamples.Width, _pnlSamples.Height);
+            _g = Graphics.FromImage(_bmpsave);
+            _originalPanelHeight = _pnlSamples.Height;
+            _pnlSamples.Image = _bmpsave;
+            _nextFrameTime = DateTime.UtcNow;
 
-            checkForFrame();
+            CheckForFrame();
         }
-        public void checkForFrame()
+        public void CheckForFrame()
         {
-            if (operationCount >= operationsPerFrame || nextFrameTime <= DateTime.UtcNow)
-            {
-                // time to draw a new frame and wait
-                DrawSamples();
-                RefreshPanel(pnlSamples);
-                
-                // prepare for next frame
-                highlightedIndexes.Clear();
-                operationCount -= operationsPerFrame; // if there were more operations than needed, don't just forget those
+            if (OperationCount < _operationsPerFrame && _nextFrameTime > DateTime.UtcNow) return;
+            // time to draw a new frame and wait
+            DrawSamples();
+            RefreshPanel(_pnlSamples);
 
-                if (DateTime.UtcNow < nextFrameTime)
-                {
-                    Thread.Sleep((int)((nextFrameTime - DateTime.UtcNow).TotalMilliseconds));
-                }
-                nextFrameTime = nextFrameTime.AddMilliseconds(frameMS);
+            // prepare for next frame
+            HighlightedIndexes.Clear();
+            OperationCount -= _operationsPerFrame; // if there were more operations than needed, don't just forget those
+
+            if (DateTime.UtcNow < _nextFrameTime)
+            {
+                Thread.Sleep((int)((_nextFrameTime - DateTime.UtcNow).TotalMilliseconds));
             }
+            _nextFrameTime = _nextFrameTime.AddMilliseconds(_frameMs);
         }
 
-        delegate void SetControlValueCallback(Control pnlSort);
+        private delegate void SetControlValueCallback(Control pnlSort);
 
-        private void RefreshPanel(Control pnlSort)
+        private static void RefreshPanel(Control pnlSort)
         {
             if (pnlSort.InvokeRequired)
             {
-                SetControlValueCallback d = new SetControlValueCallback(RefreshPanel);
-                pnlSort.Invoke(d, new object[] { pnlSort });
+                var d = new SetControlValueCallback(RefreshPanel);
+                pnlSort.Invoke(d, pnlSort);
             }
             else
             {
@@ -84,103 +84,127 @@ namespace Mega_Project
             }
         }
 
-        public void DrawSamples()
+        private void Resize()
         {
-            // might need to grow or shrink if size is different from original (can't change array!)
-            double multiplyHeight = 1;
-
-            // check if need to change size
-
-            if (bmpsave.Width != pnlSamples.Width || bmpsave.Height != pnlSamples.Height)
+            _multiplyHeight = 1;
+            if (_bmpsave.Width != _pnlSamples.Width || _bmpsave.Height != _pnlSamples.Height)
             {
-                bmpsave = new Bitmap(pnlSamples.Width, pnlSamples.Height);
-                g = Graphics.FromImage(bmpsave);
-                pnlSamples.Image = bmpsave;
+                _bmpsave = new Bitmap(_pnlSamples.Width, _pnlSamples.Height);
+                _g = Graphics.FromImage(_bmpsave);
+                _pnlSamples.Image = _bmpsave;
             }
 
-            if (pnlSamples.Height != originalPanelHeight)
+            if (_pnlSamples.Height != _originalPanelHeight)
             {
-                multiplyHeight = (double)(pnlSamples.Height) / (double)(originalPanelHeight);
+                _multiplyHeight = _pnlSamples.Height / (double)(_originalPanelHeight);
             }
+        }
 
-            // start with white background
-            g.Clear(Color.White);
+        private void InitializeDrawParameters()
+        {
+            _g.Clear(Color.White);
 
             // use black sometimes
-            Pen pen = new Pen(Color.Black);
-            SolidBrush b = new SolidBrush(Color.Black);
+            _blackPen = new Pen(Color.Black);
+            _blackBrush = new SolidBrush(Color.Black);
 
             // use red sometimes
-            Pen redPen = new Pen(Color.Red);
-            SolidBrush redBrush = new SolidBrush(Color.Red);
+            _redPen = new Pen(Color.Red);
+            _redBrush = new SolidBrush(Color.Red);
 
             // draw a nice width based on number of elements
-            int w = (pnlSamples.Width / arrayToSort.Count) - 1;
-            string text = "";
-            List<int> a = new List<int>();
-            
-            for (int i = 0; i < this.arrayToSort.Count; i++)
-            {
-                int x = (int)(((double)pnlSamples.Width / arrayToSort.Count) * i);
+            _width = (_pnlSamples.Width / _arrayToSort.Count) - 1;
+            _swaps = new List<int>();
+        }
 
-                int itemHeight = (int)Math.Round(Convert.ToDouble(arrayToSort[i]) * multiplyHeight);
+        private void DrawSamples()
+        {
+            Resize();
+            InitializeDrawParameters();
+
+            // start with white background
+
+
+            for (var i = 0; i < _arrayToSort.Count; i++)
+            {
+                var x = (int)(((double)_pnlSamples.Width / _arrayToSort.Count) * i);
+
+                var itemHeight = (int)Math.Round(Convert.ToDouble(_arrayToSort[i]) * _multiplyHeight);
 
                 // draw highlighed versions
-                if (highlightedIndexes.ContainsKey(i))
+                if (HighlightedIndexes.ContainsKey(i))
                 {
-                    if (w <= 1)
-                    {
-                        g.DrawLine(redPen, new Point(x, pnlSamples.Height), new Point(x, (int)(pnlSamples.Height - itemHeight)));
-                        a.Add((int)arrayToSort[i]);
-                    }
-
-                    else
-                    {
-                        g.FillRectangle(redBrush, x, pnlSamples.Height - itemHeight, w, pnlSamples.Height);
-                        a.Add((int)arrayToSort[i]);
-                    }
+                    DrawRed(x, itemHeight, i);
                 }
-                
+
                 else // draw normal versions
                 {
-                    if (w <= 1)
-                    {
-                        g.DrawLine(pen, new Point(x, pnlSamples.Height), new Point(x, (int)(pnlSamples.Height - itemHeight)));
-                    }
-                    else
-                    {
-                        g.FillRectangle(b, x, pnlSamples.Height - itemHeight, w, pnlSamples.Height);
-                    }
+                    DrawBlack(x, itemHeight);
                 }
-                
+
             }
-            if (a.Count>1)
-            { if (a[0] > a[1])
-                {
-                    text = "SWAPING "+a[0]+" / "+a[1];
-                    g.DrawString(text, new Font("Arial", 10), redBrush, new Point(0, 5));
-                }
-                else
-                {
-                    text = "NO SWAPING";
-                    g.DrawString(text, new Font("Arial", 10), redBrush, new Point(0, 5));
-                }
+            if (_swaps.Count > 1)
+            {
+                DrawSwaps();
             }
-           
-            
+
+
         }
-        public void finishDrawing()
+
+        private void DrawSwaps()
         {
-            if (highlightedIndexes.Count > 0)
+            string text;
+            if (_swaps[0] > _swaps[1])
+            {
+                text = "SWAPING " + _swaps[0] + " / " + _swaps[1];
+                _g.DrawString(text, new Font("Arial", 10), _redBrush, new Point(0, 5));
+            }
+            else
+            {
+                text = "NO SWAPING";
+                _g.DrawString(text, new Font("Arial", 10), _redBrush, new Point(0, 5));
+            }
+        }
+
+        private void DrawBlack(int x, int itemHeight)
+        {
+            if (_width <= 1)
+            {
+                _g.DrawLine(_blackPen, new Point(x, _pnlSamples.Height), new Point(x, _pnlSamples.Height - itemHeight));
+            }
+            else
+            {
+                _g.FillRectangle(_blackBrush, x, _pnlSamples.Height - itemHeight, _width, _pnlSamples.Height);
+            }
+        }
+
+        private void DrawRed(int x, int itemHeight, int i)
+        {
+            if (_width <= 1)
+            {
+                _g.DrawLine(_redPen, new Point(x, _pnlSamples.Height), new Point(x, _pnlSamples.Height - itemHeight));
+                _swaps.Add((int)_arrayToSort[i]);
+            }
+
+            else
+            {
+                _g.FillRectangle(_redBrush, x, _pnlSamples.Height - itemHeight, _width, _pnlSamples.Height);
+                _swaps.Add((int)_arrayToSort[i]);
+            }
+        }
+
+        public void FinishDrawing()
+        {
+            if (HighlightedIndexes.Count > 0)
             {
                 // put one last frame in before the end
-                nextFrameTime = DateTime.UtcNow;
-                checkForFrame();
+                _nextFrameTime = DateTime.UtcNow;
+                CheckForFrame();
             }
 
             // draw the last frame
-            nextFrameTime = DateTime.UtcNow;
-            checkForFrame();
+            _nextFrameTime = DateTime.UtcNow;
+            CheckForFrame();
         }
     }
 }

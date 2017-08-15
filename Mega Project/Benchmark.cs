@@ -5,39 +5,39 @@ using BenchmarkDotNet.Running;
 
 namespace Mega_Project
 {
-    public class BenchmarkMD5
+    public class BenchmarkMd5
     {
         private const int N = 10000;
-        private readonly byte[] data;
+        private readonly byte[] _data;
 
-        private readonly MD5 md5 = MD5.Create();
+        private readonly MD5 _md5 = MD5.Create();
 
-        public BenchmarkMD5()
+        public BenchmarkMd5()
         {
-            data = new byte[N];
-            new Random(42).NextBytes(data);
+            _data = new byte[N];
+            new Random(42).NextBytes(_data);
         }
 
         [Benchmark]
-        public byte[] Md5() => md5.ComputeHash(data);
+        public byte[] Md5() => _md5.ComputeHash(_data);
     }
 
     public class BenchmarkSha256
     {
         private const int N = 10000;
-        private readonly byte[] data;
+        private readonly byte[] _data;
 
-        private readonly SHA256 sha256 = SHA256.Create();
+        private readonly SHA256 _sha256 = SHA256.Create();
 
 
         public BenchmarkSha256()
         {
-            data = new byte[N];
-            new Random(42).NextBytes(data);
+            _data = new byte[N];
+            new Random(42).NextBytes(_data);
         }
 
         [Benchmark]
-        public byte[] Sha256() => sha256.ComputeHash(data);
+        public byte[] Sha256() => _sha256.ComputeHash(_data);
 
     }
 }

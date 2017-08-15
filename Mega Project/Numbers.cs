@@ -1,34 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Mega_Project
 {
-    class Numbers
+    internal static class Numbers
     {
         public const double Pi = Math.PI;
-        public const double e = Math.E;
+        public const double E = Math.E;
 
         public static List<int> Fibonachi(int n)
         {
-            List<int> fibonachi_sequence = new List<int>();
-            int a = 0;
-            int b = 1;
-            fibonachi_sequence.Add(a);
-            fibonachi_sequence.Add(b);
-            for (int i = 0; i < n; i++)
+            var fibonachiSequence = new List<int>();
+            var a = 0;
+            var b = 1;
+            fibonachiSequence.Add(a);
+            fibonachiSequence.Add(b);
+            for (var i = 0; i < n; i++)
             {
-                int temp = a;
+                var temp = a;
                 a = b;
                 b = temp + b;
-                fibonachi_sequence.Add(a);
+                fibonachiSequence.Add(a);
             }
-            return fibonachi_sequence;
+            return fibonachiSequence;
         }
 
         public static List<int> PrimeFactor(int n)
         {
-            List<int> dividers = new List<int>();
-            for (int a = 2; n > 1; a++)
+            var dividers = new List<int>();
+            for (var a = 2; n > 1; a++)
             {
                 while (n % a == 0)
                 {
@@ -46,60 +47,49 @@ namespace Mega_Project
             {
                 x += ((Math.Pow(-1, i)) / (2 + (i * 2 - 1)));
             }
-            double Pi = x * 4;
-            return Pi;
+            var piCalculated = x * 4;
+            return piCalculated;
         }
 
         public static double CountingE(double n)
         {
-            double ee;
-            ee = Math.Pow((1 + 1 / n), n);
-            return ee;
+            var eCalculated = Math.Pow((1 + 1 / n), n);
+            return eCalculated;
         }
 
-        public static string CommonPrefix(string[] ss)
+        public static string CommonPrefix(string[] strings)
         {
-            if (ss.Length == 0)
+            switch (strings.Length)
             {
-                return "";
-            }
+                case 0:
+                    return "";
+                case 1:
+                    return strings[0];
+                default:
+                    var prefixLength = 0;
 
-            if (ss.Length == 1)
-            {
-                return ss[0];
-            }
-
-            int prefixLength = 0;
-
-            foreach (char c in ss[0])
-            {
-                foreach (string s in ss)
-                {
-                    if (s.Length <= prefixLength || s[prefixLength] != c)
+                    foreach (var c in strings[0])
                     {
-                        return ss[0].Substring(0, prefixLength);
+                        if (strings.Any(s => s.Length <= prefixLength || s[prefixLength] != c))
+                        {
+                            return strings[0].Substring(0, prefixLength);
+                        }
+                        prefixLength++;
                     }
-                }
-                prefixLength++;
+
+                    return strings[0]; 
             }
 
-            return ss[0]; // all strings identical up to length of ss[0]
+
         }
 
-        public static bool IsPrime(int candidate)
+        private static bool IsPrime(int candidate)
         {
             if ((candidate & 1) == 0)
             {
-                if (candidate == 2)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return candidate == 2;
             }
-            for (int i = 3; (i * i) <= candidate; i += 2)
+            for (var i = 3; (i * i) <= candidate; i += 2)
             {
                 if ((candidate % i) == 0)
                 {
@@ -111,17 +101,17 @@ namespace Mega_Project
 
         public static List<int> PrimeNumbers(int start, int count)
         {
-            List<int> PrimeNumbers = new List<int>();
-            int number = start;
-            while (PrimeNumbers.Count < count)
+            var primeNumbers = new List<int>();
+            var number = start;
+            while (primeNumbers.Count < count)
             {
-                if (Numbers.IsPrime(number))
+                if (IsPrime(number))
                 {
-                    PrimeNumbers.Add(number);
+                    primeNumbers.Add(number);
                 }
                 number++;
             }
-            return PrimeNumbers;
+            return primeNumbers;
         }
 
     }
