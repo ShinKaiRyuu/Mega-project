@@ -29,13 +29,15 @@ namespace Mega_Project
         public static List<int> PrimeFactor(int n)
         {
             var dividers = new List<int>();
-            for (var a = 2; n > 1; a++)
+            var a = 2;
+            while (n > 1)
             {
                 while (n % a == 0)
                 {
                     dividers.Add(a);
                     n = n / a;
                 }
+                a++;
             }
             return dividers;
         }
