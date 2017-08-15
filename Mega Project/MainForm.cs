@@ -2,7 +2,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -43,7 +42,10 @@ namespace Mega_Project
             pnlSort1.Height = Height - 276;
             pnlSort1.Width = Width - 470;
         }
-
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
 
         private readonly Dictionary<string, Tuple<double, string>> _dictionaryPi = new Dictionary<string, Tuple<double, string>>();
         private readonly Dictionary<string, Tuple<double, string>> _dictionaryE = new Dictionary<string, Tuple<double, string>>();
@@ -53,7 +55,6 @@ namespace Mega_Project
 
         private void projectTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             var currentProjectTabControl = projectTabControl;
             var currentProjectTabPage = currentProjectTabControl.SelectedTab;
             var currentSubprojectTabControl = (TabControl)currentProjectTabPage.Controls[0];
@@ -80,21 +81,12 @@ namespace Mega_Project
         }
         private void findPiGenerateButton_Click(object sender, EventArgs e)
         {
-            var sw = new Stopwatch();
-            sw.Start();
             var value = findPiTrackBar.Value;
-            Tuple<double, string> result = null;
+            Tuple<double, string> result;
             var key = "Pi" + value;
             string common;
             double countedPi;
-            try
-            {
-                _dictionaryPi.TryGetValue(key, out result);
-            }
-            catch (Exception ex)
-            {
-                debugRichTextBox.Text = ex.Message;
-            }
+            _dictionaryPi.TryGetValue(key, out result);
             if (result == null)
             {
                 countedPi = Numbers.CountingPi(value);
@@ -109,27 +101,16 @@ namespace Mega_Project
             findPiEtalonPiLabel.Text = @"Etalon : Pi =" + Numbers.Pi;
             findPiResultLabel.Text = @"Result : Pi =" + countedPi;
             findPiCommonPartWithEtalonLabel.Text = @"Common :   " + common;
-            sw.Stop();
-            debugRichTextBox.Text = sw.Elapsed.ToString();
         }
 
         private void fineEGenerateButton_Click(object sender, EventArgs e)
         {
-            var sw = new Stopwatch();
-            sw.Start();
             var value = findETrackBar.Value;
-            Tuple<double, string> result = null;
+            Tuple<double, string> result;
             var key = "E" + value;
             string common;
             double countedE;
-            try
-            {
-                _dictionaryE.TryGetValue(key, out result);
-            }
-            catch (Exception ex)
-            {
-                debugRichTextBox.Text = ex.Message;
-            }
+            _dictionaryE.TryGetValue(key, out result);
             if (result == null)
             {
                 countedE = Numbers.CountingE(value);
@@ -143,8 +124,6 @@ namespace Mega_Project
             findEEtalonELabel.Text = @"Etalon : E =" + Numbers.E;
             findEResultLabel.Text = @"Result : E =" + countedE;
             findECommonPartWithEtalonLabel.Text = @"Common :   " + common;
-            sw.Stop();
-            debugRichTextBox.Text = sw.Elapsed.ToString();
         }
         private void findETrackBar_Scroll(object sender, EventArgs e)
         {
@@ -154,20 +133,13 @@ namespace Mega_Project
                 fineEGenerateButton_Click(sender, e);
             }
         }
-        
+
         private void findFibonachiSequenceGenerateButton_Click(object sender, EventArgs e)
         {
-            var result = new List<int>();
+            List<int> result;
             var value = findFibonachiSequenceTrackBar.Value;
             var key = "Fibonachi" + value;
-            try
-            {
-                _dictionaryFibonachi.TryGetValue(key, out result);
-            }
-            catch (Exception ex)
-            {
-                debugRichTextBox.Text = ex.Message;
-            }
+            _dictionaryFibonachi.TryGetValue(key, out result);
             if (result == null)
             {
                 _dictionaryFibonachi.Add(key, Numbers.Fibonachi(value));
@@ -188,17 +160,10 @@ namespace Mega_Project
 
         private void findPrimeFactorGenerateButton_Click(object sender, EventArgs e)
         {
-            var result = new List<int>();
+            List<int> result;
             var value = findPrimeFactorTrackBar.Value;
             var key = "PrimeFactor" + value;
-            try
-            {
-                _dictionaryPrimeFactor.TryGetValue(key, out result);
-            }
-            catch (Exception ex)
-            {
-                debugRichTextBox.Text = ex.Message;
-            }
+            _dictionaryPrimeFactor.TryGetValue(key, out result);
             if (result == null)
             {
                 _dictionaryPrimeFactor.Add(key, Numbers.PrimeFactor(value));
@@ -218,17 +183,10 @@ namespace Mega_Project
 
         private void findPrimeNumberGenerateButton_Click(object sender, EventArgs e)
         {
-            var result = new List<int>();
+            List<int> result;
             var value = findPrimeNumberTrackBar.Value;
             var key = "PrimeNumber" + value;
-            try
-            {
-                _dictionaryPrimeNumber.TryGetValue(key, out result);
-            }
-            catch (Exception ex)
-            {
-                debugRichTextBox.Text = ex.Message;
-            }
+            _dictionaryPrimeNumber.TryGetValue(key, out result);
             if (result == null)
             {
                 _dictionaryPrimeNumber.Add(key, Numbers.PrimeNumbers(start: 0, count: value));
@@ -350,28 +308,19 @@ namespace Mega_Project
                 _arrayToSort[i] = temp[Rand.Next(0, maxValue)];
             }
         }
+
         private void PrepareArrayForSorting()
         {
             if (ddTypeOfData.SelectedItem.ToString() == "Random")
-            {
                 PrepareArrayRandom();
-            }
             else if (ddTypeOfData.SelectedItem.ToString() == "Sorted")
-            {
                 PrepareArraySorted();
-            }
             else if (ddTypeOfData.SelectedItem.ToString() == "Nearly Sorted")
-            {
                 PrepareArrayNearlySorted();
-            }
             else if (ddTypeOfData.SelectedItem.ToString() == "Reversed")
-            {
                 PrepareArrayReversed();
-            }
             else if (ddTypeOfData.SelectedItem.ToString() == "Few Unique")
-            {
                 PrepareArrayFewUnique();
-            }
         }
 
         private void PrepareForSort()
@@ -391,7 +340,7 @@ namespace Mega_Project
 
         }
 
-        private void InitializeVisualisationParameters(out int speed,out string alg1,out Sorting srt)
+        private void InitializeVisualisationParameters(out int speed, out string alg1, out Sorting srt)
         {
             speed = 1;
             for (var i = 0; i < tbSpeed.Value; i++)
@@ -423,7 +372,7 @@ namespace Mega_Project
 
         private void SelectSortAlghorithm()
         {
-            var algName = _sortingAlghorithm.Replace(" ", "").Replace("-","").Replace("(","").Replace(")","");
+            var algName = _sortingAlghorithm.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "");
             var mi = _sorting.GetType().GetMethod(algName);
             _visualisationThreadStart = delegate
             {
@@ -432,14 +381,14 @@ namespace Mega_Project
                     case "Merge Sort (In Place)":
                     case "Merge Sort (Double Storage)":
                     case "Timsort":
-                        mi.Invoke(_sorting, new object[] { _arrayToSort, 0, _arrayToSort.Count});
+                        mi.Invoke(_sorting, new object[] { _arrayToSort, 0, _arrayToSort.Count });
                         break;
                     case "Quicksort":
                     case "Quicksort With Insertion Sort":
-                        mi.Invoke(_sorting, new object[] { _arrayToSort, 0, _arrayToSort.Count-1 });
+                        mi.Invoke(_sorting, new object[] { _arrayToSort, 0, _arrayToSort.Count - 1 });
                         break;
                     default:
-                        mi.Invoke(_sorting, new object[] {_arrayToSort});
+                        mi.Invoke(_sorting, new object[] { _arrayToSort });
                         break;
                 }
                 _sorting.Draw.FinishDrawing();
@@ -452,7 +401,7 @@ namespace Mega_Project
             RerunThread();
             PrepareForSort();
             PrepareArrayForSorting();
-            InitializeVisualisationParameters(out _sortingSpeed,out _sortingAlghorithm,out _sorting);
+            InitializeVisualisationParameters(out _sortingSpeed, out _sortingAlghorithm, out _sorting);
             SelectSortAlghorithm();
             RunThread();
         }
@@ -470,7 +419,6 @@ namespace Mega_Project
                 }
             }
         }
-        
 
         private void visualisationTabPage_Enter(object sender, EventArgs e)
         {
@@ -528,10 +476,7 @@ namespace Mega_Project
 #pragma warning restore 618
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Environment.Exit(0);
-        }
+
         private void benchmarkMD5_Click(object sender, EventArgs e)
         {
             _benchmarkMd5ThreadStart = delegate
@@ -556,6 +501,30 @@ namespace Mega_Project
             _benchmarkMd5Thread = new Thread(_benchmarkMd5ThreadStart);
             _benchmarkMd5Thread.Start();
         }
+        private void benchmarkSha256_Click(object sender, EventArgs e)
+        {
+            _benchmarkSha256ThreadStart = delegate
+            {
+                SetProgressbar2Style(ProgressBarStyle.Marquee);
+                var summ = BenchmarkRunner.Run<BenchmarkSha256>();
+                string[] selectedColumns = { "Method", "Mean", "StdDev", "Allocated" };
+                var indexes = new List<int>();
+                foreach (var str in summ.Table.Columns)
+                {
+                    foreach (var str2 in selectedColumns)
+                    {
+                        if (str.Header != str2) continue;
+                        indexes.Add(str.Index);
+                        SetDataGrid2Columns(str.Header, str.Header);
+                    }
+                }
+                AddDataGrid2Row(indexes.Select(index => summ.Table.FullContent[0][index]).ToArray());
+                SetProgressbar2Style(ProgressBarStyle.Continuous);
+                SetProgressbar2Value(100);
+            };
+            _benchmarkSha256Thread = new Thread(_benchmarkSha256ThreadStart);
+            _benchmarkSha256Thread.Start();
+        }
 
         private delegate void SetProgCallback(int newVal);
         private void SetProgressbarValue(int newVal)
@@ -568,6 +537,18 @@ namespace Mega_Project
             else
             {
                 benchmarkMD5ProgressBar.Value = newVal;
+            }
+        }
+        private void SetProgressbar2Value(int newVal)
+        {
+            if (benchmarkSha256ProgressBar.InvokeRequired)
+            {
+                SetProgCallback d = SetProgressbar2Value;
+                Invoke(d, newVal);
+            }
+            else
+            {
+                benchmarkSha256ProgressBar.Value = newVal;
             }
         }
 
@@ -584,20 +565,6 @@ namespace Mega_Project
                 benchmarkMD5ProgressBar.Style = newVal;
             }
         }
-
-        private void SetProgressbar2Value(int newVal)
-        {
-            if (benchmarkSha256ProgressBar.InvokeRequired)
-            {
-                SetProgCallback d = SetProgressbar2Value;
-                Invoke(d, newVal);
-            }
-            else
-            {
-                benchmarkSha256ProgressBar.Value = newVal;
-            }
-        }
-
         private void SetProgressbar2Style(ProgressBarStyle newVal)
         {
             if (benchmarkSha256ProgressBar.InvokeRequired)
@@ -667,29 +634,6 @@ namespace Mega_Project
             }
         }
 
-        private void benchmarkSha256_Click(object sender, EventArgs e)
-        {
-            _benchmarkSha256ThreadStart = delegate
-            {
-                SetProgressbar2Style(ProgressBarStyle.Marquee);
-                var summ = BenchmarkRunner.Run<BenchmarkSha256>();
-                string[] selectedColumns = { "Method", "Mean", "StdDev", "Allocated" };
-                var indexes = new List<int>();
-                foreach (var str in summ.Table.Columns)
-                {
-                    foreach (var str2 in selectedColumns)
-                    {
-                        if (str.Header != str2) continue;
-                        indexes.Add(str.Index);
-                        SetDataGrid2Columns(str.Header, str.Header);
-                    }
-                }
-                AddDataGrid2Row(indexes.Select(index => summ.Table.FullContent[0][index]).ToArray());
-                SetProgressbar2Style(ProgressBarStyle.Continuous);
-                SetProgressbar2Value(100);
-            };
-            _benchmarkSha256Thread = new Thread(_benchmarkSha256ThreadStart);
-            _benchmarkSha256Thread.Start();
-        }
+
     }
 }

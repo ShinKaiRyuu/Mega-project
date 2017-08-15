@@ -19,6 +19,13 @@ namespace Mega_Project
         private readonly PictureBox _pnlSamples;
         private readonly int _originalPanelHeight;
         private readonly int _frameMs;
+        private double _multiplyHeight;
+        private Pen _blackPen;
+        private SolidBrush _blackBrush;
+        private Pen _redPen;
+        private SolidBrush _redBrush;
+        private int _width;
+        private List<int> _swaps;
 
         public Draw(ArrayList list, PictureBox pic, int s)
         {
@@ -77,13 +84,9 @@ namespace Mega_Project
             }
         }
 
-        private void DrawSamples()
+        private void Resize()
         {
-            // might need to grow or shrink if size is different from original (can't change array!)
-            double multiplyHeight = 1;
-
-            // check if need to change size
-
+            _multiplyHeight = 1;
             if (_bmpsave.Width != _pnlSamples.Width || _bmpsave.Height != _pnlSamples.Height)
             {
                 _bmpsave = new Bitmap(_pnlSamples.Width, _pnlSamples.Height);
@@ -93,76 +96,103 @@ namespace Mega_Project
 
             if (_pnlSamples.Height != _originalPanelHeight)
             {
-                multiplyHeight = _pnlSamples.Height / (double)(_originalPanelHeight);
+                _multiplyHeight = _pnlSamples.Height / (double)(_originalPanelHeight);
             }
+        }
 
-            // start with white background
+        private void InitializeDrawParameters()
+        {
             _g.Clear(Color.White);
 
             // use black sometimes
-            var pen = new Pen(Color.Black);
-            var b = new SolidBrush(Color.Black);
+            _blackPen = new Pen(Color.Black);
+            _blackBrush = new SolidBrush(Color.Black);
 
             // use red sometimes
-            var redPen = new Pen(Color.Red);
-            var redBrush = new SolidBrush(Color.Red);
+            _redPen = new Pen(Color.Red);
+            _redBrush = new SolidBrush(Color.Red);
 
             // draw a nice width based on number of elements
-            var w = (_pnlSamples.Width / _arrayToSort.Count) - 1;
-            var a = new List<int>();
+            _width = (_pnlSamples.Width / _arrayToSort.Count) - 1;
+            _swaps = new List<int>();
+        }
+
+        private void DrawSamples()
+        {
+            Resize();
+            InitializeDrawParameters();
+
+            // start with white background
+
 
             for (var i = 0; i < _arrayToSort.Count; i++)
             {
                 var x = (int)(((double)_pnlSamples.Width / _arrayToSort.Count) * i);
 
-                var itemHeight = (int)Math.Round(Convert.ToDouble(_arrayToSort[i]) * multiplyHeight);
+                var itemHeight = (int)Math.Round(Convert.ToDouble(_arrayToSort[i]) * _multiplyHeight);
 
                 // draw highlighed versions
                 if (HighlightedIndexes.ContainsKey(i))
                 {
-                    if (w <= 1)
-                    {
-                        _g.DrawLine(redPen, new Point(x, _pnlSamples.Height), new Point(x, _pnlSamples.Height - itemHeight));
-                        a.Add((int)_arrayToSort[i]);
-                    }
-
-                    else
-                    {
-                        _g.FillRectangle(redBrush, x, _pnlSamples.Height - itemHeight, w, _pnlSamples.Height);
-                        a.Add((int)_arrayToSort[i]);
-                    }
+                    DrawRed(x, itemHeight, i);
                 }
 
                 else // draw normal versions
                 {
-                    if (w <= 1)
-                    {
-                        _g.DrawLine(pen, new Point(x, _pnlSamples.Height), new Point(x, _pnlSamples.Height - itemHeight));
-                    }
-                    else
-                    {
-                        _g.FillRectangle(b, x, _pnlSamples.Height - itemHeight, w, _pnlSamples.Height);
-                    }
+                    DrawBlack(x, itemHeight);
                 }
 
             }
-            if (a.Count > 1)
+            if (_swaps.Count > 1)
             {
-                string text;
-                if (a[0] > a[1])
-                {
-                    text = "SWAPING " + a[0] + " / " + a[1];
-                    _g.DrawString(text, new Font("Arial", 10), redBrush, new Point(0, 5));
-                }
-                else
-                {
-                    text = "NO SWAPING";
-                    _g.DrawString(text, new Font("Arial", 10), redBrush, new Point(0, 5));
-                }
+                DrawSwaps();
             }
 
 
         }
+
+        private void DrawSwaps()
+        {
+            string text;
+            if (_swaps[0] > _swaps[1])
+            {
+                text = "SWAPING " + _swaps[0] + " / " + _swaps[1];
+                _g.DrawString(text, new Font("Arial", 10), _redBrush, new Point(0, 5));
+            }
+            else
+            {
+                text = "NO SWAPING";
+                _g.DrawString(text, new Font("Arial", 10), _redBrush, new Point(0, 5));
+            }
+        }
+
+        private void DrawBlack(int x, int itemHeight)
+        {
+            if (_width <= 1)
+            {
+                _g.DrawLine(_blackPen, new Point(x, _pnlSamples.Height), new Point(x, _pnlSamples.Height - itemHeight));
+            }
+            else
+            {
+                _g.FillRectangle(_blackBrush, x, _pnlSamples.Height - itemHeight, _width, _pnlSamples.Height);
+            }
+        }
+
+        private void DrawRed(int x, int itemHeight, int i)
+        {
+            if (_width <= 1)
+            {
+                _g.DrawLine(_redPen, new Point(x, _pnlSamples.Height), new Point(x, _pnlSamples.Height - itemHeight));
+                _swaps.Add((int)_arrayToSort[i]);
+            }
+
+            else
+            {
+                _g.FillRectangle(_redBrush, x, _pnlSamples.Height - itemHeight, _width, _pnlSamples.Height);
+                _swaps.Add((int)_arrayToSort[i]);
+            }
+        }
+
         public void FinishDrawing()
         {
             if (HighlightedIndexes.Count > 0)
